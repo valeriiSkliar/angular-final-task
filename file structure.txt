@@ -1,0 +1,36 @@
+/my-app
+├── /e2e
+├── /node_modules
+├── /src
+│   ├── /app
+│   │   ├── /core
+│   │   │   ├── /services
+│   │   │   │   ├── auth.service.ts
+│   │   │   │   ├── product.service.ts
+│   │   │   │   ├── comment.service.ts
+│   │   │   │   ├── cart.service.ts
+│   │   │   ├── core.module.ts
+│   │   ├── /shared
+│   │   │   ├── /components
+│   │   │   │   ├── button
+│   │   │   │   │   ├── button.component.ts
+│   │   │   │   │   ├── button.component.html
+│   │   │   │   │   ├── button.component.css
+│   │   │   ├── shared.module.ts
+│   │   ├── /product
+│   │   │   ├── /components
+│   │   │   │   ├── product
+│   │   │   │   │   ├── product.component.ts
+│   │   │   │   │   ├── product.component.html
+│   │   │   │   │   ├── product.component.css
+│   │   │   │   ├── comment
+│   │   │   │   │   ├── comment.component.ts
+│   │   │   │   │   ├── comment.component.html
+│   │   │   │   │   ├── comment.component.css
+│   │   │   ├── product.module.ts
+│   │   ├── /admin
+│   │   │   ├── /components
+│   │   │   │   ├── add-product
+│   │   │   │   │   ├── add-product.component.ts
+│   │   │   │   │   ├── add-product.component.html
+│   │   │   │   │  
