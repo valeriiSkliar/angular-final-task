@@ -33,4 +33,30 @@
 │   │   │   │   ├── add-product
 │   │   │   │   │   ├── add-product.component.ts
 │   │   │   │   │   ├── add-product.component.html
-│   │   │   │   │  
+│   │   │   │   │   ├── add-product.component.css
+│   │   │   ├── admin.module.ts
+│   │   ├── /cart
+│   │   │   ├── /components
+│   │   │   │   ├── cart
+│   │   │   │   │   ├── cart.component.ts
+│   │   │   │   │   ├── cart.component.html
+│   │   │   │   │   ├── cart.component.css
+│   │   │   ├── cart.module.ts
+│   │   ├── /home
+│   │   │   ├── /components
+│   │   │   │   ├── home
+│   │   │   │   │   ├── home.component.ts
+│   │   │   │   │   ├── home.component.html
+│   │   │   │   │   ├── home.component.css
+│   │   │   ├── home.module.ts
+│   │   ├── app.component.ts
+│   │   ├── app.module.ts
+│   ├── /assets
+│   ├── /environments
+│   ├── index.html
+│   ├── main.ts
+│   ├── styles.css
+├── .gitignore
+├── angular.json
+├── package.json
+├── tsconfig.json
