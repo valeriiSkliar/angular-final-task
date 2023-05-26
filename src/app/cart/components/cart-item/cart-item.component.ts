@@ -12,6 +12,8 @@ export class CartItemComponent {
 	item!: { product: IProduct; quantity: number };
 	@Output()
 	quantityChange = new EventEmitter<IQuantityChangeData>();
+	@Output()
+	removeItem = new EventEmitter<string>();
 
 	changeQuantity(change: number) {
 		this.emitQuantityChange(this.item.quantity + change);
@@ -30,5 +32,9 @@ export class CartItemComponent {
 			id: this.item.product.id,
 			quantity: quantity,
 		});
+	}
+
+	remove(id: string) {
+		this.removeItem.emit(id);
 	}
 }

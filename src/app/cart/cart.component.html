@@ -8,6 +8,7 @@
       <app-cart-item
         [item] = "item"
         (quantityChange)="updateQuantity($event)"
+        (removeItem)="remove($event)"
       ></app-cart-item>
     </li>
   </ul>
