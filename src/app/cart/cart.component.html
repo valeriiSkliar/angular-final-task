@@ -1,1 +1,17 @@
-<p>cart works!</p>
+<div class="cart">
+  <h2>Корзина</h2>
+  <ul>
+    <li
+      *ngFor="let item of cartItems; let i = index"
+      class="cart-item"
+    >
+      <app-cart-item
+        [item] = "item"
+        (quantityChange)="updateQuantity($event)"
+      ></app-cart-item>
+    </li>
+  </ul>
+  <div class="cart-total">
+    Total: {{ totalCost }}
+  </div>
+</div>

@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './appModuleComponents/footer/footer.component';
 import { HeaderComponent } from './appModuleComponents/header/header.component';
+import { CartModule } from './cart/cart.module';
 
 @NgModule({
 	declarations: [AppComponent, FooterComponent, HeaderComponent],
-	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, CartModule],
 	providers: [],
 	bootstrap: [AppComponent],
 })
