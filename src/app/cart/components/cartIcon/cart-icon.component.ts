@@ -12,6 +12,7 @@ export class CartIconComponent {
 	notificationType: 'success' | 'error' | 'info' | null = null;
 
 	constructor(public cartService: CartService) {
+		// need to delete this testing code
 		setInterval(() => {
 			cartService.addCartProduct({
 				id: this.randomId(),
