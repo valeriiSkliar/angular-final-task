@@ -1,0 +1,39 @@
+.notification {
+	padding: 1em;
+	margin: 1em 0;
+	border-radius: 0.5em;
+	width: 100%;
+	box-sizing: border-box;
+}
+.toast-container {
+	opacity: 0;
+}
+.success {
+	background-color: #d4edda;
+	color: #155724;
+}
+
+.error {
+	background-color: #f8d7da;
+	color: #721c24;
+}
+
+.info {
+	background-color: #cce5ff;
+	color: #004085;
+}
+.info .rounded {
+	width: 15px;
+	height: 15px;
+	background-color: #004085;
+}
+.error .rounded {
+	width: 15px;
+	height: 15px;
+	background-color: #721c24;
+}
+.success .rounded {
+	width: 15px;
+	height: 15px;
+	background-color: #155724;
+}
