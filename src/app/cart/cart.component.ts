@@ -39,4 +39,8 @@ export class CartComponent {
 	remove(itemId: string) {
 		this.cartService.removeItem(itemId);
 	}
+
+	buyGoogs() {
+		this.cartService.clearCart();
+	}
 }

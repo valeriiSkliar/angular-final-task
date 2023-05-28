@@ -9,9 +9,6 @@ import { IProduct } from '../interfaces/iproduct';
 // старайся вызывать методы сервиса только в родительских компонентов.
 export class CartService {
 	cartItems: { [productId: string]: { product: IProduct; quantity: number } } = {};
-	constructor() // private localStorageService: LocalStorageService // private productService: ProductService,
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	{}
 
 	addCartProduct(product: IProduct) {
 		this.cartItems[product.id] = { product: product, quantity: 1 };
@@ -46,5 +43,9 @@ export class CartService {
 
 	removeItem(itemId: string) {
 		delete this.cartItems[itemId];
+	}
+
+	clearCart() {
+		this.cartItems = {};
 	}
 }
