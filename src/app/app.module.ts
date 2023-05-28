@@ -8,33 +8,13 @@ import { HeaderComponent } from './appModuleComponents/header/header.component';
 import { CartModule } from './cart/cart.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
-import { LocalStorageService } from './services/local-storage.service';
-import { ProductComponent } from './product/product.component';
-import { ProductComponentComponent } from './product/product-component/product-component.component';
-import { ProductImgComponent } from './product/product-component/product-img/product-img.component';
-import { ProductInfoComponent } from './product/product-component/product-info/product-info.component';
-import { ProductButtonComponent } from './product/product-component/product-info/product-button/product-button.component';
-import { ProductDescriptionComponent } from './product/product-component/product-info/product-description/product-description.component';
-import { CommentComponentComponent } from './product/comment-component/comment-component.component';
-import { BackComponentComponent } from './product/back-component/back-component.component';
+import { ProductModule } from './product/product.module';
+import { LocalStorageService } from './core/services/local-storage.service';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		FooterComponent,
-		HeaderComponent,
-		HomeComponent,
-		ProductComponent,
-		ProductComponentComponent,
-		ProductImgComponent,
-		ProductInfoComponent,
-		ProductButtonComponent,
-		ProductDescriptionComponent,
-		CommentComponentComponent,
-		BackComponentComponent,
-	],
+	declarations: [AppComponent, FooterComponent, HeaderComponent, HomeComponent],
 	providers: [LocalStorageService],
 	bootstrap: [AppComponent],
-	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, CartModule, SharedModule],
+	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, CartModule, SharedModule, ProductModule],
 })
 export class AppModule {}

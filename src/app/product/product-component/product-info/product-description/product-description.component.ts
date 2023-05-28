@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProductPageService } from 'src/app/services/product-page.service';
+import { ProductPageService } from 'src/app/core/services/product-page.service';
 
 @Component({
 	selector: 'app-product-description',

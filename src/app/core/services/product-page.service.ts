@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Product } from './local-storage.service';
+import { IProduct } from '../interfaces/iproduct';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class ProductPageService {
-	productPage: Product | undefined;
+	productPage: IProduct | undefined;
 
-	setProductPage(product: Product) {
+	setProductPage(product: IProduct) {
 		this.productPage = product;
 	}
 
