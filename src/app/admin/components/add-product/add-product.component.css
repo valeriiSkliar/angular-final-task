@@ -1,0 +1,9 @@
+input {
+	border: #155724 3px solid;
+}
+.invalid {
+	border: #e7071e 3px solid;
+}
+img {
+	width: 140px;
+}

@@ -1,0 +1,47 @@
+<form
+  [formGroup]="productForm"
+  (ngSubmit)="onSubmit()"
+  class="flex-column d-flex gap-4">
+  <div>
+    <label class="h3">Name</label>
+    <input
+      [class.invalid]="productForm.get('name')?.invalid"
+      formControlName="name"
+      name="name"
+      type="text">
+  </div>
+  <div>
+    <label class="h3">description</label>
+    <input
+      [class.invalid]="productForm.get('description')?.invalid"
+      formControlName="description"
+      name="description"
+      type="text">
+  </div>
+  <div>
+    <label class="h3">price</label>
+    <input
+      [class.invalid]="productForm.get('price')?.invalid"
+      formControlName="price"
+      name="price"
+      type="number">
+  </div>
+  <div>
+    <label class="h3">image</label>
+    <input
+      value="https://i.imgur.com/Dj4KLvM.jpg"
+      #image
+      name="image" type="text">
+    <div
+      (click)="addImage(image.value)"
+      class="btn btn-info"
+    >+</div>
+
+  </div>
+  <div
+    *ngIf="imageCheck"
+  >
+    <img *ngFor="let img of images" src={{img}} alt="">
+  </div>
+  <button type="submit">Submit</button>
+</form>

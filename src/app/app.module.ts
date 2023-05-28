@@ -17,6 +17,7 @@ import { ProductButtonComponent } from './product/product-component/product-info
 import { ProductDescriptionComponent } from './product/product-component/product-info/product-description/product-description.component';
 import { CommentComponentComponent } from './product/comment-component/comment-component.component';
 import { BackComponentComponent } from './product/back-component/back-component.component';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
 	declarations: [
@@ -35,6 +36,6 @@ import { BackComponentComponent } from './product/back-component/back-component.
 	],
 	providers: [LocalStorageService],
 	bootstrap: [AppComponent],
-	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, CartModule, SharedModule],
+	imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, CartModule, SharedModule, AdminModule],
 })
 export class AppModule {}

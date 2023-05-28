@@ -2,3 +2,10 @@ input {
 	width: 50px;
 	padding: 0 4px;
 }
+.d-flex div {
+	min-width: 55px;
+	max-width: 110px;
+}
+div .vr {
+	background-color: transparent;
+}
