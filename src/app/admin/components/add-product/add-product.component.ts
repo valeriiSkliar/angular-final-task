@@ -4,8 +4,8 @@ import { IProduct } from '../../../core/interfaces/iproduct';
 import { LettersAndSpacesOnlyValidator } from '../../utils/LettersAndSpacesOnlyValidator';
 import { LettersSpacesNumbersOnlyValidator } from '../../utils/LettersSpacesNumbersOnlyValidator';
 import { checkImageValidation } from '../../utils/checkImageValidation';
-import { LocalStorageService } from '../../../services/local-storage.service';
 import { transliterate } from '../../utils/transliterate';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
 
 export interface Product {
 	id: string;
@@ -23,7 +23,7 @@ export interface Product {
 export class AddProductComponent {
 	productForm: FormGroup;
 	product: Partial<IProduct> = {};
-	images = [];
+	images: string[] = [];
 	imageCheck!: boolean;
 
 	constructor(private fb: FormBuilder, private localStorage: LocalStorageService) {
@@ -39,7 +39,7 @@ export class AddProductComponent {
 		console.log(this.productForm.value);
 		this.localStorage.setListProducts({
 			id: transliterate(this.productForm.value.name),
-			img: this.productForm.value.name,
+			imageUrls: this.images,
 			name: this.productForm.value.name,
 			price: this.productForm.value.price,
 			description: this.productForm.value.description,

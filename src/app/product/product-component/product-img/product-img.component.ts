@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProductPageService } from 'src/app/services/product-page.service';
+import { ProductPageService } from 'src/app/core/services/product-page.service';
 
 @Component({
 	selector: 'app-product-img',
@@ -7,6 +7,6 @@ import { ProductPageService } from 'src/app/services/product-page.service';
 	styleUrls: ['./product-img.component.css'],
 })
 export class ProductImgComponent {
-	imgUrl = this.activePage.getProductPage()?.img;
+	imgUrl = this.activePage.getProductPage()?.imageUrls[0];
 	constructor(private activePage: ProductPageService) {}
 }
