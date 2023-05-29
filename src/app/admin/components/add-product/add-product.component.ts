@@ -76,6 +76,6 @@ export class AddProductComponent {
 		);
 	}
 	imageInputsCheck(inputName: string) {
-		return this.imageForm.get(inputName)?.touched || this.imageForm.get(inputName)?.invalid;
+		return this.imageForm.get(inputName)?.touched;
 	}
 }

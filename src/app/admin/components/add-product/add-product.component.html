@@ -7,7 +7,8 @@
             <label class="form-label">Image URL</label>
             <input
               class="form-control"
-              [class.is-invalid]="imageInputsCheck(imageUrls.name)"
+              [class.is-invalid]="
+              (!imageForm.valid && imageInputsCheck(imageUrls.name))"
               formControlName="imageUrls"
               name="imageUrls"
               #imageUrls
