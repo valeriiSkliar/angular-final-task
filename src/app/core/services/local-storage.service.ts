@@ -99,4 +99,12 @@ export class LocalStorageService {
 			}
 		});
 	}
+	/*
+	getProductById(id: string) {
+		return this.listProducts.map((element) => {
+			if (element.id === id) {
+				return element;
+			}
+		})[0];
+	}*/
 }
