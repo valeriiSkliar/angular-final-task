@@ -14,7 +14,8 @@ export class CommentComponentComponent {
 	arrComments: IComments[] | undefined;
 	activeComments = {
 		id: '',
-		comments: [''],
+		comments: ['Comments'],
+		dateComments: [''],
 	};
 	constructor(private activeRoute: ActivatedRoute, private listProducts: CommentService) {}
 
@@ -30,8 +31,13 @@ export class CommentComponentComponent {
 
 	onClick() {
 		this.activeComments.id = this.id;
+		this.activeComments.dateComments.push(new Date().toLocaleString());
 		this.activeComments.comments.push(this.comment);
 		this.listProducts.setListComments(this.activeComments);
 		this.comment = '';
+		if (this.activeComments.comments[0] === 'Comments') {
+			this.activeComments.comments.shift();
+			this.activeComments.dateComments.shift();
+		}
 	}
 }
