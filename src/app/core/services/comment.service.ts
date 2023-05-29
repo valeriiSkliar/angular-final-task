@@ -21,4 +21,10 @@ export class CommentService {
 		this.listComments = JSON.parse(localStorage.getItem('ListComments')!);
 		return this.listComments;
 	}
+
+	constructor() {
+		if (!this.listComments) {
+			localStorage.setItem('ListComments', JSON.stringify(this.listComments));
+		}
+	}
 }
