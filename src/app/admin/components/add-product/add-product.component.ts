@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { IProduct } from '../../../core/interfaces/iproduct';
 import { LettersAndSpacesOnlyValidator } from '../../utils/LettersAndSpacesOnlyValidator';
@@ -16,12 +16,13 @@ import { NumbersOnlyValidator } from '../../utils/NumbersOnlyValidator';
 export class AddProductComponent {
 	productForm!: FormGroup;
 	imageForm!: FormGroup;
-	product: Partial<IProduct> = {};
-	images: string[] = [];
+	@Input() product: Partial<IProduct> = {};
+	@Input() images: string[] = [];
 	imageCheck = false;
 	isImageSubmitted = false;
+	@Output() addProductSubmit = new EventEmitter<IProduct>();
 
-	constructor(private fb: FormBuilder, private localStorage: LocalStorageService) {
+	constructor(private fb: FormBuilder) {
 		this.setDefaultForm();
 	}
 
@@ -30,16 +31,15 @@ export class AddProductComponent {
 			imageUrls: ['', Validators.required],
 		});
 		this.productForm = this.fb.group({
-			name: ['', LettersAndSpacesOnlyValidator()],
-			description: ['', LettersSpacesNumbersOnlyValidator()],
-			price: ['', [Validators.min(0), NumbersOnlyValidator()]],
+			name: ['' ?? this.product.name, LettersAndSpacesOnlyValidator()],
+			description: ['' ?? this.product.description, LettersSpacesNumbersOnlyValidator()],
+			price: ['' ?? this.product.price, [Validators.min(0), NumbersOnlyValidator()]],
 		});
 		this.images = [];
 	}
 
 	onSubmit() {
-		console.log(this.productForm.value);
-		this.localStorage.setBooksInLocalStorage({
+		this.addProductSubmit.emit({
 			id: transliterate(this.productForm.value.name),
 			imageUrls: this.images,
 			name: this.productForm.value.name,

@@ -9,8 +9,13 @@ import { IProduct } from '../../../core/interfaces/iproduct';
 export class ProductListManagementComponent {
 	@Input() productList: IProduct[] | null = null;
 	@Output() productIdToRemove = new EventEmitter<string>();
+	@Output() productIdToEdit = new EventEmitter<string>();
 
 	removeItemFromCollection(id: string) {
 		this.productIdToRemove.emit(id);
+	}
+
+	editItemFromCollection(id: string) {
+		this.productIdToEdit.emit(id);
 	}
 }
