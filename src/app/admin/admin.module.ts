@@ -4,9 +4,10 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { AdminComponent } from './admin.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductListManagementComponent } from './components/product-list-management/product-list-management.component';
 
 @NgModule({
-	declarations: [AdminComponent, AddProductComponent],
+	declarations: [AdminComponent, AddProductComponent, ProductListManagementComponent],
 	imports: [CommonModule, SharedModule, ReactiveFormsModule],
 })
 export class AdminModule {}

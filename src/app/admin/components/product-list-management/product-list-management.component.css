@@ -1,0 +1,7 @@
+.container {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+:host {
+	margin-top: 50px;
+}
