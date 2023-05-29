@@ -4,6 +4,7 @@ import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { ProductComponent } from './product/product.component';
 import { AdminComponent } from './admin/admin.component';
+import { Page404Component } from './appModuleComponents/page404/page404.component';
 
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
@@ -15,6 +16,10 @@ const routes: Routes = [
 	{
 		path: 'admin',
 		component: AdminComponent,
+	},
+	{
+		path: '**',
+		component: Page404Component,
 	},
 ];
 
