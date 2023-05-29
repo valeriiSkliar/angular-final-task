@@ -10,7 +10,8 @@ import { IQuantityChangeData } from '../core/interfaces/iquantity-change-data';
 export class CartComponent {
 	// totalCost = 0;
 
-	constructor(private cartService: CartService) {}
+	constructor(private cartService: CartService) // private localStorage: local
+	{}
 
 	get cartItems() {
 		return this.cartService.getCartList();

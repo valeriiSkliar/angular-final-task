@@ -26,12 +26,12 @@ export class AddProductComponent {
 
 	setDefaultForm() {
 		this.imageForm = this.fb.group({
-			imageUrls: ['', Validators.required],
+			imageUrls: [''],
 		});
 		this.productForm = this.fb.group({
-			name: ['', [Validators.required, LettersAndSpacesOnlyValidator()]],
-			description: ['', [Validators.required, LettersSpacesNumbersOnlyValidator()]],
-			price: ['', [Validators.required, Validators.min(0)]],
+			name: ['', LettersAndSpacesOnlyValidator()],
+			description: ['', LettersSpacesNumbersOnlyValidator()],
+			price: ['', Validators.min(0)],
 		});
 		this.images = [];
 	}
