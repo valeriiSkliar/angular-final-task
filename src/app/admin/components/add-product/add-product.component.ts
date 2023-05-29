@@ -6,6 +6,7 @@ import { LettersSpacesNumbersOnlyValidator } from '../../utils/LettersSpacesNumb
 import { checkImageValidation } from '../../utils/checkImageValidation';
 import { transliterate } from '../../utils/transliterate';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
+import { NumbersOnlyValidator } from '../../utils/NumbersOnlyValidator';
 
 @Component({
 	selector: 'app-add-product',
@@ -26,12 +27,12 @@ export class AddProductComponent {
 
 	setDefaultForm() {
 		this.imageForm = this.fb.group({
-			imageUrls: [''],
+			imageUrls: ['', Validators.required],
 		});
 		this.productForm = this.fb.group({
 			name: ['', LettersAndSpacesOnlyValidator()],
 			description: ['', LettersSpacesNumbersOnlyValidator()],
-			price: ['', Validators.min(0)],
+			price: ['', [Validators.min(0), NumbersOnlyValidator()]],
 		});
 		this.images = [];
 	}
@@ -75,9 +76,6 @@ export class AddProductComponent {
 		);
 	}
 	imageInputsCheck(inputName: string) {
-		return (
-			(this.imageForm.get(inputName)?.hasError('required') && this.imageForm.get(inputName)?.touched) ||
-			this.imageForm.get(inputName)?.invalid
-		);
+		return this.imageForm.get(inputName)?.touched || this.imageForm.get(inputName)?.invalid;
 	}
 }
