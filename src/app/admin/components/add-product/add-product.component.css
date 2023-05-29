@@ -7,3 +7,7 @@ input {
 img {
 	width: 140px;
 }
+.errorFormMessage {
+	font-size: smaller;
+	color: #e7071e;
+}

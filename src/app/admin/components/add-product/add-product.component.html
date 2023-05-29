@@ -1,47 +1,87 @@
-<form
-  [formGroup]="productForm"
-  (ngSubmit)="onSubmit()"
-  class="flex-column d-flex gap-4">
-  <div>
-    <label class="h3">Name</label>
-    <input
-      [class.invalid]="productForm.get('name')?.invalid"
-      formControlName="name"
-      name="name"
-      type="text">
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="container">
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Name</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="inputsCheck(name.name)"
+        formControlName="name"
+        name="name"
+        #name
+        type="text">
+      <span
+        *ngIf="inputsCheck(name.name)"
+        class="errorFormMessage"
+      >Only letters and spaces can be entered</span>
+    </div>
   </div>
-  <div>
-    <label class="h3">description</label>
-    <input
-      [class.invalid]="productForm.get('description')?.invalid"
-      formControlName="description"
-      name="description"
-      type="text">
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Description</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="inputsCheck(description.name)"
+        formControlName="description"
+        name="description"
+        #description
+        type="text">
+      <span
+        *ngIf="inputsCheck(description.name)"
+        class="errorFormMessage"
+      >Only letters, spaces and numbers can be entered</span>
+    </div>
   </div>
-  <div>
-    <label class="h3">price</label>
-    <input
-      [class.invalid]="productForm.get('price')?.invalid"
-      formControlName="price"
-      name="price"
-      type="number">
+  <div class="row mb-3">
+    <div class="col">
+      <label class="form-label">Price</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="inputsCheck(price.name)"
+        formControlName="price"
+        name="price"
+        #price
+        type="number">
+      <span
+        *ngIf="inputsCheck(price.name)"
+        class="errorFormMessage"
+      >Only numbers can be entered</span>
+    </div>
   </div>
-  <div>
-    <label class="h3">image</label>
-    <input
-      value="https://i.imgur.com/Dj4KLvM.jpg"
-      #image
-      name="image" type="text">
-    <div
-      (click)="addImage(image.value)"
-      class="btn btn-info"
-    >+</div>
-
+  <div class="row">
+    <div class="col">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!(imageForm.valid && productForm.valid)">Add Book</button>
+    </div>
   </div>
-  <div
-    *ngIf="imageCheck"
-  >
-    <img *ngFor="let img of images" src={{img}} alt="">
-  </div>
-  <button type="submit">Submit</button>
 </form>
+<form [formGroup]="imageForm" (ngSubmit)="imageAddSubmit()" class="mb-3">
+  <div class="row">
+    <div class="col-9">
+      <label class="form-label">Image URL</label>
+      <input
+        class="form-control"
+        [class.is-invalid]="inputsCheck(imageUrls.name)"
+        formControlName="imageUrls"
+        name="imageUrls"
+        #imageUrls
+        type="text">
+    </div>
+    <div class="col-3">
+      <label class="form-label">&nbsp;</label>
+      <button
+        [disabled]="!imageForm.valid"
+        type="submit"
+        class="btn btn-info w-100">Add</button>
+    </div>
+  </div>
+    <div class="row mt-2" *ngIf="isImageSubmitted">
+      <span *ngIf="imageCheck" class="errorFormMessage">image URL is not valid</span>
+      <div class="col" *ngFor="let img of images">
+        <img src={{img}} alt="" class="img-fluid">
+      </div>
+    </div>
+</form>
+
+
