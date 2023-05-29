@@ -22,14 +22,6 @@ export class CartComponent {
 		}, 0);
 	}
 
-	// decreaseQuantity(id: string) {
-	// 	this.cartService.decreaseQuantity(id);
-	// }
-	//
-	// increaseQuantity(id: string) {
-	// 	this.cartService.increaseQuantity(id);
-	// }
-
 	updateQuantity(item: IQuantityChangeData) {
 		if (item.quantity >= 0) {
 			this.cartService.updateQuantity(item.id, item.quantity);
