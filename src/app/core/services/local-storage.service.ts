@@ -72,19 +72,10 @@ export class LocalStorageService {
 			this.listProducts = JSON.parse(localStorage.getItem('ListBooks')!);
 		}
 	}
-	listReverse = this.listProducts.reverse();
-
-	getListProducts() {
-		return this.listReverse;
-	}
 
 	setBooksInLocalStorage(product: IProduct) {
 		this.listProducts.reverse().push(product);
 		localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
-	}
-
-	setFirstBooks() {
-		localStorage.setItem('ListBooks', JSON.stringify(this.listProducts.reverse()));
 	}
 
 	getBooksInLocalStorage() {
@@ -93,5 +84,19 @@ export class LocalStorageService {
 			this.listProducts = JSON.parse(localStorageItem);
 		}
 		return this.listProducts.reverse();
+	}
+
+	saveAfterRemove() {
+		localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
+	}
+
+	removeBook(id: string) {
+		this.listProducts.forEach((element) => {
+			if (element.id === id) {
+				const index = this.listProducts.indexOf(element);
+				this.listProducts.splice(index, 1);
+				this.saveAfterRemove();
+			}
+		});
 	}
 }

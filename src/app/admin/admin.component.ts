@@ -14,6 +14,6 @@ export class AdminComponent {
 		this.productList = this.localStorageService.getBooksInLocalStorage();
 	}
 	removeProductFromCollection(id: string) {
-		console.log(id);
+		this.localStorageService.removeBook(id);
 	}
 }
