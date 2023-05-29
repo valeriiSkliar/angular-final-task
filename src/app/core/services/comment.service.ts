@@ -23,7 +23,7 @@ export class CommentService {
 	}
 
 	constructor() {
-		if (!this.listComments) {
+		if (!localStorage.getItem('ListComments')) {
 			localStorage.setItem('ListComments', JSON.stringify(this.listComments));
 		}
 	}

@@ -5,7 +5,7 @@ import { IProduct } from '../interfaces/iproduct';
 	providedIn: 'root',
 })
 export class LocalStorageService {
-	/*private listProducts: IProduct[] = [
+	private listProducts: IProduct[] = [
 		{
 			id: '1',
 			name: 'Книга "1984"',
@@ -64,18 +64,14 @@ export class LocalStorageService {
 				'Роман охватывает события на протяжении 12 лет (с 1861 по 1873 годы), развивающиеся на фоне гражданской войны между северными промышленными и южными земледельческими штатами Америки.',
 			imageUrls: ['https://content1.rozetka.com.ua/goods/images/original/122942591.jpg'],
 		},
-	];*/
-
-	private listProducts: IProduct[] = [
-		{
-			id: '',
-			name: '',
-			price: 0,
-			description: '',
-			imageUrls: [''],
-		},
 	];
 
+	constructor() {
+		if (!localStorage.getItem('ListBooks')) {
+			localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
+			this.listProducts = JSON.parse(localStorage.getItem('ListBooks')!);
+		}
+	}
 	listReverse = this.listProducts.reverse();
 
 	getListProducts() {
@@ -92,7 +88,10 @@ export class LocalStorageService {
 	}
 
 	getBooksInLocalStorage() {
-		this.listProducts = JSON.parse(localStorage.getItem('ListBooks')!);
+		const localStorageItem = localStorage.getItem('ListBooks');
+		if (localStorageItem) {
+			this.listProducts = JSON.parse(localStorageItem);
+		}
 		return this.listProducts.reverse();
 	}
 }
