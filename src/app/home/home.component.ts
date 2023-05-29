@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../core/services/local-storage.service';
+import { IProduct } from '../core/interfaces/iproduct';
 
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 	constructor(private listProducts: LocalStorageService) {}
 
-	collectionBooks = this.listProducts.getListProducts();
+	collectionBooks: IProduct[] | undefined;
+
+	ngOnInit() {
+		this.collectionBooks = this.listProducts.getBooksInLocalStorage();
+	}
 }

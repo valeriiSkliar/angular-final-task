@@ -37,7 +37,7 @@ export class AddProductComponent {
 
 	onSubmit() {
 		console.log(this.productForm.value);
-		this.localStorage.setListProducts({
+		this.localStorage.setBooksInLocalStorage({
 			id: transliterate(this.productForm.value.name),
 			imageUrls: this.images,
 			name: this.productForm.value.name,

@@ -11,7 +11,7 @@ import { ProductPageService } from 'src/app/core/services/product-page.service';
 })
 export class ProductComponentComponent {
 	id: string | undefined;
-	collectionBooks = this.listProducts.getListProducts();
+	collectionBooks = this.listProducts.getBooksInLocalStorage();
 	productPage: IProduct | undefined;
 
 	newActiveProduct() {

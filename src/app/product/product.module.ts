@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ProductComponent } from './product.component';
@@ -21,7 +22,7 @@ import { ProductDescriptionComponent } from './product-component/product-info/pr
 		ProductButtonComponent,
 		ProductDescriptionComponent,
 	],
-	imports: [CommonModule, RouterLink],
+	imports: [CommonModule, RouterLink, FormsModule],
 	exports: [BackComponentComponent],
 })
 export class ProductModule {}

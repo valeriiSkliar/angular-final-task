@@ -5,7 +5,13 @@ import { IProduct } from '../interfaces/iproduct';
 	providedIn: 'root',
 })
 export class ProductPageService {
-	productPage: IProduct | undefined;
+	productPage: IProduct = {
+		id: 'string',
+		name: 'string',
+		description: 'string',
+		price: 0,
+		imageUrls: [''],
+	};
 
 	setProductPage(product: IProduct) {
 		this.productPage = product;
