@@ -9,7 +9,6 @@ export class CommentService {
 		{
 			id: '',
 			comments: [],
-			dateComments: [],
 		},
 	];
 
