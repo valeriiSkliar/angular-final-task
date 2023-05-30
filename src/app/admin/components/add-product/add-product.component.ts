@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { IProduct } from '../../../core/interfaces/iproduct';
 import { LettersAndSpacesOnlyValidator } from '../../utils/LettersAndSpacesOnlyValidator';
@@ -13,7 +13,7 @@ import { NumbersOnlyValidator } from '../../utils/NumbersOnlyValidator';
 	templateUrl: './add-product.component.html',
 	styleUrls: ['./add-product.component.css'],
 })
-export class AddProductComponent {
+export class AddProductComponent implements OnChanges {
 	productForm!: FormGroup;
 	imageForm!: FormGroup;
 	@Input() product: Partial<IProduct> = {};
@@ -26,14 +26,24 @@ export class AddProductComponent {
 		this.setDefaultForm();
 	}
 
+	ngOnChanges({ product, images }: SimpleChanges): void {
+		this.images = images.currentValue;
+		console.log(images.currentValue);
+		this.productForm = this.fb.group({
+			name: [this.product.name, LettersAndSpacesOnlyValidator()],
+			description: [this.product.description, LettersSpacesNumbersOnlyValidator()],
+			price: [this.product.price, [Validators.min(0), NumbersOnlyValidator()]],
+		});
+	}
+
 	setDefaultForm() {
 		this.imageForm = this.fb.group({
 			imageUrls: ['', Validators.required],
 		});
 		this.productForm = this.fb.group({
-			name: ['' ?? this.product.name, LettersAndSpacesOnlyValidator()],
-			description: ['' ?? this.product.description, LettersSpacesNumbersOnlyValidator()],
-			price: ['' ?? this.product.price, [Validators.min(0), NumbersOnlyValidator()]],
+			name: ['', LettersAndSpacesOnlyValidator()],
+			description: ['', LettersSpacesNumbersOnlyValidator()],
+			price: ['', [Validators.min(0), NumbersOnlyValidator()]],
 		});
 		this.images = [];
 	}

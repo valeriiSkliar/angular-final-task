@@ -24,12 +24,14 @@
         </div>
         <div class="row mt-2" *ngIf="isImageSubmitted">
           <span *ngIf="!imageCheck" class="errorFormMessage">image URL is not valid</span>
-          <div class="col d-flex flex-row gap-2 flex-wrap">
-            <img
-              *ngFor="let img of images"
-              src={{img}}
-              alt=""
-              class="img-fluid rounded-3 shadow-lg border border-secondary">
+          <div
+            *ngIf="images.length > 0"
+            class="col d-flex flex-row gap-2 flex-wrap">
+              <img
+                *ngFor="let img of images"
+                src={{img}}
+                alt=""
+                class="img-fluid rounded-3 shadow-lg border border-secondary">
           </div>
         </div>
       </form>
@@ -87,7 +89,7 @@
             <button
               class="btn btn-primary"
               type="submit"
-              [disabled]="!(imageCheck && productForm.valid && imageForm.valid)">Add Book</button>
+              [disabled]="!(imageCheck && productForm.valid && imageForm.valid) && images.length > 0">Add Book</button>
           </div>
         </div>
       </form>
