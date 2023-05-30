@@ -9,11 +9,12 @@ export class CommentService {
 		{
 			id: '',
 			comments: [],
+			dateComments: [],
 		},
 	];
 
 	setListComments(comment: IComments) {
-		this.listComments.push(comment);
+		this.listComments = [comment];
 		localStorage.setItem('ListComments', JSON.stringify(this.listComments));
 	}
 
