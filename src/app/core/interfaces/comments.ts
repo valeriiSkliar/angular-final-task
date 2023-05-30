@@ -1,5 +1,9 @@
+export interface ObjComments {
+	text: string;
+	date: string;
+}
+
 export interface IComments {
 	id: string;
-	comments: string[];
-	dateComments: string[];
+	comments: ObjComments[];
 }

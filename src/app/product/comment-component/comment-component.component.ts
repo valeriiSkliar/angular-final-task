@@ -14,8 +14,12 @@ export class CommentComponentComponent {
 	arrComments: IComments[] | undefined;
 	activeComments = {
 		id: '',
-		comments: ['Comments'],
-		dateComments: [''],
+		comments: [
+			{
+				text: 'Comment',
+				date: '00:00:00',
+			},
+		],
 	};
 	constructor(private activeRoute: ActivatedRoute, private listProducts: CommentService) {}
 
@@ -31,13 +35,15 @@ export class CommentComponentComponent {
 
 	onClick() {
 		this.activeComments.id = this.id;
-		this.activeComments.dateComments.push(new Date().toLocaleString());
-		this.activeComments.comments.push(this.comment);
+		const newObj = {
+			text: this.comment,
+			date: new Date().toLocaleString(),
+		};
+		this.activeComments.comments.push(newObj);
 		this.listProducts.setListComments(this.activeComments);
 		this.comment = '';
-		if (this.activeComments.comments[0] === 'Comments') {
+		if (this.activeComments.comments[0].text === 'Comment') {
 			this.activeComments.comments.shift();
-			this.activeComments.dateComments.shift();
 		}
 	}
 }
