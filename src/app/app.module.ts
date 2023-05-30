@@ -11,9 +11,10 @@ import { HomeComponent } from './home/home.component';
 import { AdminModule } from './admin/admin.module';
 import { ProductModule } from './product/product.module';
 import { LocalStorageService } from './core/services/local-storage.service';
+import { Page404Component } from './appModuleComponents/page404/page404.component';
 
 @NgModule({
-	declarations: [AppComponent, FooterComponent, HeaderComponent, HomeComponent],
+	declarations: [AppComponent, FooterComponent, HeaderComponent, HomeComponent, Page404Component],
 	providers: [LocalStorageService],
 	bootstrap: [AppComponent],
 	imports: [
