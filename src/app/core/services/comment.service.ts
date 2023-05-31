@@ -13,7 +13,12 @@ export class CommentService {
 	];
 
 	setListComments(comment: IComments) {
-		this.listComments = [comment];
+		this.listComments.push(comment);
+		this.listComments.forEach((element) => {
+			if (element.id === comment.id) {
+				this.listComments.splice(this.listComments.indexOf(element), 2, comment);
+			}
+		});
 		localStorage.setItem('ListComments', JSON.stringify(this.listComments));
 	}
 
