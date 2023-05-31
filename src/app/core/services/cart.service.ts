@@ -20,7 +20,7 @@ export class CartService {
 
 	get totalQuantity() {
 		return this.getCartList().reduce((accum, item) => {
-			return accum + item.quantity;
+			return accum + Number(item.quantity);
 		}, 0);
 	}
 

@@ -13,7 +13,6 @@ export class ProductButtonComponent {
 	constructor(public cartService: CartService, private activePage: ProductPageService) {}
 
 	onClick() {
-		console.log(this.quantity);
 		this.cartService.addCartProduct(this.activePage.getProductPage(), this.quantity);
 	}
 }
