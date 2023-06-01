@@ -10,9 +10,8 @@ import { IProduct } from '../interfaces/iproduct';
 export class CartService {
 	cartItems: { [productId: string]: { product: IProduct; quantity: number } } = {};
 
-	addCartProduct(product: IProduct) {
-		this.cartItems[product.id] = { product: product, quantity: 1 };
-		// console.log(this.cartItems)
+	addCartProduct(product: IProduct, quantity = 1) {
+		this.cartItems[product.id] = { product: product, quantity: quantity };
 	}
 
 	getCartList() {
@@ -21,7 +20,7 @@ export class CartService {
 
 	get totalQuantity() {
 		return this.getCartList().reduce((accum, item) => {
-			return accum + item.quantity;
+			return accum + Number(item.quantity);
 		}, 0);
 	}
 

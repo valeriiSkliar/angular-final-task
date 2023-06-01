@@ -8,9 +8,11 @@ import { ProductPageService } from 'src/app/core/services/product-page.service';
 	styleUrls: ['./product-button.component.css'],
 })
 export class ProductButtonComponent {
+	quantity = 1;
+
 	constructor(public cartService: CartService, private activePage: ProductPageService) {}
 
 	onClick() {
-		this.cartService.addCartProduct(this.activePage.getProductPage());
+		this.cartService.addCartProduct(this.activePage.getProductPage(), this.quantity);
 	}
 }
