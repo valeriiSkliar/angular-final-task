@@ -1,73 +1,46 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IProduct } from '../../../core/interfaces/iproduct';
-import { LettersAndSpacesOnlyValidator } from '../../utils/LettersAndSpacesOnlyValidator';
-import { LettersSpacesNumbersOnlyValidator } from '../../utils/LettersSpacesNumbersOnlyValidator';
-import { checkImageValidation } from '../../utils/checkImageValidation';
 import { transliterate } from '../../utils/transliterate';
-import { LocalStorageService } from '../../../core/services/local-storage.service';
-import { NumbersOnlyValidator } from '../../utils/NumbersOnlyValidator';
+import { checkImageValidation } from '../../utils/checkImageValidation';
+import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
 	selector: 'app-add-product',
 	templateUrl: './add-product.component.html',
 	styleUrls: ['./add-product.component.css'],
 })
-export class AddProductComponent implements OnChanges {
-	productForm!: FormGroup;
-	imageForm!: FormGroup;
-	@Input() product: Partial<IProduct> = {};
+export class AddProductComponent {
+	@Input() product: Partial<IProduct> = {
+		id: '',
+		imageUrls: [],
+		name: '',
+		price: 0,
+		description: '',
+	};
+	currentImage!: string;
+
 	@Input() images: string[] = [];
-	imageCheck = false;
+	imageCheck = true;
 	isImageSubmitted = false;
 	@Output() addProductSubmit = new EventEmitter<IProduct>();
 
-	constructor(private fb: FormBuilder) {
-		this.setDefaultForm();
+	// constructor() {
+	// }
+	async imageSet(imageLink: NgModel) {
+		if (this.images.length >= 3) {
+			console.log(imageLink.control.invalid);
+			imageLink.value.image;
+			return Promise.resolve();
+		}
+		await this.addImage(imageLink.value);
 	}
-
-	ngOnChanges({ product, images }: SimpleChanges): void {
-		this.images = images.currentValue;
-		console.log(images.currentValue);
-		this.productForm = this.fb.group({
-			name: [this.product.name, LettersAndSpacesOnlyValidator()],
-			description: [this.product.description, LettersSpacesNumbersOnlyValidator()],
-			price: [this.product.price, [Validators.min(0), NumbersOnlyValidator()]],
-		});
-	}
-
-	setDefaultForm() {
-		this.imageForm = this.fb.group({
-			imageUrls: ['', Validators.required],
-		});
-		this.productForm = this.fb.group({
-			name: ['', LettersAndSpacesOnlyValidator()],
-			description: ['', LettersSpacesNumbersOnlyValidator()],
-			price: ['', [Validators.min(0), NumbersOnlyValidator()]],
-		});
-		this.images = [];
-	}
-
-	onSubmit() {
-		this.addProductSubmit.emit({
-			id: transliterate(this.productForm.value.name),
-			imageUrls: this.images,
-			name: this.productForm.value.name,
-			price: this.productForm.value.price,
-			description: this.productForm.value.description,
-		});
-		this.setDefaultForm();
-	}
-
 	async addImage(value: string) {
 		await checkImageValidation(value)
 			.then((data: boolean) => {
 				this.imageCheck = data;
-				this.isImageSubmitted = true;
 			})
 			.catch((data: boolean) => {
 				this.imageCheck = data;
-				this.isImageSubmitted = true;
 			});
 
 		if (this.imageCheck) {
@@ -75,17 +48,22 @@ export class AddProductComponent implements OnChanges {
 		}
 	}
 
-	async imageAddSubmit() {
-		await this.addImage(this.imageForm.value.imageUrls);
+	removeImage(index: number) {
+		this.images.splice(index, 1);
 	}
 
-	inputsCheck(inputName: string) {
-		return (
-			(this.productForm.get(inputName)?.hasError('required') && this.productForm.get(inputName)?.touched) ||
-			this.productForm.get(inputName)?.invalid
-		);
-	}
-	imageInputsCheck(inputName: string) {
-		return this.imageForm.get(inputName)?.touched;
+	addProduct(addForm: NgForm) {
+		const { name, price, description } = addForm.value;
+		console.log(name);
+		console.log(price);
+		console.log(description);
+		this.addProductSubmit.emit({
+			description: description as string,
+			id: transliterate(name as string),
+			imageUrls: this.images,
+			name: name as string,
+			price: price as number,
+		});
+		addForm.resetForm();
 	}
 }
