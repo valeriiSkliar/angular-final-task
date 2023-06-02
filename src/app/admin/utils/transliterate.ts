@@ -73,5 +73,7 @@ export function transliterate(input: string) {
 		.map(function (char) {
 			return cyrillic[char] || char;
 		})
-		.join('');
+		.join('')
+		.replace(/\s/g, '-')
+		.toLowerCase();
 }
