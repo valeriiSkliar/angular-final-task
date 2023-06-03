@@ -1,5 +1,9 @@
-<div class="container m-auto h-50 pb-5">
-  <table class="table table-hover">
+<div
+  appScrollWithLoading
+  (crossBorderEvent)="loadData($event)"
+  class="container m-auto pb-5">
+  <table
+    class="table table-hover">
     <thead>
     <tr>
       <th class="col-1 text-center" scope="col">#</th>
@@ -9,13 +13,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of productList; let i=index">
+    <tr
+      *ngFor="let product of productList; let i=index"
+    >
       <th scope="row" class="align-middle text-center">{{i + 1}}</th>
       <td class="p-3">
         <img class="img-fluid" [src]="product.imageUrls[0]" [alt]="product.id">
       </td>
       <td class="align-middle">
-        <b class="ps-5">{{product. name}}</b>
+        <b class="ps-5">{{product.name}}</b>
       </td>
       <td class="align-middle text-center">
         <button
@@ -23,6 +29,11 @@
           (click)="removeItemFromCollection(product.id)"
           class="btn btn-outline-danger"
         >Remove</button>
+        <button
+          style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .55rem;"
+          (click)="editItemFromCollection(product.id)"
+          class="ms-3 btn btn-outline-primary"
+        >Edit</button>
       </td>
     </tr>
     </tbody>

@@ -1,9 +1,14 @@
 <div class="container my-4">
   <app-add-product
+    (addProductSubmit)="submitForm($event)"
+    [product]="productToEdit"
+    [images]="productToEdit.imageUrls"
     class="m-auto mb-5"
   ></app-add-product>
   <app-product-list-management
     (productIdToRemove)="removeProductFromCollection($event)"
+    (productIdToEdit)="editProductFromCollection($event)"
+    (loadMoreData)="lazyLoadingList($event)"
     [productList]="productList"
     class="m-auto mt-4"
   ></app-product-list-management>

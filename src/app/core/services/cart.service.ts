@@ -11,7 +11,7 @@ export class CartService {
 	cartItems: { [productId: string]: { product: IProduct; quantity: number } } = {};
 
 	addCartProduct(product: IProduct, quantity = 1) {
-		this.cartItems[product.id] = { product: product, quantity: quantity };
+		this.cartItems[product.id] = { product: product, quantity: Number(quantity) };
 	}
 
 	getCartList() {
@@ -36,7 +36,7 @@ export class CartService {
 	updateQuantity(id: string, value: number) {
 		const item = this.cartItems[id];
 		if (value >= 0) {
-			if (item) item.quantity = value;
+			if (item) item.quantity = Number(value);
 		}
 	}
 
