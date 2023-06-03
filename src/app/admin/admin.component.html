@@ -8,6 +8,7 @@
   <app-product-list-management
     (productIdToRemove)="removeProductFromCollection($event)"
     (productIdToEdit)="editProductFromCollection($event)"
+    (loadMoreData)="lazyLoadingList($event)"
     [productList]="productList"
     class="m-auto mt-4"
   ></app-product-list-management>

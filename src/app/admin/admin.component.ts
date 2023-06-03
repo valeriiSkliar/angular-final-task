@@ -32,4 +32,8 @@ export class AdminComponent {
 			this.productToEdit = product;
 		}
 	}
+
+	lazyLoadingList(direction: string) {
+		console.log(direction);
+	}
 }

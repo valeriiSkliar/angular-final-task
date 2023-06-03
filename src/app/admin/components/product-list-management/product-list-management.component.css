@@ -1,6 +1,7 @@
 .container {
 	overflow-x: hidden;
-	overflow-y: auto;
+	overflow-y: scroll;
+	height: 400px;
 }
 :host {
 	margin-top: 50px;
