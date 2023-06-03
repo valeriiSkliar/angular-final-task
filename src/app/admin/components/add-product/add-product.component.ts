@@ -64,6 +64,7 @@ export class AddProductComponent {
 			name: name as string,
 			price: price as number,
 		});
+		this.images = [];
 		addForm.resetForm();
 	}
 }
