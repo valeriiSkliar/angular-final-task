@@ -14,6 +14,7 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
 	scrollSubject = new Subject<MouseEvent>();
 	scrollSubscription!: Subscription;
 	loadingBoundary = 100;
+	lastScrollTop = 0;
 	ngOnInit(): void {
 		this.scrollSubscription = this.scrollSubject
 			.pipe(
@@ -22,7 +23,10 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
 					return this.modifierDirection(event);
 				}),
 				filter((event) => {
-					return !event;
+					if (event) {
+						return true;
+					}
+					return false;
 				}),
 			)
 			.subscribe(this.crossBorderEvent);
@@ -38,6 +42,7 @@ export class ScrollWithLoadingDirective implements OnInit, OnDestroy {
 		const clientHeight = (target as Element).clientHeight;
 		const scrollHeight = (target as Element).scrollHeight;
 		const scrollTop = (target as Element).scrollTop;
+		this.lastScrollTop = scrollTop;
 
 		if (scrollHeight - scrollTop - this.loadingBoundary <= clientHeight) {
 			return LOADING_DIRECTION.DOWN;
