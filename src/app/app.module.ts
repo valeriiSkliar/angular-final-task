@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { Page404Component } from './appModuleComponents/page404/page404.componen
 		SharedModule,
 		ProductModule,
 		AdminModule,
+		FormsModule,
 	],
 })
 export class AppModule {}
