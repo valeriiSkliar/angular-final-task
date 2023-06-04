@@ -10,6 +10,7 @@ import { ProductImgComponent } from './product-component/product-img/product-img
 import { ProductInfoComponent } from './product-component/product-info/product-info.component';
 import { ProductButtonComponent } from './product-component/product-info/product-button/product-button.component';
 import { ProductDescriptionComponent } from './product-component/product-info/product-description/product-description.component';
+import { CorrectCommentPipe } from './correct-comment.pipe';
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,7 @@ import { ProductDescriptionComponent } from './product-component/product-info/pr
 		ProductInfoComponent,
 		ProductButtonComponent,
 		ProductDescriptionComponent,
+		CorrectCommentPipe,
 	],
 	imports: [CommonModule, RouterLink, FormsModule],
 	exports: [BackComponentComponent],
