@@ -74,7 +74,7 @@ export class LocalStorageService {
 	}
 
 	setBooksInLocalStorage(product: IProduct) {
-		this.listProducts.reverse().push(product);
+		this.listProducts.push(product);
 		localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
 	}
 
@@ -83,7 +83,12 @@ export class LocalStorageService {
 		if (localStorageItem) {
 			this.listProducts = JSON.parse(localStorageItem);
 		}
-		return this.listProducts.reverse();
+		this.listProducts.forEach((book) => {
+			if (book.imageUrls.length === 0) {
+				book.imageUrls.push('./assets/no-photo.png');
+			}
+		});
+		return this.listProducts;
 	}
 
 	saveAfterRemove() {
@@ -99,12 +104,4 @@ export class LocalStorageService {
 			}
 		});
 	}
-	/*
-	getProductById(id: string) {
-		return this.listProducts.map((element) => {
-			if (element.id === id) {
-				return element;
-			}
-		})[0];
-	}*/
 }

@@ -54,9 +54,6 @@ export class AddProductComponent {
 
 	addProduct(addForm: NgForm) {
 		const { name, price, description } = addForm.value;
-		console.log(name);
-		console.log(price);
-		console.log(description);
 		this.addProductSubmit.emit({
 			description: description as string,
 			id: transliterate(name as string),

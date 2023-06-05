@@ -23,7 +23,6 @@ export class AdminComponent {
 	}
 
 	editProductFromCollection(id: string) {
-		console.log(id);
 		const products: IProduct[] = this.localStorageService.getBooksInLocalStorage();
 		const product = products.find((product) => {
 			return product.id === id;
@@ -31,9 +30,14 @@ export class AdminComponent {
 		if (product) {
 			this.productToEdit = product;
 		}
+		this.localStorageService.removeBook(id);
 	}
 
 	lazyLoadingList(direction: string) {
 		console.log(direction);
+	}
+
+	ngDoCheck() {
+		this.productList = this.localStorageService.getBooksInLocalStorage();
 	}
 }
