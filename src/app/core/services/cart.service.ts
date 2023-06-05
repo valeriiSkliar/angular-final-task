@@ -24,15 +24,6 @@ export class CartService {
 		}, 0);
 	}
 
-	// decreaseQuantity(id: string) {
-	// 	const item = this.cartItems[id];
-	// 	if (item && item.quantity > 0) item.quantity -= 1;
-	// }
-	//
-	// increaseQuantity(id: string) {
-	// 	const item = this.cartItems[id];
-	// 	if (item) item.quantity += 1;
-	// }
 	updateQuantity(id: string, value: number) {
 		const item = this.cartItems[id];
 		if (value >= 0) {

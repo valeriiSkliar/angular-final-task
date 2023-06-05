@@ -7,6 +7,13 @@ import { ProductPageService } from 'src/app/core/services/product-page.service';
 	styleUrls: ['./product-img.component.css'],
 })
 export class ProductImgComponent {
-	imgUrl = this.activePage.getProductPage()?.imageUrls[0];
+	images = this.activePage.getProductPage()?.imageUrls;
+	imgUrl: { img: string }[] = transformImageData(this.images);
 	constructor(private activePage: ProductPageService) {}
+}
+
+export function transformImageData(array: string[]) {
+	return array.map((item) => {
+		return { img: item };
+	});
 }

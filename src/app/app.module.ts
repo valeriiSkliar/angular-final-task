@@ -13,6 +13,7 @@ import { AdminModule } from './admin/admin.module';
 import { ProductModule } from './product/product.module';
 import { LocalStorageService } from './core/services/local-storage.service';
 import { Page404Component } from './appModuleComponents/page404/page404.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
 	declarations: [AppComponent, FooterComponent, HeaderComponent, HomeComponent, Page404Component],
@@ -27,6 +28,7 @@ import { Page404Component } from './appModuleComponents/page404/page404.componen
 		ProductModule,
 		AdminModule,
 		FormsModule,
+		SlickCarouselModule,
 	],
 })
 export class AppModule {}
