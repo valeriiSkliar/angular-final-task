@@ -11,6 +11,7 @@ import { ProductInfoComponent } from './product-component/product-info/product-i
 import { ProductButtonComponent } from './product-component/product-info/product-button/product-button.component';
 import { ProductDescriptionComponent } from './product-component/product-info/product-description/product-description.component';
 import { CorrectCommentPipe } from './correct-comment.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
 	declarations: [
@@ -24,7 +25,7 @@ import { CorrectCommentPipe } from './correct-comment.pipe';
 		ProductDescriptionComponent,
 		CorrectCommentPipe,
 	],
-	imports: [CommonModule, RouterLink, FormsModule],
+	imports: [CommonModule, RouterLink, FormsModule, SharedModule],
 	exports: [BackComponentComponent],
 })
 export class ProductModule {}
