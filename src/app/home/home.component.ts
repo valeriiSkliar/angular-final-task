@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
 	search = '';
 	collectionBooks: IProduct[] | undefined;
 	liveCollectionBooks: IProduct[] | undefined;
+	cartService: any;
 
 	constructor(private listProducts: LocalStorageService) {}
 

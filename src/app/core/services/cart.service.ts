@@ -10,8 +10,20 @@ import { IProduct } from '../interfaces/iproduct';
 export class CartService {
 	cartItems: { [productId: string]: { product: IProduct; quantity: number } } = {};
 
+	setCartToLocalStorage() {
+		localStorage.setItem('ListCart', JSON.stringify(this.cartItems));
+	}
+
+	getCartInLocalStorage() {
+		const localStorageItem = localStorage.getItem('ListCart');
+		if (localStorageItem) {
+			this.cartItems = JSON.parse(localStorageItem);
+		}
+	}
+
 	addCartProduct(product: IProduct, quantity = 1) {
 		this.cartItems[product.id] = { product: product, quantity: Number(quantity) };
+		this.setCartToLocalStorage();
 	}
 
 	getCartList() {
@@ -29,13 +41,16 @@ export class CartService {
 		if (value >= 0) {
 			if (item) item.quantity = Number(value);
 		}
+		this.setCartToLocalStorage();
 	}
 
 	removeItem(itemId: string) {
 		delete this.cartItems[itemId];
+		this.setCartToLocalStorage();
 	}
 
 	clearCart() {
 		this.cartItems = {};
+		this.setCartToLocalStorage();
 	}
 }
