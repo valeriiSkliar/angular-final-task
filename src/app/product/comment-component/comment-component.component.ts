@@ -21,6 +21,7 @@ export class CommentComponentComponent {
 			},
 		],
 	};
+
 	constructor(private activeRoute: ActivatedRoute, private listProducts: CommentService) {}
 
 	ngOnInit() {
@@ -31,6 +32,9 @@ export class CommentComponentComponent {
 				this.activeComments = element;
 			}
 		});
+		if (this.activeComments.comments[0].text === 'Comment') {
+			this.activeComments.comments.shift();
+		}
 	}
 
 	onClick() {
@@ -42,8 +46,5 @@ export class CommentComponentComponent {
 		this.activeComments.comments.push(newObj);
 		this.listProducts.setListComments(this.activeComments);
 		this.comment = '';
-		if (this.activeComments.comments[0].text === 'Comment') {
-			this.activeComments.comments.shift();
-		}
 	}
 }
