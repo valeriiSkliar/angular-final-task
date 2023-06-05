@@ -4,7 +4,7 @@ import { NotificationComponent } from './components/notification/notification.co
 import { InputComponent } from './components/input/input.component';
 import { FormsModule } from '@angular/forms';
 import { ScrollWithLoadingModule } from './derectives/scroll-with-loading/scroll-with-loading.module';
-import { SlickCarouselComponent } from './slick-carousel/slick-carousel.component';
+import { SlickCarouselComponent } from './components/slick-carousel/slick-carousel.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({

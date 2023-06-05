@@ -12,7 +12,7 @@ export class ProductImgComponent {
 	constructor(private activePage: ProductPageService) {}
 }
 
-function transformImageData(array: string[]) {
+export function transformImageData(array: string[]) {
 	return array.map((item) => {
 		return { img: item };
 	});
