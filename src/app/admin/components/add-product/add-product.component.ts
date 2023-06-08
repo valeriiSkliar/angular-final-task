@@ -23,6 +23,7 @@ export class AddProductComponent {
 	imageCheck = true;
 	isImageSubmitted = false;
 	@Output() addProductSubmit = new EventEmitter<IProduct>();
+	@Output() editProductSubmit = new EventEmitter<IProduct>();
 
 	// constructor() {
 	// }
@@ -53,10 +54,30 @@ export class AddProductComponent {
 	}
 
 	addProduct(addForm: NgForm) {
+		let id: string | undefined = this.product.id;
+		if (!id) {
+			id = String(Math.random() * 10);
+		}
+		// console.log(this.product.id)
 		const { name, price, description } = addForm.value;
 		this.addProductSubmit.emit({
 			description: description as string,
-			id: transliterate(name as string),
+			url: transliterate(name as string),
+			id: id,
+			imageUrls: this.images,
+			name: name as string,
+			price: price as number,
+		});
+		// console.log(this.product.id)
+		this.images = [];
+		addForm.resetForm();
+	}
+	editProduct(addForm: NgForm) {
+		const { name, price, description } = addForm.value;
+		this.addProductSubmit.emit({
+			description: description as string,
+			url: transliterate(name as string),
+			id: this.product!.id!,
 			imageUrls: this.images,
 			name: name as string,
 			price: price as number,

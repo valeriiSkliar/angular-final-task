@@ -64,7 +64,7 @@
                  #image="ngModel"
                  name="image"
                  [class.is-invalid]="image.invalid && image.touched"
-                 [(ngModel)]="currentImage"
+                 [(ngModel)]="currentImage || product.imageUrls![0]"
                  placeholder="Enter book images"
                  class="w-75 form-control"
                  type="text"
@@ -96,7 +96,7 @@
           </div>
           <div>
             <button
-              [disabled]="addForm.invalid"
+              [disabled]="addForm.invalid && images.length > 0"
               class="mt-3 btn btn-outline-success"
               (click)="addProduct(addForm)">Add Book
             </button>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { IProduct } from '../core/interfaces/iproduct';
+import { ActionAndId } from './components/product-list-management/product-list-management.component';
 
 @Component({
 	selector: 'app-admin',
@@ -9,35 +10,55 @@ import { IProduct } from '../core/interfaces/iproduct';
 })
 export class AdminComponent {
 	productList: IProduct[] = [];
-	productToEdit: IProduct = { name: '', id: '', price: 0, description: '', imageUrls: [] };
+	productToAddEdit: IProduct = { name: '', id: '', url: '', price: 0, description: '', imageUrls: [] };
+	isFormOpen = false;
 
 	constructor(private localStorageService: LocalStorageService) {
-		this.productList = this.localStorageService.getBooksInLocalStorage();
+		this.refreshProductList();
 	}
+
 	removeProductFromCollection(id: string) {
 		this.localStorageService.removeBook(id);
+		this.refreshProductList();
 	}
 
 	submitForm(product: IProduct) {
 		this.localStorageService.setBooksInLocalStorage(product);
+		this.isFormOpen = false;
+		this.refreshProductList();
 	}
 
 	editProductFromCollection(id: string) {
+		// this.toggleFormModal()
 		const products: IProduct[] = this.localStorageService.getBooksInLocalStorage();
-		const product = products.find((product) => {
-			return product.id === id;
-		});
+		const product = products.find((product) => product.id === id);
 		if (product) {
-			this.productToEdit = product;
+			this.productToAddEdit = product;
+			this.isFormOpen = true;
+		} else {
+			// handle error
 		}
-		this.localStorageService.removeBook(id);
 	}
 
 	lazyLoadingList(direction: string) {
 		console.log(direction);
 	}
 
-	ngDoCheck() {
+	private refreshProductList() {
 		this.productList = this.localStorageService.getBooksInLocalStorage();
+	}
+
+	toggleFormModal(event: ActionAndId = { action: 'add', id: '' }) {
+		if (event.action === 'edit') {
+			this.isFormOpen = !this.isFormOpen;
+			this.editProductFromCollection(event.id);
+			return;
+		}
+		if (event.action === 'remove') {
+			this.removeProductFromCollection(event.id);
+			return;
+		}
+		this.isFormOpen = !this.isFormOpen;
+		this.productToAddEdit = { name: '', id: '', url: '', price: 0, description: '', imageUrls: [] };
 	}
 }

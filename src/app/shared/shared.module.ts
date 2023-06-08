@@ -6,10 +6,18 @@ import { FormsModule } from '@angular/forms';
 import { ScrollWithLoadingModule } from './derectives/scroll-with-loading/scroll-with-loading.module';
 import { SlickCarouselComponent } from './components/slick-carousel/slick-carousel.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { ModalComponent } from './components/modal/modal.component';
+import { LicenseAgreementComponent } from './components/license-agreement/license-agreement.component';
 
 @NgModule({
-	declarations: [NotificationComponent, InputComponent, SlickCarouselComponent],
+	declarations: [
+		NotificationComponent,
+		InputComponent,
+		SlickCarouselComponent,
+		ModalComponent,
+		LicenseAgreementComponent,
+	],
 	imports: [CommonModule, FormsModule, ScrollWithLoadingModule, SlickCarouselModule],
-	exports: [NotificationComponent, InputComponent, SlickCarouselComponent],
+	exports: [NotificationComponent, InputComponent, SlickCarouselComponent, ModalComponent, LicenseAgreementComponent],
 })
 export class SharedModule {}

@@ -1,15 +1,25 @@
 <div class="container my-4">
-  <app-add-product
-    (addProductSubmit)="submitForm($event)"
-    [product]="productToEdit"
-    [images]="productToEdit.imageUrls"
-    class="m-auto mb-5"
-  ></app-add-product>
+  <button (click)="toggleFormModal()"
+          class="btn btn-outline-success">Add book</button>
   <app-product-list-management
-    (productIdToRemove)="removeProductFromCollection($event)"
-    (productIdToEdit)="editProductFromCollection($event)"
+    (idAndActionName)="toggleFormModal($event)"
     (loadMoreData)="lazyLoadingList($event)"
     [productList]="productList"
     class="m-auto mt-4"
   ></app-product-list-management>
 </div>
+
+<app-modal
+  [showPopup]=isFormOpen
+  (closeModal)="isFormOpen = $event"
+  [insertTemplateView]="isFormOpen ? addEditForm : null"
+></app-modal>
+
+<ng-template #addEditForm>
+  <app-add-product
+    (addProductSubmit)="submitForm($event)"
+    [product]="productToAddEdit"
+    [images]="productToAddEdit.imageUrls"
+    class="m-auto mb-5"
+  ></app-add-product>
+</ng-template>

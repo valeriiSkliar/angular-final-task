@@ -24,16 +24,20 @@
         <b class="ps-5">{{product.name}}</b>
       </td>
       <td class="align-middle text-center">
-        <button
-          style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .55rem;"
-          (click)="removeItemFromCollection(product.id)"
-          class="btn btn-outline-danger"
-        >Remove</button>
-        <button
-          style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .55rem;"
-          (click)="editItemFromCollection(product.id)"
-          class="ms-3 btn btn-outline-primary"
-        >Edit</button>
+        <div class="flex-row flex-nowrap d-flex">
+          <button
+            name="remove"
+            style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .55rem;"
+            (click)="emitIdAndActionName({id: product.id, action: $event})"
+            class="buttonsControl btn btn-outline-danger"
+          >Remove</button>
+          <button
+            style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .55rem;"
+            (click)="emitIdAndActionName({id: product.id, action: $event})"
+            class="buttonsControl ms-3 btn btn-outline-primary"
+            name="edit"
+          >Edit</button>
+        </div>
       </td>
     </tr>
     </tbody>

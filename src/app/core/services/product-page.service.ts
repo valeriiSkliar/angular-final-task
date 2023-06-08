@@ -8,6 +8,7 @@ export class ProductPageService {
 	productPage: IProduct = {
 		id: 'string',
 		name: 'string',
+		url: 'string',
 		description: 'string',
 		price: 0,
 		imageUrls: [''],

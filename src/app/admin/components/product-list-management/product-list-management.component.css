@@ -6,3 +6,6 @@
 :host {
 	margin-top: 50px;
 }
+.buttonsControl {
+	min-width: 50px;
+}
