@@ -8,6 +8,7 @@ import { SlickCarouselComponent } from './components/slick-carousel/slick-carous
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ModalComponent } from './components/modal/modal.component';
 import { LicenseAgreementComponent } from './components/license-agreement/license-agreement.component';
+import { PaginationDirective } from './derectives/pagination/pagination.directive';
 
 @NgModule({
 	declarations: [
@@ -16,8 +17,16 @@ import { LicenseAgreementComponent } from './components/license-agreement/licens
 		SlickCarouselComponent,
 		ModalComponent,
 		LicenseAgreementComponent,
+		PaginationDirective,
 	],
 	imports: [CommonModule, FormsModule, ScrollWithLoadingModule, SlickCarouselModule],
-	exports: [NotificationComponent, InputComponent, SlickCarouselComponent, ModalComponent, LicenseAgreementComponent],
+	exports: [
+		NotificationComponent,
+		InputComponent,
+		SlickCarouselComponent,
+		ModalComponent,
+		LicenseAgreementComponent,
+		PaginationDirective,
+	],
 })
 export class SharedModule {}
