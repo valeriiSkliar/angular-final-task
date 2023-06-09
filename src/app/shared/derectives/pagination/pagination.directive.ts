@@ -25,7 +25,9 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 	constructor(
 		private readonly viewContainer: ViewContainerRef,
 		private readonly template: TemplateRef<IPaginationContext<T>>,
-	) {}
+	) {
+		console.log(this.appPaginationOf);
+	}
 
 	back() {
 		const previousIndex = this.currentIndex.value - 1;
@@ -51,6 +53,8 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {
+		this.chunkArray = getChunkArray(this.appPaginationOf as T[], this.appPaginationChunkSize);
+		console.log(this.chunkArray);
 		this.listenCurrentIndex();
 	}
 
@@ -64,6 +68,8 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 		}
 
 		this.chunkArray = getChunkArray(this.appPaginationOf as T[], this.appPaginationChunkSize);
+		console.log(this.chunkArray);
+
 		this.currentIndex.next(0);
 	}
 
