@@ -7,3 +7,26 @@ a {
 input {
 	margin-top: 30px;
 }
+
+.pagination-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 2rem;
+}
+
+.pagination-container .page-indexes {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.pagination-container .page-indexes button {
+	padding: 0.5rem;
+	cursor: pointer;
+}
+
+.pagination-container .page-indexes button .active {
+	color: #007bff;
+	font-weight: bold;
+}

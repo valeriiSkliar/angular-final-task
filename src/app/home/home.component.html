@@ -10,21 +10,54 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <ng-container *ngFor="let book of liveCollectionBooks">
+          <div *ngIf="collectionObservable | async as products">
+            <div
+              class="main-container d-flex flex-column gap-4"
+              *appPagination="
+                  let chunk of products;
+                  chunkSize: 6;
+                  let back = back
+                  let next = next
+                  let pageIndexes = pageIndexes
+                  let selectedIndex = selectedIndex
+                  let activeIndex = index
+                "
+            >
+            <div class="d-flex flex-row flex-wrap gap-4">
+              <ng-container *ngFor="let book of chunk">
                 <div class="col mb-5">
-                    <a routerLink="product-page/{{book.id}}">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="{{book.imageUrls[0]}}" alt="..." />
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <h5 class="fw-bolder">{{book.name}}</h5>
-                                    {{book.price | currency}}
-                                </div>
-                            </div>
+                  <a routerLink="product-page/{{book.id}}">
+                    <div class="card h-100">
+                      <img class="card-img-top" src="{{book.imageUrls[0]}}" alt="..." />
+                      <div class="card-body p-4">
+                        <div class="text-center">
+                          <h5 class="fw-bolder">{{book.name}}</h5>
+                          {{book.price | currency}}
                         </div>
-                    </a>
+                      </div>
+                    </div>
+                  </a>
                 </div>
-            </ng-container>
+              </ng-container>
+            </div>
+
+              <div class="pagination-container">
+                <button class="pagination-control btn btn-outline-dark" (click)="back()">Back</button>
+                <div class="page-indexes">
+                    <button
+                      class="btn btn-outline-dark"
+                      *ngFor="let index of pageIndexes"
+                      [class.active]="activeIndex === index"
+                      (click)="selectedIndex(index)"
+                    >
+                        {{ index + 1 }}
+                    </button>
+                  <!-- I added "+1" assuming you want to show 1-based indexes -->
+                </div>
+                <button class="pagination-control btn btn-outline-dark" (click)="next()">Next</button>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 </section>

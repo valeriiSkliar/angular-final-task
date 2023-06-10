@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { IProduct } from '../core/interfaces/iproduct';
+import { map, Observable, of } from 'rxjs';
 
 @Component({
 	selector: 'app-home',
@@ -11,11 +12,17 @@ export class HomeComponent implements OnInit {
 	search = '';
 	collectionBooks: IProduct[] | undefined;
 	liveCollectionBooks: IProduct[] | undefined;
-	cartService: any;
+	collectionObservable?: Observable<IProduct[] | null>;
 
 	constructor(private listProducts: LocalStorageService) {}
 
 	ngOnInit() {
+		this.collectionObservable = of(this.listProducts.getBooksInLocalStorage()).pipe(
+			map((products) => {
+				console.log(products);
+				return products;
+			}),
+		);
 		this.collectionBooks = this.listProducts.getBooksInLocalStorage();
 		this.liveCollectionBooks = this.collectionBooks;
 	}
