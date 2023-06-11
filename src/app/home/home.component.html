@@ -5,8 +5,8 @@
 			<input class="my-2" (input)="filterProductsByName()" [(ngModel)]="filterInput" type="text" />
 		</div>
 	</section>
-	<div class="album py-5 bg-light" >
-        <div class="container min-vh-75"
+	<div class="album py-5 bg-light min-vh-75" >
+        <div class="container "
              *ngIf="collectionObservable
              | async
              | sortProducts as products">

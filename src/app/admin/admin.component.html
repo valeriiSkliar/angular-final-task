@@ -1,10 +1,12 @@
-<div class="container my-4">
-	<button (click)="toggleFormModal()" class="btn btn-outline-success">Add book</button>
+<div class="container my-4 min-vh-100">
+	<div class="h-50 min-vh-50 add-block">
+    <button (click)="toggleFormModal()" class="btn btn-outline-success">Add book</button>
+  </div>
 	<app-product-list-management
 		(idAndActionName)="toggleFormModal($event)"
 		(loadMoreData)="lazyLoadingList($event)"
 		[productList]="productList"
-		class="m-auto mt-4"
+		class="m-auto mt-4 "
 	></app-product-list-management>
 </div>
 
