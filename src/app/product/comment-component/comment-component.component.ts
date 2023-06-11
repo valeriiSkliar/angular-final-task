@@ -48,6 +48,7 @@ export class CommentComponentComponent implements OnInit {
 		};
 		this.activeComments.comments.push(newObj);
 		this.listProducts.setListComments(this.activeComments);
+		this.listProducts.getNumberComments();
 		this.comment = '';
 		this.name = '';
 	}

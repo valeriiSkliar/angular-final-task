@@ -12,6 +12,16 @@ export class CommentService {
 		},
 	];
 
+	sumComments: number | undefined;
+
+	constructor() {
+		if (!localStorage.getItem('ListComments')) {
+			localStorage.setItem('ListComments', JSON.stringify(this.listComments));
+			console.log(this.listComments);
+		}
+		this.getNumberComments();
+	}
+
 	setListComments(comment: IComments) {
 		this.listComments.push(comment);
 		this.listComments.forEach((element) => {
@@ -27,9 +37,12 @@ export class CommentService {
 		return this.listComments;
 	}
 
-	constructor() {
-		if (!localStorage.getItem('ListComments')) {
-			localStorage.setItem('ListComments', JSON.stringify(this.listComments));
-		}
+	getNumberComments() {
+		this.listComments = JSON.parse(localStorage.getItem('ListComments')!);
+		let sum = 0;
+		this.listComments.forEach((book) => {
+			sum += book.comments.length;
+		});
+		this.sumComments = sum;
 	}
 }

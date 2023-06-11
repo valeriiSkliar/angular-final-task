@@ -1,0 +1,116 @@
+.myTopBtn {
+	display: block;
+	position: fixed;
+	width: 40px;
+	height: 40px;
+	bottom: 20px;
+	right: 20px;
+	z-index: 99;
+	border: none;
+	outline: none;
+	background-color: rgba(0, 0, 0, 0.822);
+	color: white;
+	cursor: pointer;
+	border-radius: 10px;
+	font-size: 18px;
+	opacity: 0;
+	animation: openTopBtn 1s alternate forwards;
+}
+
+@keyframes openTopBtn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.myBotBtn {
+	display: block;
+	position: fixed;
+	width: 40px;
+	height: 40px;
+	top: 60px;
+	right: 20px;
+	z-index: 99;
+	border: none;
+	outline: none;
+	background-color: rgba(0, 0, 0, 0.822);
+	color: white;
+	cursor: pointer;
+	border-radius: 10px;
+	font-size: 18px;
+	animation: openBotBtn 1s alternate forwards;
+}
+
+@keyframes openBotBtn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.myBtn:hover {
+	background-color: #555;
+}
+
+.myBotBtnClose {
+	display: block;
+	position: fixed;
+	width: 40px;
+	height: 40px;
+	top: 60px;
+	right: 20px;
+	z-index: 99;
+	border: none;
+	outline: none;
+	background-color: rgba(0, 0, 0, 0.822);
+	color: white;
+	cursor: pointer;
+	border-radius: 10px;
+	font-size: 18px;
+	animation: closeBotBtn 1s alternate forwards;
+}
+
+@keyframes closeBotBtn {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		display: none;
+		z-index: -1;
+	}
+}
+
+.myTopBtnClose {
+	display: block;
+	position: fixed;
+	width: 40px;
+	height: 40px;
+	bottom: 20px;
+	right: 20px;
+	z-index: 99;
+	border: none;
+	outline: none;
+	background-color: rgba(0, 0, 0, 0.822);
+	color: white;
+	cursor: pointer;
+	border-radius: 10px;
+	font-size: 18px;
+	animation: closeTopBtn 1s alternate forwards;
+}
+
+@keyframes closeTopBtn {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		display: none;
+		z-index: -1;
+	}
+}

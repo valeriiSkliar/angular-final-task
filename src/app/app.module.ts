@@ -14,9 +14,17 @@ import { ProductModule } from './product/product.module';
 import { LocalStorageService } from './core/services/local-storage.service';
 import { Page404Component } from './appModuleComponents/page404/page404.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { ScrollButtonComponent } from './scroll-button/scroll-button.component';
 
 @NgModule({
-	declarations: [AppComponent, FooterComponent, HeaderComponent, HomeComponent, Page404Component],
+	declarations: [
+		AppComponent,
+		FooterComponent,
+		HeaderComponent,
+		HomeComponent,
+		Page404Component,
+		ScrollButtonComponent,
+	],
 	providers: [LocalStorageService],
 	bootstrap: [AppComponent],
 	imports: [
