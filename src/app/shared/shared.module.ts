@@ -9,6 +9,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ModalComponent } from './components/modal/modal.component';
 import { LicenseAgreementComponent } from './components/license-agreement/license-agreement.component';
 import { PaginationDirective } from './derectives/pagination/pagination.directive';
+import { ProductsFilterPipe } from './pipes/products-filter.pipe';
 
 @NgModule({
 	declarations: [
@@ -18,6 +19,7 @@ import { PaginationDirective } from './derectives/pagination/pagination.directiv
 		ModalComponent,
 		LicenseAgreementComponent,
 		PaginationDirective,
+		ProductsFilterPipe,
 	],
 	imports: [CommonModule, FormsModule, ScrollWithLoadingModule, SlickCarouselModule],
 	exports: [
@@ -27,6 +29,7 @@ import { PaginationDirective } from './derectives/pagination/pagination.directiv
 		ModalComponent,
 		LicenseAgreementComponent,
 		PaginationDirective,
+		ProductsFilterPipe,
 	],
 })
 export class SharedModule {}
