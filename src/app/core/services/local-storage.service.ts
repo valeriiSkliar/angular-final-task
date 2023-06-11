@@ -74,18 +74,21 @@ export class LocalStorageService {
 		},
 	];
 
+	listCart!: object;
+
 	constructor() {
 		if (!localStorage.getItem('ListBooks')) {
 			localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
 			this.listProducts = JSON.parse(localStorage.getItem('ListBooks')!);
 		}
+		if (String(localStorage.getItem('ListCart')) === 'null') {
+			localStorage.setItem('ListCart', JSON.stringify({}));
+			this.listCart = JSON.parse(localStorage.getItem('ListCart')!);
+		}
 	}
 
 	setBooksInLocalStorage(product: IProduct) {
 		const checkProductID = this.listProducts.find((item) => {
-			// console.log(item.id)
-			// console.log(product.id)
-			// console.log(item.id === product.id)
 			return item.id === product.id;
 		});
 		if (!checkProductID) {
@@ -119,5 +122,13 @@ export class LocalStorageService {
 				this.saveAfterRemove();
 			}
 		});
+	}
+
+	setCartToLocalStorage(cartItems: { [productId: string]: { product: IProduct; quantity: number } }) {
+		localStorage.setItem('ListCart', JSON.stringify(cartItems));
+	}
+
+	getCartInLocalStorage() {
+		return (this.listCart = JSON.parse(localStorage.getItem('ListCart')!));
 	}
 }

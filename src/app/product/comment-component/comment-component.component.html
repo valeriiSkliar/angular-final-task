@@ -1,24 +1,41 @@
-<section class="py-5 bg-light wid">
-	<ng-container *ngFor="let comment of activeComments.comments">
-		<div class="alert alert-secondary p-3 ml" role="alert">
-			<!--<h4 class="alert-heading">Well done!</h4>-->
-			<p>{{ comment.text | correctComment }}</p>
-			<hr />
-			<p class="mb-0">{{ comment.date }}</p>
-		</div>
-	</ng-container>
-	<div class="px-5">
-		<textarea
-			class="form-control"
-			rows="5"
-			#commentText="ngModel"
-			[(ngModel)]="comment"
-			required
-			pattern=".+\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*"
-		>
-		</textarea>
-		<button [disabled]="commentText.invalid" class="btn btn-primary m-button" type="submit" (click)="onClick()">
-			Add Comment
-		</button>
-	</div>
+
+<section class="pt-5 wid ">
+    <ng-container *ngFor="let comment of activeComments.comments">
+    <div class="alert bg-light mx-auto col-xl-6 col-lg-8 col-md-9 col-sm-10 col-xs-11" role="alert">
+        <h4 class="alert-heading">{{comment.name}}</h4>
+        <p>{{comment.text | correctComment}}</p>
+        <hr>
+        <p class="mb-0">{{comment.date}}</p>
+    </div>
+    </ng-container>
+    <div class="mx-auto col-xl-6 col-lg-8 col-md-9 col-sm-10 col-xs-11">
+        <textarea 
+            class="form-control" 
+            rows="5" 
+            #commentText="ngModel"
+            [(ngModel)]="comment"
+            placeholder="Your comment"
+            required
+            pattern=".+\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*">
+        </textarea>
+        <div class="row">
+            <button
+            [disabled]="commentText.invalid || autorName.invalid"
+            class="btn btn-primary mt-2 col-3 mx-auto"
+            type="submit"
+            (click)="onClick()"
+            >Add Comment
+            </button>
+            <div class="col-8 mt-2 p-0 mx-auto">
+                <input 
+                class="form-control" 
+                #autorName="ngModel"
+                [(ngModel)]="name"
+                placeholder="Your name"
+                type="text"
+                required
+                pattern=".{2,30}">
+            </div>
+        </div>
+    </div>
 </section>

@@ -10,6 +10,6 @@ export class HeaderComponent {
 	constructor(private cartService: CartService) {}
 
 	ngOnInit() {
-		this.cartService.getCartInLocalStorage();
+		this.cartService.getCartItems();
 	}
 }
