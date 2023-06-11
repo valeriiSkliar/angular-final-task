@@ -10,11 +10,11 @@ import { map, Observable, of } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 	search = '';
-	filterInput = '';
+	filterInput = ''; // new
 	collectionBooks: IProduct[] | undefined;
 	liveCollectionBooks: IProduct[] | undefined;
-	collectionObservable?: Observable<IProduct[] | null>;
-	filter!: string;
+	collectionObservable?: Observable<IProduct[] | null>; // new
+	filter!: string; // new
 
 	constructor(private listProducts: LocalStorageService) {}
 

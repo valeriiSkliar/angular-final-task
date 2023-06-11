@@ -6,7 +6,6 @@ import { IProduct } from '../../core/interfaces/iproduct';
 })
 export class ProductsFilterPipe implements PipeTransform {
 	transform(items: IProduct[], field = 'name', value: string): IProduct[] {
-		console.log(field);
 		if (!items) return [];
 		if (!field || !value) return items;
 
