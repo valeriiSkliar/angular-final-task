@@ -25,27 +25,18 @@
             <ng-container *ngFor="let book of chunk">
               <div class="col-md-4">
                 <div class="card mb-4 box-shadow">
-                  <img
-                    class="card-img-top img-fluid product_img"
-                    data-src="{{ book.imageUrls[0] }}"
-                    alt="Card image cap"
-                  />
+                  <img class="card-img-top img-fluid product_img" data-src="{{book.imageUrls[0]}}" alt="Card image cap">
                   <div class="card-body">
-                    <p class="card-text fs-4">{{ book.name }}</p>
+                    <p class="card-text fs-4">{{book.name}}</p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                        <button
-                          routerLink="product-page/{{ book.id }}"
-                          type="button"
-                          class="btn btn-sm btn-outline-dark"
-                        >
-                          View more ...
-                        </button>
+                        <button routerLink="product-page/{{book.id}}" type="button" class="btn btn-sm btn-outline-wh">View more ...</button>
                       </div>
-                      <small class="text-muted">{{ book.price | currency }}</small>
+                      <small class="text-muted">{{book.price | currency}}</small>
                     </div>
                   </div>
                 </div>
+
               </div>
             </ng-container>
             <div class="pagination-container">
