@@ -14,13 +14,16 @@ export class HomeComponent implements OnInit {
 	collectionBooks: IProduct[] | undefined;
 	liveCollectionBooks: IProduct[] | undefined;
 	collectionObservable?: Observable<IProduct[] | null>; // new
+	collectionNew: IProduct[] = []; // new
 	filter!: string; // new
+	noMatches = false;
 
 	constructor(private listProducts: LocalStorageService) {}
 
 	ngOnInit() {
 		this.collectionObservable = of(this.listProducts.getBooksInLocalStorage()).pipe(
 			map((products) => {
+				this.collectionNew = products;
 				return products;
 			}),
 		);
