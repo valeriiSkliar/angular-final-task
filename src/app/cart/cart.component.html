@@ -1,22 +1,17 @@
 <div class="cart container-fluid d-flex flex-column justify-content-center">
-  <h2>Cart</h2>
-  <ul>
-    <li
-      *ngFor="let item of cartItems; let i = index"
-      class="cart-item"
-    >
-      <app-cart-item
-        [item] = "item"
-        (quantityChange)="updateQuantity($event)"
-        (removeItem)="remove($event)"
-      ></app-cart-item>
-    </li>
-  </ul>
-  <div class="cart-total text-center float-end">
-    Total Cost: {{ totalCost }}
-    <button
-      class="p-2 m-5 btn btn-outline-success"
-      (click)="buyGoogs()">Buy Gods</button>
-  </div>
-    <hr class="w-100">
-
+	<h2>Cart</h2>
+	<ul>
+		<li *ngFor="let item of cartItems; let i = index" class="cart-item">
+			<app-cart-item
+				[item]="item"
+				(quantityChange)="updateQuantity($event)"
+				(removeItem)="remove($event)"
+			></app-cart-item>
+		</li>
+	</ul>
+	<div class="cart-total text-center float-end">
+		Total Cost: {{ totalCost }}
+		<button class="p-2 m-5 btn btn-outline-success" (click)="buyGoogs()">Buy Gods</button>
+	</div>
+	<hr class="w-100" />
+</div>

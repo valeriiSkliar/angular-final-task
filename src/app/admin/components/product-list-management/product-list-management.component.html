@@ -1,45 +1,43 @@
-<div
-  appScrollWithLoading
-  (crossBorderEvent)="loadData($event)"
-  class="container m-auto pb-5">
-  <table
-    class="table table-hover">
-    <thead>
-    <tr>
-      <th class="col-1 text-center" scope="col">#</th>
-      <th class="col-1 text-center" scope="col">Image</th>
-      <th class="col text-center" scope="col">Name</th>
-      <th class="col-1 text-center" scope="col">Management</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr
-      *ngFor="let product of productList; let i=index"
-    >
-      <th scope="row" class="align-middle text-center">{{i + 1}}</th>
-      <td class="p-3">
-        <img class="img-fluid" [src]="product.imageUrls[0]" [alt]="product.id">
-      </td>
-      <td class="align-middle">
-        <b class="ps-5">{{product.name}}</b>
-      </td>
-      <td class="align-middle text-center">
-        <div class="flex-row flex-nowrap d-flex">
-          <button
-            name="remove"
-            style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .55rem;"
-            (click)="emitIdAndActionName({id: product.id, action: $event})"
-            class="buttonsControl btn btn-outline-danger"
-          >Remove</button>
-          <button
-            style="--bs-btn-padding-y: .20rem; --bs-btn-padding-x: .3rem; --bs-btn-font-size: .55rem;"
-            (click)="emitIdAndActionName({id: product.id, action: $event})"
-            class="buttonsControl ms-3 btn btn-outline-primary"
-            name="edit"
-          >Edit</button>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div appScrollWithLoading (crossBorderEvent)="loadData($event)" class="container m-auto pb-5">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th class="col-1 text-center" scope="col">#</th>
+				<th class="col-1 text-center" scope="col">Image</th>
+				<th class="col text-center" scope="col">Name</th>
+				<th class="col-1 text-center" scope="col">Management</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let product of productList; let i = index">
+				<th scope="row" class="align-middle text-center">{{ i + 1 }}</th>
+				<td class="p-3">
+					<img class="img-fluid" [src]="product.imageUrls[0]" [alt]="product.id" />
+				</td>
+				<td class="align-middle">
+					<b class="ps-5">{{ product.name }}</b>
+				</td>
+				<td class="align-middle text-center">
+					<div class="flex-row flex-nowrap d-flex">
+						<button
+							name="remove"
+							style="--bs-btn-padding-y: 0.2rem; --bs-btn-padding-x: 0.3rem; --bs-btn-font-size: 0.55rem"
+							(click)="emitIdAndActionName({ id: product.id, action: $event })"
+							class="buttonsControl btn btn-outline-danger"
+						>
+							Remove
+						</button>
+						<button
+							style="--bs-btn-padding-y: 0.2rem; --bs-btn-padding-x: 0.3rem; --bs-btn-font-size: 0.55rem"
+							(click)="emitIdAndActionName({ id: product.id, action: $event })"
+							class="buttonsControl ms-3 btn btn-outline-primary"
+							name="edit"
+						>
+							Edit
+						</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>

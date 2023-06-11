@@ -1,11 +1,9 @@
 <footer class="py-2 bg-dark">
-  <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
-  <button (click)="openAgreements()">License Agreements</button>
-  <app-modal
-    [insertTemplateView]="!licenseAgreement? licenseAgreementTemplate : null"
-  ></app-modal>
+	<div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+	<button (click)="openAgreements()">License Agreements</button>
+	<app-modal [insertTemplateView]="!licenseAgreement ? licenseAgreementTemplate : null"></app-modal>
 </footer>
 
 <ng-template #licenseAgreementTemplate>
-  <app-license-agreement></app-license-agreement>
+	<app-license-agreement></app-license-agreement>
 </ng-template>
