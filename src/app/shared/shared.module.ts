@@ -10,6 +10,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { LicenseAgreementComponent } from './components/license-agreement/license-agreement.component';
 import { PaginationDirective } from './derectives/pagination/pagination.directive';
 import { ProductsFilterPipe } from './pipes/products-filter.pipe';
+import { SortProductsPipe } from './pipes/sort-products.pipe';
 
 @NgModule({
 	declarations: [
@@ -20,6 +21,7 @@ import { ProductsFilterPipe } from './pipes/products-filter.pipe';
 		LicenseAgreementComponent,
 		PaginationDirective,
 		ProductsFilterPipe,
+		SortProductsPipe,
 	],
 	imports: [CommonModule, FormsModule, ScrollWithLoadingModule, SlickCarouselModule],
 	exports: [
@@ -30,6 +32,7 @@ import { ProductsFilterPipe } from './pipes/products-filter.pipe';
 		LicenseAgreementComponent,
 		PaginationDirective,
 		ProductsFilterPipe,
+		SortProductsPipe,
 	],
 })
 export class SharedModule {}

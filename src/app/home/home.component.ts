@@ -10,16 +10,17 @@ import { map, Observable, of } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 	search = '';
+	filterInput = '';
 	collectionBooks: IProduct[] | undefined;
 	liveCollectionBooks: IProduct[] | undefined;
 	collectionObservable?: Observable<IProduct[] | null>;
+	filter!: string;
 
 	constructor(private listProducts: LocalStorageService) {}
 
 	ngOnInit() {
 		this.collectionObservable = of(this.listProducts.getBooksInLocalStorage()).pipe(
 			map((products) => {
-				console.log(products);
 				return products;
 			}),
 		);
@@ -35,5 +36,9 @@ export class HomeComponent implements OnInit {
 			this.liveCollectionBooks = this.collectionBooks;
 			this.liveCollectionBooks = (this.liveCollectionBooks as IProduct[]).filter((book) => regExp.test(book.name));
 		}
+	}
+
+	filterProductsByName() {
+		this.filter = this.filterInput;
 	}
 }

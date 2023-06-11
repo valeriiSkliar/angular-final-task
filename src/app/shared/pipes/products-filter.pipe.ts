@@ -5,12 +5,11 @@ import { IProduct } from '../../core/interfaces/iproduct';
 	name: 'productsFilter',
 })
 export class ProductsFilterPipe implements PipeTransform {
-	transform(value: IProduct[] | null, arg = 'name'): IProduct[] | null {
-		if (value) {
-			return value.sort((a, b) => {
-				return a.name.localeCompare(b.name, ['ru', 'en'], { sensitivity: 'base' });
-			});
-		}
-		return value;
+	transform(items: IProduct[], field = 'name', value: string): IProduct[] {
+		console.log(field);
+		if (!items) return [];
+		if (!field || !value) return items;
+
+		return items.filter((singleItem) => singleItem[field].toLowerCase().includes(value.toLowerCase()));
 	}
 }

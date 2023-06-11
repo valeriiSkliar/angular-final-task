@@ -26,20 +26,15 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 	constructor(
 		private readonly viewContainer: ViewContainerRef,
 		private readonly template: TemplateRef<IPaginationContext<T>>,
-	) {
-		console.log('constructor');
-	}
+	) {}
 
 	ngOnChanges({ appPaginationOf }: SimpleChanges) {
-		console.log('ngOnChanges');
-		console.log(appPaginationOf);
 		if (appPaginationOf) {
 			this.updateView();
 		}
 	}
 
 	ngOnInit() {
-		console.log('ngOnInit');
 		this.listenCurrentIndexChange();
 	}
 
@@ -49,7 +44,6 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 	}
 
 	private updateView() {
-		console.log('updateView');
 		const isViewContainerNeedClear = !this.appPaginationOf?.length;
 
 		if (isViewContainerNeedClear) {
@@ -63,7 +57,6 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 	}
 
 	private listenCurrentIndexChange() {
-		console.log('listenCurrentIndexChange');
 		this.currentIndex$
 			.pipe(
 				map((currentIndex) => this.getCurrentContext(currentIndex)),
@@ -76,9 +69,8 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 	}
 
 	private getCurrentContext(currentIndex: number): IPaginationContext<T> {
-		console.log('getCurrentContext');
 		return {
-			$implicit: this.chunkArray![currentIndex],
+			$implicit: this.chunkArray?.[currentIndex],
 			index: currentIndex,
 			appPaginationOf: this.appPaginationOf as T[],
 			pageIndexes: this.chunkArray?.map((item, index) => index),
@@ -95,23 +87,20 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 	}
 
 	private next() {
-		console.log('next');
 		const nextIndex = this.currentIndex$.value + 1;
-		const newIndex = nextIndex < this.chunkArray!.length ? nextIndex : 0;
+		const newIndex = nextIndex < this.chunkArray?.length ? nextIndex : 0;
 
 		this.currentIndex$.next(newIndex);
 	}
 
 	private back() {
-		console.log('back');
 		const previousIndex = this.currentIndex$.value - 1;
-		const newIndex = previousIndex >= 0 ? previousIndex : this.chunkArray!.length - 1;
+		const newIndex = previousIndex >= 0 ? previousIndex : this.chunkArray?.length - 1;
 
 		this.currentIndex$.next(newIndex);
 	}
 
 	private selectedIndex(index: number) {
-		console.log('selectedIndex');
 		this.currentIndex$.next(index);
 	}
 }
