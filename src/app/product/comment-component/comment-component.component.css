@@ -6,3 +6,8 @@
 .m-button {
 	margin-top: 10px;
 }
+
+section {
+	background-color: rgba(154, 154, 154, 0.192);
+	padding-bottom: 100px;
+}

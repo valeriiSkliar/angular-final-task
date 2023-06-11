@@ -74,10 +74,16 @@ export class LocalStorageService {
 		},
 	];
 
+	listCart!: object;
+
 	constructor() {
 		if (!localStorage.getItem('ListBooks')) {
 			localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
 			this.listProducts = JSON.parse(localStorage.getItem('ListBooks')!);
+		}
+		if (String(localStorage.getItem('ListCart')) === 'null') {
+			localStorage.setItem('ListCart', JSON.stringify({}));
+			this.listCart = JSON.parse(localStorage.getItem('ListCart')!);
 		}
 	}
 
@@ -123,9 +129,6 @@ export class LocalStorageService {
 	}
 
 	getCartInLocalStorage() {
-		const localStorageItem = localStorage.getItem('ListCart');
-		if (localStorageItem) {
-			return JSON.parse(localStorageItem);
-		}
+		return (this.listCart = JSON.parse(localStorage.getItem('ListCart')!));
 	}
 }
