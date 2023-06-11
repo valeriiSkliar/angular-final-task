@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/iproduct';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -10,20 +11,15 @@ import { IProduct } from '../interfaces/iproduct';
 export class CartService {
 	cartItems: { [productId: string]: { product: IProduct; quantity: number } } = {};
 
-	setCartToLocalStorage() {
-		localStorage.setItem('ListCart', JSON.stringify(this.cartItems));
-	}
+	constructor(private localStorage: LocalStorageService) {}
 
-	getCartInLocalStorage() {
-		const localStorageItem = localStorage.getItem('ListCart');
-		if (localStorageItem) {
-			this.cartItems = JSON.parse(localStorageItem);
-		}
+	getCartItems() {
+		this.cartItems = this.localStorage.getCartInLocalStorage();
 	}
 
 	addCartProduct(product: IProduct, quantity = 1) {
 		this.cartItems[product.id] = { product: product, quantity: Number(quantity) };
-		this.setCartToLocalStorage();
+		this.localStorage.setCartToLocalStorage(this.cartItems);
 	}
 
 	getCartList() {
@@ -41,16 +37,16 @@ export class CartService {
 		if (value >= 0) {
 			if (item) item.quantity = Number(value);
 		}
-		this.setCartToLocalStorage();
+		this.localStorage.setCartToLocalStorage(this.cartItems);
 	}
 
 	removeItem(itemId: string) {
 		delete this.cartItems[itemId];
-		this.setCartToLocalStorage();
+		this.localStorage.setCartToLocalStorage(this.cartItems);
 	}
 
 	clearCart() {
 		this.cartItems = {};
-		this.setCartToLocalStorage();
+		this.localStorage.setCartToLocalStorage(this.cartItems);
 	}
 }

@@ -83,9 +83,6 @@ export class LocalStorageService {
 
 	setBooksInLocalStorage(product: IProduct) {
 		const checkProductID = this.listProducts.find((item) => {
-			// console.log(item.id)
-			// console.log(product.id)
-			// console.log(item.id === product.id)
 			return item.id === product.id;
 		});
 		if (!checkProductID) {
@@ -119,5 +116,16 @@ export class LocalStorageService {
 				this.saveAfterRemove();
 			}
 		});
+	}
+
+	setCartToLocalStorage(cartItems: { [productId: string]: { product: IProduct; quantity: number } }) {
+		localStorage.setItem('ListCart', JSON.stringify(cartItems));
+	}
+
+	getCartInLocalStorage() {
+		const localStorageItem = localStorage.getItem('ListCart');
+		if (localStorageItem) {
+			return JSON.parse(localStorageItem);
+		}
 	}
 }
