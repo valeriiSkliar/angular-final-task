@@ -12,9 +12,6 @@ export class StatisticsComponent implements OnInit {
 	popularBooks!: string[];
 	averageRating!: number;
 
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	constructor() {}
-
 	ngOnInit(): void {
 		// Здесь вы можете инициализировать свои данные, например, отправив запрос на сервер
 		this.totalBooks = 100; // Замените это на реальные данные
