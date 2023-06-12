@@ -1,26 +1,35 @@
-<div class="container my-4 min-vh-100">
-	<div class="h-50 min-vh-50 add-block">
-    <button (click)="toggleFormModal()" class="btn btn-outline-success">Add book</button>
-  </div>
-	<app-product-list-management
-		(idAndActionName)="toggleFormModal($event)"
-		(loadMoreData)="lazyLoadingList($event)"
-		[productList]="productList"
-		class="m-auto mt-4 "
-	></app-product-list-management>
+<div class="d-flex flex-column">
+  <div class=" d-flex flex-row p-5">
+    <div class="w-25 add-block d-flex justify-content-center align-content-center">
+      <button (click)="toggleFormModal()" class="btn btn-outline-success add_button">Add book</button>
+    </div>
+<div class="statistics w-75 p-5">
+  <app-statistics
+    class=""
+  ></app-statistics>
 </div>
+  </div>
+  <div class="h-50">
+    <app-product-list-management
+      (idAndActionName)="toggleFormModal($event)"
+      (loadMoreData)="lazyLoadingList($event)"
+      [productList]="productList"
+      class="m-auto mt-4 "
+    ></app-product-list-management>
 
-<app-modal
-	[showPopup]="isFormOpen"
-	(closeModal)="isFormOpen = $event"
-	[insertTemplateView]="isFormOpen ? addEditForm : null"
-></app-modal>
+    <app-modal
+      [showPopup]="isFormOpen"
+      (closeModal)="isFormOpen = $event"
+      [insertTemplateView]="isFormOpen ? addEditForm : null"
+    ></app-modal>
 
-<ng-template #addEditForm>
-	<app-add-product
-		(addProductSubmit)="submitForm($event)"
-		[product]="productToAddEdit"
-		[images]="productToAddEdit.imageUrls"
-		class="m-auto mb-5"
-	></app-add-product>
-</ng-template>
+    <ng-template #addEditForm>
+      <app-add-product
+        (addProductSubmit)="submitForm($event)"
+        [product]="productToAddEdit"
+        [images]="productToAddEdit.imageUrls"
+        class="m-auto mb-5"
+      ></app-add-product>
+    </ng-template>
+  </div>
+</div>

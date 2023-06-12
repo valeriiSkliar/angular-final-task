@@ -9,6 +9,11 @@ img {
 	transition: 0.5s ease;
 }
 
+.label-left {
+	text-align: left;
+	display: block;
+}
+
 .overlay {
 	position: absolute;
 	top: 0;

@@ -1,10 +1,12 @@
 .container {
 	overflow-x: hidden;
 	overflow-y: auto;
-	height: 350px;
+	max-height: 45vh;
+	padding: 1% 5%;
 }
 :host {
 	margin-top: 50px;
+	z-index: 0;
 }
 .buttonsControl {
 	min-width: 50px;
