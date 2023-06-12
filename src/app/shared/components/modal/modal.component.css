@@ -24,12 +24,17 @@
 	padding: 20px;
 	border-radius: 5px;
 	max-width: 800px;
-	min-width: 600px;
+	min-width: 400px;
 	max-height: 900px;
-	min-height: 500px;
+	min-height: 300px;
 	position: relative;
 }
-
+@media screen and (max-width: 1023px) and (orientation: landscape) {
+	.popup-content {
+		overflow-y: auto;
+		max-height: 400px;
+	}
+}
 .close-btn {
 	position: absolute;
 	top: 10px;

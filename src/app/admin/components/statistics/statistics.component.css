@@ -20,29 +20,18 @@ small {
 .card-body {
 	/*padding: 2em;*/
 }
+.statistics-card {
+	display: block; /* Cards displayed as block on mobile */
+}
 
-/*!* Different color for each card *!*/
-/*.card:nth-child(1) {*/
-/*  background-color: #e6f7ff; !* Light Blue *!*/
-/*}*/
-
-/*.card:nth-child(2) {*/
-/*  background-color: #fff0f6; !* Light Pink *!*/
-/*}*/
-
-/*.card:nth-child(3) {*/
-/*  background-color: #f9f0ff; !* Light Purple *!*/
-/*}*/
-
-/*.card:nth-child(4) {*/
-/*  background-color: #fffbea; !* Light Yellow *!*/
-/*}*/
-
-/*.card:nth-child(5) {*/
-/*  background-color: #f0f7ff; !* Light Cyan *!*/
-/*}*/
-
-/* Hover effects for text */
+@media (min-width: 768px) {
+	/* Adjusts layout for desktop (width of 768px or more) */
+	.statistics-card {
+		display: inline-block; /* Cards displayed inline (side by side) on desktop */
+		margin: 0 10px; /* Adds margin between cards */
+		width: calc(33% - 20px); /* Calculates the width of each card (33% minus the margin) */
+	}
+}
 .card-title:hover,
 .card-text:hover {
 	color: #1890ff; /* Blue */

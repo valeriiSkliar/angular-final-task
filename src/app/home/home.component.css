@@ -30,18 +30,14 @@ input {
 	color: #007bff;
 	font-weight: bold;
 }
-.card {
-	width: 300px;
-	height: 400px;
-	overflow: hidden;
-	position: relative;
-}
 
 .card {
-	width: 300px;
+	width: 100%; /* Flexible width */
+	max-width: 300px; /* Max width of 300px */
 	height: 400px;
-	position: relative;
 	overflow: hidden;
+	position: relative;
+	margin: 1em; /* Add a bit of margin */
 }
 
 .card-img-top {
@@ -69,10 +65,22 @@ input {
 	.responsive-text {
 		font-size: 1rem;
 	}
+
+	.card {
+		width: 100%;
+		max-width: 250px; /* Reduced max-width */
+		height: 350px; /* Reduced height */
+	}
 }
 
 @media (max-width: 576px) {
 	.responsive-text {
 		font-size: 0.8rem;
+	}
+
+	.card {
+		width: 100%;
+		max-width: 200px; /* Further reduced max-width */
+		height: 300px; /* Further reduced height */
 	}
 }
