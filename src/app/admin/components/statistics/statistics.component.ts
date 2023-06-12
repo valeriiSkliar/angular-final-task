@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
+import { CommentService } from '../../../core/services/comment.service';
+import { IProduct } from '../../../core/interfaces/iproduct';
 
 @Component({
 	selector: 'app-statistics',
@@ -9,15 +12,24 @@ export class StatisticsComponent implements OnInit {
 	totalBooks!: number;
 	totalComments!: number;
 	booksByCategories!: number;
-	popularBooks!: string[];
+	popularBooks!: IProduct[];
 	averageRating!: number;
 
+	constructor(private localStorageService: LocalStorageService, private commentService: CommentService) {}
+
 	ngOnInit(): void {
-		// Здесь вы можете инициализировать свои данные, например, отправив запрос на сервер
-		this.totalBooks = 100; // Замените это на реальные данные
-		this.totalComments = 200; // Замените это на реальные данные
+		this.totalBooks = this.localStorageService.getTotalBooksCount();
+		this.totalComments = this.commentService.getTotalCommentsCount();
+		this.popularBooks = this.getPopularBooks();
 		this.booksByCategories = 5; // Замените это на реальные данные
-		this.popularBooks = ['Book 1', 'Book 2', 'Book 3', 'Book 4', 'Book 5']; // Замените это на реальные данные
 		this.averageRating = 4.5; // Замените это на реальные данные
+	}
+	getPopularBooks(): IProduct[] {
+		const bookIds = this.commentService.getBooksSortedByComments();
+		const popularBooks = this.localStorageService.getBooksByIds(bookIds);
+		if (popularBooks.length > 3) {
+			popularBooks.length = 3;
+		}
+		return popularBooks;
 	}
 }

@@ -26,8 +26,8 @@
   <div class="col-6 mt-3">
     <div class="card text-center">
       <div class="card-body">
-        <h5 class="card-title">Top 5 Popular Books</h5>
-        <p class="card-text">{{popularBooks.join(', ')}}</p>
+        <h5 class="card-title">Popular Books</h5>
+        <small *ngFor="let book of popularBooks" class="card-text">{{book.name}}</small>
       </div>
     </div>
   </div>

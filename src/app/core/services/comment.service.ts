@@ -45,4 +45,19 @@ export class CommentService {
 		});
 		this.sumComments = sum;
 	}
+
+	getTotalCommentsCount() {
+		let sum = 0;
+		this.listComments.forEach((book) => {
+			sum += book.comments.length;
+		});
+		return sum;
+	}
+	getBooksSortedByComments(): string[] {
+		const booksWithComments = [...this.listComments];
+
+		booksWithComments.sort((a, b) => b.comments.length - a.comments.length);
+
+		return booksWithComments.map((book) => book.id);
+	}
 }

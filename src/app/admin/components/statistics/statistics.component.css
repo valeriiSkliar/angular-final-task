@@ -1,0 +1,50 @@
+.card-body,
+.card-body {
+	max-height: 90px;
+	min-height: 90px;
+	overflow-y: auto;
+}
+small {
+	display: block;
+}
+
+.card {
+	transition: 0.3s;
+	/*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
+}
+
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+	/*padding: 2em;*/
+}
+
+/*!* Different color for each card *!*/
+/*.card:nth-child(1) {*/
+/*  background-color: #e6f7ff; !* Light Blue *!*/
+/*}*/
+
+/*.card:nth-child(2) {*/
+/*  background-color: #fff0f6; !* Light Pink *!*/
+/*}*/
+
+/*.card:nth-child(3) {*/
+/*  background-color: #f9f0ff; !* Light Purple *!*/
+/*}*/
+
+/*.card:nth-child(4) {*/
+/*  background-color: #fffbea; !* Light Yellow *!*/
+/*}*/
+
+/*.card:nth-child(5) {*/
+/*  background-color: #f0f7ff; !* Light Cyan *!*/
+/*}*/
+
+/* Hover effects for text */
+.card-title:hover,
+.card-text:hover {
+	color: #1890ff; /* Blue */
+	cursor: pointer;
+}
