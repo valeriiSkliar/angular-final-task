@@ -27,6 +27,7 @@ export class AddProductComponent {
 
 	// constructor() {
 	// }
+	private clientId = '328367f28cc8127';
 	async imageSet(imageLink: NgModel) {
 		if (this.images.length >= 3) {
 			console.log(imageLink.control.invalid);
@@ -84,5 +85,31 @@ export class AddProductComponent {
 		});
 		this.images = [];
 		addForm.resetForm();
+	}
+
+	async imgurTest(fileList: FileList | null) {
+		// const files: FileList | null = image.files;
+		const url = 'https://api.imgur.com/3/image';
+
+		if (fileList) {
+			const formData = new FormData();
+			const header = new Headers();
+			header.append('Authorization', 'Bearer 4345ea87cbf3733814709e2d0b7b0be4aa7c2d58');
+			// header.append('Authorization', ` Client-ID ${this.clientId}`);
+			const requestOptions = {
+				method: 'POST',
+				headers: header,
+				body: formData,
+				referrer: '',
+			};
+
+			for (const file of Array.from(fileList)) {
+				formData.append('image', file);
+			}
+
+			const result = await fetch(url, requestOptions).then((res) => res.json());
+			this.images.push(result.data.link);
+			console.log(result);
+		}
 	}
 }

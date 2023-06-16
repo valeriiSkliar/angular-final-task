@@ -79,6 +79,28 @@
 						<span [hidden]="(image.valid || image.untouched) && imageCheck" class="errorFormMessage"
 							>Image is not valid
 						</span>
+          </div>
+          <div class="col">
+              <label class="form-label label-left mt-3">Upload image</label>
+              <div class="d-flex flex-row">
+                <input
+                  #imageFile
+                  name="image"
+                  placeholder="Choose images"
+                  class="w-75 form-control"
+                  type="file"
+                  required
+                />
+                <button
+                  (click)="imgurTest(imageFile.files)"
+                  class="ms-3 w-25 btn btn-outline-primary"
+                >
+                  Add
+                </button>
+						</div>
+						<span [hidden]="(image.valid || image.untouched) && imageCheck" class="errorFormMessage"
+							>Image is not valid
+						</span>
 						<div class="p-2 col d-flex flex-row gap-2 flex-wrap">
 							<div class="position-relative" *ngFor="let addedImage of images; let i = index">
 								<img
@@ -92,7 +114,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
 					<div>
 						<button
 							[disabled]="addForm.invalid && images.length > 0"
@@ -101,6 +122,7 @@
 						>
 							Add Book
 						</button>
+					</div>
 					</div>
 				</form>
 			</div>

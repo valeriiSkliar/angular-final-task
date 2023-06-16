@@ -32,7 +32,7 @@
 @media screen and (max-width: 1023px) and (orientation: landscape) {
 	.popup-content {
 		overflow-y: auto;
-		max-height: 400px;
+		max-height: 70%;
 	}
 }
 .close-btn {
