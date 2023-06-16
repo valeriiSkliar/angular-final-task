@@ -91,6 +91,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 		const newIndex = nextIndex < this.chunkArray?.length ? nextIndex : 0;
 
 		this.currentIndex$.next(newIndex);
+		this.scrollPageUp();
 	}
 
 	private back() {
@@ -98,9 +99,18 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 		const newIndex = previousIndex >= 0 ? previousIndex : this.chunkArray?.length - 1;
 
 		this.currentIndex$.next(newIndex);
+		this.scrollPageUp();
 	}
 
 	private selectedIndex(index: number) {
 		this.currentIndex$.next(index);
+		this.scrollPageUp();
+	}
+
+	scrollPageUp() {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
 	}
 }
