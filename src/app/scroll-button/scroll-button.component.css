@@ -1,20 +1,22 @@
 .myTopBtn {
 	display: block;
 	position: fixed;
-	width: 40px;
-	height: 40px;
-	bottom: 20px;
-	right: 20px;
+	width: 38px;
+	height: 38px;
+	bottom: 80px;
+	right: 15px;
 	z-index: 99;
 	border: none;
 	outline: none;
-	background-color: rgba(0, 0, 0, 0.822);
-	color: white;
+	background-color: white;
+	color: #212529;
 	cursor: pointer;
-	border-radius: 10px;
+	border-radius: 6px;
+	border: 1px #212529 solid;
 	font-size: 18px;
 	opacity: 0;
 	animation: openTopBtn 1s alternate forwards;
+	transition: 0.2s;
 }
 
 @keyframes openTopBtn {
@@ -29,19 +31,21 @@
 .myBotBtn {
 	display: block;
 	position: fixed;
-	width: 40px;
-	height: 40px;
-	top: 60px;
-	right: 20px;
+	width: 38px;
+	height: 38px;
+	top: 80px;
+	right: 15px;
 	z-index: 99;
 	border: none;
 	outline: none;
-	background-color: rgba(0, 0, 0, 0.822);
-	color: white;
+	background-color: white;
+	color: #212529;
 	cursor: pointer;
-	border-radius: 10px;
+	border-radius: 6px;
+	border: 1px #212529 solid;
 	font-size: 18px;
 	animation: openBotBtn 1s alternate forwards;
+	transition: 0.2s;
 }
 
 @keyframes openBotBtn {
@@ -54,25 +58,29 @@
 }
 
 .myBtn:hover {
-	background-color: #555;
+	background-color: #212529;
+	color: white;
+	border: white 1px solid;
 }
 
 .myBotBtnClose {
 	display: block;
 	position: fixed;
-	width: 40px;
-	height: 40px;
-	top: 60px;
-	right: 20px;
+	width: 38px;
+	height: 38px;
+	top: 80px;
+	right: 15px;
 	z-index: 99;
 	border: none;
 	outline: none;
-	background-color: rgba(0, 0, 0, 0.822);
-	color: white;
+	background-color: white;
+	color: #212529;
 	cursor: pointer;
-	border-radius: 10px;
+	border-radius: 6px;
+	border: 1px #212529 solid;
 	font-size: 18px;
 	animation: closeBotBtn 1s alternate forwards;
+	transition: 0.2s;
 }
 
 @keyframes closeBotBtn {
@@ -89,19 +97,22 @@
 .myTopBtnClose {
 	display: block;
 	position: fixed;
-	width: 40px;
-	height: 40px;
-	bottom: 20px;
-	right: 20px;
+	width: 38px;
+	height: 38px;
+	bottom: 80px;
+	right: 15px;
 	z-index: 99;
 	border: none;
 	outline: none;
-	background-color: rgba(0, 0, 0, 0.822);
-	color: white;
+	background-color: white;
+	color: #212529;
 	cursor: pointer;
-	border-radius: 10px;
+	border-radius: 6px;
+	border: 1px #212529 solid;
+	font-size: 18px;
 	font-size: 18px;
 	animation: closeTopBtn 1s alternate forwards;
+	transition: 0.2s;
 }
 
 @keyframes closeTopBtn {

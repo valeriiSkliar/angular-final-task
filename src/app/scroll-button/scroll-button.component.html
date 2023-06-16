@@ -1,6 +1,16 @@
-<button (click)="scrollPageDown()" class="myBtn" [ngClass]="{ myBotBtn: noScrolling, myBotBtnClose: closeTop }">
+<button
+	(click)="scrollPageDown()"
+	class="myBtn"
+	[ngStyle]="{ display: displayTop }"
+	[ngClass]="{ myBotBtn: noScrolling, myBotBtnClose: closeTop }"
+>
 	⇩
 </button>
-<button (click)="scrollPageUp()" class="myBtn" [ngClass]="{ myTopBtn: isScrolling, myTopBtnClose: closeBottom }">
+<button
+	(click)="scrollPageUp()"
+	class="myBtn"
+	[ngStyle]="{ display: displayBottom }"
+	[ngClass]="{ myTopBtn: isScrolling, myTopBtnClose: closeBottom }"
+>
 	⇧
 </button>
