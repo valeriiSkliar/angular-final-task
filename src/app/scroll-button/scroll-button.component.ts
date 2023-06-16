@@ -41,7 +41,7 @@ export class ScrollButtonComponent implements OnInit {
 			clearTimeout(this.timerId);
 			this.timerId = setTimeout(() => {
 				this.closeTop = true;
-			}, 3000);
+			}, 2500);
 		}
 	}
 
@@ -55,7 +55,7 @@ export class ScrollButtonComponent implements OnInit {
 
 	scrollPageDown() {
 		window.scrollTo({
-			top: window.innerHeight + 1000,
+			top: window.innerHeight + 5000,
 		});
 		clearTimeout(this.timerId);
 		this.isScrolling = true;

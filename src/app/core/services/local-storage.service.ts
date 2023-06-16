@@ -131,4 +131,17 @@ export class LocalStorageService {
 	getCartInLocalStorage() {
 		return (this.listCart = JSON.parse(localStorage.getItem('ListCart')!));
 	}
+
+	getTotalBooksCount() {
+		return this.listProducts.length;
+	}
+
+	getBooksByIds(ids: string[]): IProduct[] {
+		if (ids.length) {
+			return this.listProducts.filter((book) => ids.includes(book.id));
+		} else {
+			const randomIndex = Math.floor(Math.random() * this.listProducts.length);
+			return [this.listProducts[randomIndex]];
+		}
+	}
 }

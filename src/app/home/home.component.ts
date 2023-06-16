@@ -44,4 +44,10 @@ export class HomeComponent implements OnInit {
 	filterProductsByName() {
 		this.filter = this.filterInput;
 	}
+
+	scrollPageUp() {
+		window.scrollTo({
+			top: 0,
+		});
+	}
 }

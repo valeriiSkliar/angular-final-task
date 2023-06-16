@@ -1,0 +1,39 @@
+.card-body,
+.card-body {
+	max-height: 90px;
+	min-height: 90px;
+	overflow-y: auto;
+}
+small {
+	display: block;
+}
+
+.card {
+	transition: 0.3s;
+	/*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
+}
+
+.card:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+	/*padding: 2em;*/
+}
+.statistics-card {
+	display: block; /* Cards displayed as block on mobile */
+}
+
+@media (min-width: 768px) {
+	/* Adjusts layout for desktop (width of 768px or more) */
+	.statistics-card {
+		display: inline-block; /* Cards displayed inline (side by side) on desktop */
+		margin: 0 10px; /* Adds margin between cards */
+		width: calc(33% - 20px); /* Calculates the width of each card (33% minus the margin) */
+	}
+}
+.card-title:hover,
+.card-text:hover {
+	color: #1890ff; /* Blue */
+	cursor: pointer;
+}

@@ -1,10 +1,10 @@
 <div class="container m-auto py-5">
 	<div class="row mb-3">
 		<div class="col m-auto">
-			<div class="row mb-3">
+			<div class="row mb-3 ">
 				<form #addForm="ngForm">
 					<div class="col">
-						<label class="form-label">Name</label>
+            <label class="form-label label-left mt-3">Name</label>
 						<input
 							#name="ngModel"
 							name="name"
@@ -21,7 +21,7 @@
 						</span>
 					</div>
 					<div class="col">
-						<label class="form-label">Description</label>
+            <label class="form-label label-left mt-3">Description</label>
 						<input
 							#description="ngModel"
 							name="description"
@@ -38,7 +38,7 @@
 						</span>
 					</div>
 					<div class="col">
-						<label class="form-label">Price</label>
+            <label class="form-label label-left mt-3">Price</label>
 						<input
 							#price="ngModel"
 							name="price"
@@ -50,11 +50,13 @@
 							required
 							pattern="^[0-9]*$"
 						/>
-						<span [hidden]="price.valid || price.untouched" class="errorFormMessage">Only numbers can be entered </span>
+						<span
+              [hidden]="price.valid || price.untouched"
+              class="errorFormMessage"
+            >Only numbers can be entered </span>
 					</div>
 					<div class="col">
-						<label class="form-label">Image URL</label>
-						<!--            need to fix on 68 line-->
+            <label class="form-label label-left mt-3">Image URL</label>
 						<div class="d-flex flex-row">
 							<input
 								#image="ngModel"

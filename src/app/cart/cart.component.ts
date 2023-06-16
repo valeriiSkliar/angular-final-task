@@ -8,11 +8,17 @@ import { IQuantityChangeData } from '../core/interfaces/iquantity-change-data';
 	styleUrls: ['./cart.component.css'],
 })
 export class CartComponent {
-	// totalCost = 0;
+	cartHeight = 'calc(100% - 110px)';
 
-	constructor(
-		private cartService: CartService, // private localStorage: local
-	) {}
+	constructor(private cartService: CartService) {}
+
+	ngDoCheck() {
+		if (this.cartItems.length > 1) {
+			this.cartHeight = '';
+		} else {
+			this.cartHeight = 'calc(100% - 110px)';
+		}
+	}
 
 	get cartItems() {
 		return this.cartService.getCartList();
