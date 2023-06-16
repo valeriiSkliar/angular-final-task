@@ -8,6 +8,8 @@ import { Component, HostListener, ViewChild, ElementRef, OnInit } from '@angular
 export class ScrollButtonComponent implements OnInit {
 	isScrolling = false;
 	noScrolling = true;
+	displayTop = 'block';
+	displayBottom = 'none';
 	timerId = setTimeout(() => {
 		console.log('timer');
 	}, 0);
@@ -21,11 +23,15 @@ export class ScrollButtonComponent implements OnInit {
 			this.isScrolling = true;
 			this.noScrolling = false;
 			this.closeTop = false;
+			this.displayTop = 'none';
+			this.displayBottom = 'block';
 			clearTimeout(this.timerId);
 		} else {
 			this.isScrolling = false;
 			this.noScrolling = true;
 			this.closeBottom = false;
+			this.displayTop = 'block';
+			this.displayBottom = 'none';
 			this.resetScrollingState();
 		}
 	}
@@ -49,7 +55,7 @@ export class ScrollButtonComponent implements OnInit {
 
 	scrollPageDown() {
 		window.scrollTo({
-			top: window.innerHeight,
+			top: window.innerHeight + 1000,
 		});
 		clearTimeout(this.timerId);
 		this.isScrolling = true;
