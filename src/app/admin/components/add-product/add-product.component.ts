@@ -27,7 +27,8 @@ export class AddProductComponent {
 
 	// constructor() {
 	// }
-	private clientId = '328367f28cc8127';
+	// private clientId = '328367f28cc8127';
+	private clientId = '13f15558db8e43f';
 	async imageSet(imageLink: NgModel) {
 		if (this.images.length >= 3) {
 			console.log(imageLink.control.invalid);
@@ -94,8 +95,8 @@ export class AddProductComponent {
 		if (fileList) {
 			const formData = new FormData();
 			const header = new Headers();
-			header.append('Authorization', 'Bearer 4345ea87cbf3733814709e2d0b7b0be4aa7c2d58');
-			// header.append('Authorization', ` Client-ID ${this.clientId}`);
+			// header.append('Authorization', 'Bearer 4345ea87cbf3733814709e2d0b7b0be4aa7c2d58');
+			header.append('Authorization', ` Client-ID ${this.clientId}`);
 			const requestOptions = {
 				method: 'POST',
 				headers: header,
