@@ -18,6 +18,12 @@ export class CartComponent {
 		} else {
 			this.cartHeight = 'calc(100% - 110px)';
 		}
+		if (window.innerWidth < 576) {
+			this.cartHeight = '';
+		}
+		if (window.innerWidth < 576 && this.cartItems.length === 0) {
+			this.cartHeight = 'calc(100% - 110px)';
+		}
 	}
 
 	get cartItems() {
