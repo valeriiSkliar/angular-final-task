@@ -15,4 +15,12 @@ export class ProductButtonComponent {
 	onClick() {
 		this.cartService.addCartProduct(this.activePage.getProductPage(), Number(this.quantity));
 	}
+
+	setRating(num: number) {
+		console.log(num);
+	}
+
+	onLike() {
+		console.log('like');
+	}
 }
