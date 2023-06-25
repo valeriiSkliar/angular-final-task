@@ -3,13 +3,13 @@
 .wrap-reting {
 	display: flex;
 	align-items: center;
-	/* justify-content: center; */
 }
 
 fieldset,
 label {
 	margin: 0;
 	padding: 0;
+	position: relative;
 }
 body {
 	margin: 20px;
@@ -58,87 +58,36 @@ h1 {
 	color: #ffed85;
 }
 
+/**/
+
+.wrap-reting {
+	margin-top: 20px;
+}
+
+.comment-icon {
+	width: 30px;
+	margin-right: 3px;
+	transition: 0.2s;
+}
+
 .button {
-	display: inline-block;
-	white-space: nowrap;
-	background-color: #ddd;
-	border: 1px solid #777;
-	padding: 0 1.5em;
-	margin: 0.5em;
-	margin-left: 20px;
-	font: bold 1em/2em Arial, Helvetica;
-	text-decoration: none;
-	color: #333;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-	-moz-border-radius: 0.2em;
-	-webkit-border-radius: 0.2em;
-	border-radius: 0.2em;
-	-moz-box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.8) inset, 0 1px 0 rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.8) inset, 0 1px 0 rgba(0, 0, 0, 0.3);
-	box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.8) inset, 0 1px 0 rgba(0, 0, 0, 0.3);
+	height: 35px;
+	width: 115px;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .button:hover {
-	background-color: #eee;
-}
-
-.button:active {
-	-moz-box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.3) inset;
-	-webkit-box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.3) inset;
-	box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.3) inset;
-	position: relative;
-	top: 1px;
-}
-
-.button:focus {
-	outline: 0;
-	background: #fafafa;
-}
-
-.button:before {
-	background: #ccc;
-	background: rgba(0, 0, 0, 0.1);
-	float: left;
-	width: 2em;
-	text-align: center;
-	font-size: 1.5em;
-	margin: 0 1em 0 -1em;
-	padding: 0 -0.8em;
-	-moz-box-shadow: 1px 0 0 rgba(0, 0, 0, 0.5), 2px 0 0 rgba(255, 255, 255, 0.5);
-	-webkit-box-shadow: 1px 0 0 rgba(0, 0, 0, 0.5), 2px 0 0 rgba(255, 255, 255, 0.5);
-	box-shadow: 1px 0 0 rgba(0, 0, 0, 0.5), 2px 0 0 rgba(255, 255, 255, 0.5);
-	-moz-border-radius: 0.15em 0 0 0.15em;
-	-webkit-border-radius: 0.15em 0 0 0.15em;
-	border-radius: 0.15em 0 0 0.15em;
-	pointer-events: none;
-}
-
-button.button,
-input.button {
 	cursor: pointer;
-	overflow: visible;
 }
 
-button::-moz-focus-inner {
-	border: 0;
-	padding: 0;
+.button:hover img {
+	opacity: 0.7;
 }
 
-.button[disabled],
-.button[disabled]:hover,
-.button.disabled,
-.button.disabled:hover {
-	background: #eee;
-	color: #aaa;
-	border-color: #aaa;
-	cursor: default;
-	text-shadow: none;
-	position: static;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-
-.like:before {
-	content: '\2764';
+.container {
+	display: flex;
+	align-items: flex-end;
 }

@@ -11,6 +11,8 @@ import { LicenseAgreementComponent } from './components/license-agreement/licens
 import { PaginationDirective } from './derectives/pagination/pagination.directive';
 import { ProductsFilterPipe } from './pipes/products-filter.pipe';
 import { SortProductsPipe } from './pipes/sort-products.pipe';
+import { CommentsPipe } from './pipes/comments.pipe';
+import { RetingPipe } from './pipes/reting.pipe';
 
 @NgModule({
 	declarations: [
@@ -22,6 +24,8 @@ import { SortProductsPipe } from './pipes/sort-products.pipe';
 		PaginationDirective,
 		ProductsFilterPipe,
 		SortProductsPipe,
+		CommentsPipe,
+		RetingPipe,
 	],
 	imports: [CommonModule, FormsModule, ScrollWithLoadingModule, SlickCarouselModule],
 	exports: [
@@ -33,6 +37,8 @@ import { SortProductsPipe } from './pipes/sort-products.pipe';
 		PaginationDirective,
 		ProductsFilterPipe,
 		SortProductsPipe,
+		CommentsPipe,
+		RetingPipe,
 	],
 })
 export class SharedModule {}

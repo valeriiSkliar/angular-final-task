@@ -12,23 +12,18 @@ export class CommentService {
 		},
 	];
 
-	sumComments: number | undefined;
-
 	constructor() {
 		if (!localStorage.getItem('ListComments')) {
 			localStorage.setItem('ListComments', JSON.stringify(this.listComments));
-			console.log(this.listComments);
 		}
-		this.getNumberComments();
 	}
 
 	setListComments(comment: IComments) {
-		this.listComments.push(comment);
-		this.listComments.forEach((element) => {
-			if (element.id === comment.id) {
-				this.listComments.splice(this.listComments.indexOf(element), 2, comment);
-			}
-		});
+		if (this.listComments.includes(comment)) {
+			this.listComments.splice(this.listComments.indexOf(comment), 1, comment);
+		} else {
+			this.listComments.push(comment);
+		}
 		localStorage.setItem('ListComments', JSON.stringify(this.listComments));
 	}
 
@@ -37,13 +32,14 @@ export class CommentService {
 		return this.listComments;
 	}
 
-	getNumberComments() {
-		this.listComments = JSON.parse(localStorage.getItem('ListComments')!);
+	getBookComments(id: string) {
 		let sum = 0;
 		this.listComments.forEach((book) => {
-			sum += book.comments.length;
+			if (book.id === id) {
+				sum = book.comments.length;
+			}
 		});
-		this.sumComments = sum;
+		return sum;
 	}
 
 	getTotalCommentsCount() {

@@ -10,70 +10,81 @@
 		<i class="bi-cart-fill me-1"></i>
 		Add to cart
 	</button>
-	<button class="button like" (click)="onLike()">Like</button>
+	<section class="container">
+		<div class="button">
+			<img class="comment-icon" src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" />
+			<span>{{ sumComment }} reviews</span>
+		</div>
+	</section>
 </div>
 <div class="wrap-reting">
-	<h1>Rating:</h1>
 	<fieldset class="rating">
-		<input type="radio" id="star5" name="rating" value="5" /><label
+		<input type="radio" id="star5" name="rating" value="5" [checked]="reting <= 5 && reting >= 4.6" /><label
 			class="full"
 			for="star5"
-			title="Awesome - 5 stars"
+			title="5 stars"
 			(click)="setRating(5)"
 		></label>
-		<input type="radio" id="star4half" name="rating" value="4 and a half" /><label
-			class="half"
-			for="star4half"
-			title="Pretty good - 4.5 stars"
-			(click)="setRating(4.5)"
-		></label>
-		<input type="radio" id="star4" name="rating" value="4" /><label
+		<input
+			type="radio"
+			id="star4half"
+			name="rating"
+			value="4 and a half"
+			[checked]="reting <= 4.5 && reting >= 4.1"
+		/><label class="half" for="star4half" title="4.5 stars" (click)="setRating(4.5)"></label>
+		<input type="radio" id="star4" name="rating" value="4" [checked]="reting <= 4 && reting >= 3.6" /><label
 			class="full"
 			for="star4"
-			title="Pretty good - 4 stars"
+			title="4 stars"
 			(click)="setRating(4)"
 		></label>
-		<input type="radio" id="star3half" name="rating" value="3 and a half" /><label
-			class="half"
-			for="star3half"
-			title="Meh - 3.5 stars"
-			(click)="setRating(3.5)"
-		></label>
-		<input type="radio" id="star3" name="rating" value="3" /><label
+		<input
+			type="radio"
+			id="star3half"
+			name="rating"
+			value="3 and a half"
+			[checked]="reting <= 3.5 && reting >= 3.1"
+		/><label class="half" for="star3half" title="3.5 stars" (click)="setRating(3.5)"></label>
+		<input type="radio" id="star3" name="rating" value="3" [checked]="reting <= 3 && reting >= 2.6" /><label
 			class="full"
 			for="star3"
-			title="Meh - 3 stars"
+			title="3 stars"
 			(click)="setRating(3)"
 		></label>
-		<input type="radio" id="star2half" name="rating" value="2 and a half" /><label
-			class="half"
-			for="star2half"
-			title="Kinda bad - 2.5 stars"
-			(click)="setRating(2.5)"
-		></label>
-		<input type="radio" id="star2" name="rating" value="2" /><label
+		<input
+			type="radio"
+			id="star2half"
+			name="rating"
+			value="2 and a half"
+			[checked]="reting <= 2.5 && reting >= 2.1"
+		/><label class="half" for="star2half" title="2.5 stars" (click)="setRating(2.5)"></label>
+		<input type="radio" id="star2" name="rating" value="2" [checked]="reting <= 2 && reting >= 1.6" /><label
 			class="full"
 			for="star2"
-			title="Kinda bad - 2 stars"
+			title="2 stars"
 			(click)="setRating(2)"
 		></label>
-		<input type="radio" id="star1half" name="rating" value="1 and a half" /><label
-			class="half"
-			for="star1half"
-			title="Meh - 1.5 stars"
-			(click)="setRating(1.5)"
-		></label>
-		<input type="radio" id="star1" name="rating" value="1" /><label
+		<input
+			type="radio"
+			id="star1half"
+			name="rating"
+			value="1 and a half"
+			[checked]="reting <= 1.5 && reting >= 1.1"
+		/><label class="half" for="star1half" title="1.5 stars" (click)="setRating(1.5)"></label>
+		<input type="radio" id="star1" name="rating" value="1" [checked]="reting <= 1 && reting >= 0.6" /><label
 			class="full"
 			for="star1"
-			title="Sucks big time - 1 star"
+			title="1 star"
 			(click)="setRating(1)"
 		></label>
-		<input type="radio" id="starhalf" name="rating" value="half" /><label
+		<input type="radio" id="starhalf" name="rating" value="half" [checked]="reting <= 0.5 && reting >= 0.1" /><label
 			class="half"
 			for="starhalf"
-			title="Sucks big time - 0.5 stars"
+			title="0.5 stars"
 			(click)="setRating(0.5)"
 		></label>
 	</fieldset>
+	<div>
+		{{ reting }}
+	</div>
 </div>
