@@ -63,4 +63,10 @@ export class ProductButtonComponent {
 		this.activeReting.arrReting.push(num);
 		this.retingService.setListReting(this.activeReting);
 	}
+
+	scrollBottom() {
+		window.scrollTo({
+			top: window.innerHeight + 5000,
+		});
+	}
 }

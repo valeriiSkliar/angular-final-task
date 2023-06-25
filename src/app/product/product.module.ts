@@ -10,7 +10,6 @@ import { ProductImgComponent } from './product-component/product-img/product-img
 import { ProductInfoComponent } from './product-component/product-info/product-info.component';
 import { ProductButtonComponent } from './product-component/product-info/product-button/product-button.component';
 import { ProductDescriptionComponent } from './product-component/product-info/product-description/product-description.component';
-import { CorrectCommentPipe } from './correct-comment.pipe';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { SharedModule } from '../shared/shared.module';
 		ProductInfoComponent,
 		ProductButtonComponent,
 		ProductDescriptionComponent,
-		CorrectCommentPipe,
 	],
 	imports: [CommonModule, RouterLink, FormsModule, SharedModule],
 	exports: [BackComponentComponent],
