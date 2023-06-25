@@ -1,42 +1,44 @@
-<section class="pt-5 wid">
-	<ng-container *ngFor="let comment of activeComments.comments">
-		<div class="alert bg-light mx-5 mx-auto col-xl-6 col-lg-8 col-md-9 col-sm-10 col-xs-11" role="alert">
-			<h4 class="alert-heading">{{ comment.name }}</h4>
-			<p>{{ comment.text | comments }}</p>
-			<hr />
-			<p class="mb-0">{{ comment.date }}</p>
-		</div>
-	</ng-container>
-	<div class="mx-auto col-xl-6 col-lg-8 col-md-9 col-sm-10 col-xs-11">
-		<textarea
-			class="form-control"
-			rows="5"
-			#commentText="ngModel"
-			[(ngModel)]="comment"
-			placeholder="Your comment"
-			required
-			pattern=".+\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*"
-		>
-		</textarea>
-		<div class="row">
-			<button
-				[disabled]="commentText.invalid || autorName.invalid"
-				class="btn btn-primary mt-2 col-3 mx-auto"
-				type="submit"
-				(click)="onClick()"
+<section>
+	<div class="pt-5 wid mx-3">
+		<ng-container *ngFor="let comment of activeComments.comments">
+			<div class="alert bg-light mx-auto ml col-xl-6 col-lg-8 col-md-9 col-sm-10 col-xs-11" role="alert">
+				<h4 class="alert-heading">{{ comment.name }}</h4>
+				<p>{{ comment.text | comments }}</p>
+				<hr />
+				<p class="mb-0">{{ comment.date }}</p>
+			</div>
+		</ng-container>
+		<div class="mx-auto col-xl-6 col-lg-8 col-md-9 col-sm-10 col-xs-11">
+			<textarea
+				class="form-control"
+				rows="5"
+				#commentText="ngModel"
+				[(ngModel)]="comment"
+				placeholder="Your comment"
+				required
+				pattern=".+\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*"
 			>
-				Add Comment
-			</button>
-			<div class="col-8 mt-2 p-0 mx-auto">
-				<input
-					class="form-control"
-					#autorName="ngModel"
-					[(ngModel)]="name"
-					placeholder="Your name"
-					type="text"
-					required
-					pattern=".{2,30}"
-				/>
+			</textarea>
+			<div class="row">
+				<button
+					[disabled]="commentText.invalid || autorName.invalid"
+					class="btn btn-primary mt-2 col-3 mx-auto"
+					type="submit"
+					(click)="onClick()"
+				>
+					Add
+				</button>
+				<div class="col-8 mt-2 p-0 mx-auto">
+					<input
+						class="form-control"
+						#autorName="ngModel"
+						[(ngModel)]="name"
+						placeholder="Your name"
+						type="text"
+						required
+						pattern=".{2,30}"
+					/>
+				</div>
 			</div>
 		</div>
 	</div>
