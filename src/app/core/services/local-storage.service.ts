@@ -12,7 +12,11 @@ export class LocalStorageService {
 			url: '1',
 			price: 650,
 			description: 'Dystopian novel by George Orwell, written in 1948',
-			imageUrls: ['https://anylang.net/sites/default/files/covers/1984.jpg'],
+			imageUrls: [
+				'https://anylang.net/sites/default/files/covers/1984.jpg',
+				'https://etoretro.ru/data/media/1963/151127876481d.jpg',
+				'https://img.freepik.com/premium-vector/book-cover-template-realistic-mockup-of-blank-white-hardcover-isolated-on-white-background_533410-1038.jpg',
+			],
 		},
 		{
 			id: '2',
@@ -20,7 +24,11 @@ export class LocalStorageService {
 			url: '2',
 			price: 800,
 			description: 'A novel by James Joyce considered one of the greatest works of the 20th century',
-			imageUrls: ['https://s1.livelib.ru/boocover/1001174789/o/b504/Dzhejms_Dzhojs__Uliss.jpeg'],
+			imageUrls: [
+				'https://s1.livelib.ru/boocover/1001174789/o/b504/Dzhejms_Dzhojs__Uliss.jpeg',
+				'https://etoretro.ru/data/media/1963/151127876481d.jpg',
+				'https://img.freepik.com/premium-vector/book-cover-template-realistic-mockup-of-blank-white-hardcover-isolated-on-white-background_533410-1038.jpg',
+			],
 		},
 		{
 			id: '3',
@@ -28,7 +36,11 @@ export class LocalStorageService {
 			price: 750,
 			url: '3',
 			description: 'A novel by Mikhail Bulgakov, one of the greatest works of the 20th century',
-			imageUrls: ['https://bizlit.com.ua/image/cache/data/images10/kniga-master-i-margarita-8-600x800.jpg'],
+			imageUrls: [
+				'https://bizlit.com.ua/image/cache/data/images10/kniga-master-i-margarita-8-600x800.jpg',
+				'https://etoretro.ru/data/media/1963/151127876481d.jpg',
+				'https://img.freepik.com/premium-vector/book-cover-template-realistic-mockup-of-blank-white-hardcover-isolated-on-white-background_533410-1038.jpg',
+			],
 		},
 		{
 			id: '4',
@@ -36,7 +48,11 @@ export class LocalStorageService {
 			price: 700,
 			url: '4',
 			description: 'A novel by Alexandre Dumas about love, betrayal and revenge of the protagonist',
-			imageUrls: ['https://s1.livelib.ru/boocover/1002217446/o/518c/Aleksandr_Dyuma__Graf_MonteKristo.jpeg'],
+			imageUrls: [
+				'https://s1.livelib.ru/boocover/1002217446/o/518c/Aleksandr_Dyuma__Graf_MonteKristo.jpeg',
+				'https://etoretro.ru/data/media/1963/151127876481d.jpg',
+				'https://img.freepik.com/premium-vector/book-cover-template-realistic-mockup-of-blank-white-hardcover-isolated-on-white-background_533410-1038.jpg',
+			],
 		},
 		{
 			id: '5',
@@ -44,7 +60,11 @@ export class LocalStorageService {
 			price: 550,
 			url: '5',
 			description: 'The first book in the J.K. Rowling series about the young wizard Harry Potter',
-			imageUrls: ['https://staticlb.rmr.rocks/uploads/pics/02/08/358.jpg'],
+			imageUrls: [
+				'https://staticlb.rmr.rocks/uploads/pics/02/08/358.jpg',
+				'https://etoretro.ru/data/media/1963/151127876481d.jpg',
+				'https://img.freepik.com/premium-vector/book-cover-template-realistic-mockup-of-blank-white-hardcover-isolated-on-white-background_533410-1038.jpg',
+			],
 		},
 		{
 			id: '6',
@@ -53,7 +73,11 @@ export class LocalStorageService {
 			url: '6',
 			description:
 				'Through the prism of the stories of the main characters, Jane Austen shows how important it is to choose love over financial well-being',
-			imageUrls: ['https://bookzip.ru/uploads/posts/2019-11/1572596318_978-5-389-01460-2.jpg'],
+			imageUrls: [
+				'https://bookzip.ru/uploads/posts/2019-11/1572596318_978-5-389-01460-2.jpg',
+				'https://etoretro.ru/data/media/1963/151127876481d.jpg',
+				'https://img.freepik.com/premium-vector/book-cover-template-realistic-mockup-of-blank-white-hardcover-isolated-on-white-background_533410-1038.jpg',
+			],
 		},
 		{
 			id: '7',
@@ -61,7 +85,11 @@ export class LocalStorageService {
 			price: 380,
 			url: '7',
 			description: 'In the center of the plot is a love story with a detective and tragic ending',
-			imageUrls: ['https://images.booksense.com/images/250/839/9781954839250.jpg'],
+			imageUrls: [
+				'https://images.booksense.com/images/250/839/9781954839250.jpg',
+				'https://etoretro.ru/data/media/1963/151127876481d.jpg',
+				'https://img.freepik.com/premium-vector/book-cover-template-realistic-mockup-of-blank-white-hardcover-isolated-on-white-background_533410-1038.jpg',
+			],
 		},
 		{
 			id: '8',
@@ -70,7 +98,11 @@ export class LocalStorageService {
 			url: '8',
 			description:
 				'The novel covers events over 12 years (from 1861 to 1873), developing against the backdrop of a civil war between the northern industrial and southern agricultural states of America',
-			imageUrls: ['https://content1.rozetka.com.ua/goods/images/original/122942591.jpg'],
+			imageUrls: [
+				'https://content1.rozetka.com.ua/goods/images/original/122942591.jpg',
+				'https://etoretro.ru/data/media/1963/151127876481d.jpg',
+				'https://img.freepik.com/premium-vector/book-cover-template-realistic-mockup-of-blank-white-hardcover-isolated-on-white-background_533410-1038.jpg',
+			],
 		},
 		{
 			id: '9',
@@ -79,7 +111,11 @@ export class LocalStorageService {
 			url: '9',
 			description:
 				'The book by Boris Johnson is a story about those, like the eccentric genius of Churchill, Prime Minister of Great Britain, one of the most important leaders of the 20th century, who shaped the politics of the world',
-			imageUrls: ['https://laboratoria.pro/files/products/cherchil.1800x1200.jpg'],
+			imageUrls: [
+				'https://laboratoria.pro/files/products/cherchil.1800x1200.jpg',
+				'https://etoretro.ru/data/media/1963/151127876481d.jpg',
+				'https://img.freepik.com/premium-vector/book-cover-template-realistic-mockup-of-blank-white-hardcover-isolated-on-white-background_533410-1038.jpg',
+			],
 		},
 		{
 			id: '10',
@@ -88,7 +124,11 @@ export class LocalStorageService {
 			url: '10',
 			description:
 				'The book of the movie theater and the Oscar-winning actor Matthew McConaughey blew the books away before his departure from the world. I teach readers to learn the lessons, which gave them life, and to change, which is on the right - not in overcoming success, but in the fact that you take these lessons',
-			imageUrls: ['https://i.ebayimg.com/images/g/rxUAAOSw-KdhLfWO/s-l1200.webp'],
+			imageUrls: [
+				'https://i.ebayimg.com/images/g/rxUAAOSw-KdhLfWO/s-l1200.webp',
+				'https://etoretro.ru/data/media/1963/151127876481d.jpg',
+				'https://img.freepik.com/premium-vector/book-cover-template-realistic-mockup-of-blank-white-hardcover-isolated-on-white-background_533410-1038.jpg',
+			],
 		},
 	];
 
