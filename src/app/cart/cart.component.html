@@ -10,7 +10,7 @@
 		</li>
 	</ul>
 	<div class="cart-total text-center float-end wes">
-		Total Cost: {{ totalCost }}
+		Total Cost: {{ totalCost | currency}}
 		<button class="p-2 m-5 btn btn-outline-success" (click)="buyGoogs()">Buy Gods</button>
 	</div>
 	<hr class="w-100" />
