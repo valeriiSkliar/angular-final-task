@@ -5,9 +5,6 @@ import { LocalStorageService } from './local-storage.service';
 @Injectable({
 	providedIn: 'root',
 })
-
-// Для избежания ситуаций когда данные в корзине будут отличаться от данных которые отображаются
-// старайся вызывать методы сервиса только в родительских компонентов.
 export class CartService {
 	cartItems: { [productId: string]: { product: IProduct; quantity: number } } = {};
 
