@@ -6,13 +6,22 @@
 		[(ngModel)]="quantity"
 		style="max-width: 3rem"
 	/>
-	<button class="btn btn-outline-dark flex-shrink-0" type="button" (click)="onClick()">
+	<button
+		class="btn flex-shrink-0"
+		[ngClass]="{
+			'btn-outline-dark': themeServise.stateTheme.themeWhite,
+			'btn-outline-light': themeServise.stateTheme.themeBlack
+		}"
+		type="button"
+		(click)="onClick()"
+	>
 		<i class="bi-cart-fill me-1"></i>
 		Add to cart
 	</button>
 	<section class="container">
 		<div class="button" (click)="scrollBottom()">
-			<img class="comment-icon" src="https://cdn-icons-png.flaticon.com/512/1380/1380338.png" />
+			<img *ngIf="themeServise.stateTheme.themeWhite" class="comment-icon" src="assets/comment-black.png" />
+			<img *ngIf="themeServise.stateTheme.themeBlack" class="comment-icon" src="assets/comment-white.png" />
 			<span>{{ sumComment }} reviews</span>
 		</div>
 	</section>
