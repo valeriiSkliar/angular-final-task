@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../../core/services/cart.service';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
 	selector: 'app-cart-icon',
@@ -11,7 +12,7 @@ export class CartIconComponent {
 
 	notificationType: 'success' | 'error' | 'info' | null = null;
 
-	constructor(public cartService: CartService) {}
+	constructor(public cartService: CartService, public themeServise: ThemeService) {}
 
 	dismissNotification() {
 		this.notificationMessage = null;

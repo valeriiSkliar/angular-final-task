@@ -14,6 +14,7 @@ import { SortProductsPipe } from './pipes/sort-products.pipe';
 import { CommentsPipe } from './pipes/comments.pipe';
 import { RetingPipe } from './pipes/reting.pipe';
 import { CurrencyChangePipe } from './pipes/currency-change.pipe';
+import { ThemeButtonComponent } from './components/theme-button/theme-button.component';
 
 @NgModule({
 	declarations: [
@@ -28,6 +29,7 @@ import { CurrencyChangePipe } from './pipes/currency-change.pipe';
 		CommentsPipe,
 		RetingPipe,
 		CurrencyChangePipe,
+		ThemeButtonComponent,
 	],
 	imports: [CommonModule, FormsModule, ScrollWithLoadingModule, SlickCarouselModule],
 	exports: [
@@ -42,6 +44,7 @@ import { CurrencyChangePipe } from './pipes/currency-change.pipe';
 		CommentsPipe,
 		RetingPipe,
 		CurrencyChangePipe,
+		ThemeButtonComponent,
 	],
 })
 export class SharedModule {}

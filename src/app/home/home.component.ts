@@ -3,6 +3,7 @@ import { LocalStorageService } from '../core/services/local-storage.service';
 import { IProduct } from '../core/interfaces/iproduct';
 import { map, Observable, of } from 'rxjs';
 import { CurrencyServiceService } from '../core/services/currency-service.service';
+import { ThemeService } from '../core/services/theme.service';
 
 @Component({
 	selector: 'app-home',
@@ -19,7 +20,11 @@ export class HomeComponent implements OnInit {
 	filter!: string; // new
 	noMatches = false;
 
-	constructor(public currencyService: CurrencyServiceService, private listProducts: LocalStorageService) {}
+	constructor(
+		public currencyService: CurrencyServiceService,
+		private listProducts: LocalStorageService,
+		public themeServise: ThemeService,
+	) {}
 
 	ngOnInit() {
 		this.currencyService.selectedCurrency$.subscribe((currency) => {

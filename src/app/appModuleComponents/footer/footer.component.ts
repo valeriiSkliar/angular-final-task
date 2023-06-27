@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { CartService } from 'src/app/core/services/cart.service';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
 	selector: 'app-footer',
 	templateUrl: './footer.component.html',
 	styleUrls: ['./footer.component.css'],
 })
-export class FooterComponent {}
+export class FooterComponent {
+	constructor(public themeServise: ThemeService) {}
+}

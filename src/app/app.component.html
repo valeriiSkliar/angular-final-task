@@ -6,7 +6,10 @@
 	</div>
 
 	<div class="row flex-grow-1">
-		<div class="col-12">
+		<div
+			class="col-12"
+			[ngClass]="{ 'bg-light': themeServise.stateTheme.themeWhite, 'bg-dark': themeServise.stateTheme.themeBlack }"
+		>
 			<router-outlet></router-outlet>
 			<app-scroll-button></app-scroll-button>
 		</div>
