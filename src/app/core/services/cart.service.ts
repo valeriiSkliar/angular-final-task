@@ -19,12 +19,14 @@ export class CartService {
 
 	addCartProduct(product: IProduct, quantity = 1) {
 		const { id } = product;
-		// console.log(product)
 		if (isNaN(quantity)) {
 			quantity = 1;
 		}
-		console.log(this.cartItems[id]);
-		this.cartItems[id] = { product: product, quantity: this.cartItems[id].quantity + Number(quantity) };
+		if (this.cartItems[id]) {
+			this.cartItems[id] = { product: product, quantity: this.cartItems[id].quantity + Number(quantity) };
+		} else {
+			this.cartItems[id] = { product: product, quantity: Number(quantity) };
+		}
 		this.localStorage.setCartToLocalStorage(this.cartItems);
 	}
 
