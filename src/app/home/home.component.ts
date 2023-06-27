@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { IProduct } from '../core/interfaces/iproduct';
 import { map, Observable, of } from 'rxjs';
+import { CurrencyServiceService } from '../core/services/currency-service.service';
 
 @Component({
 	selector: 'app-home',
@@ -18,9 +19,13 @@ export class HomeComponent implements OnInit {
 	filter!: string; // new
 	noMatches = false;
 
-	constructor(private listProducts: LocalStorageService) {}
+	constructor(public currencyService: CurrencyServiceService, private listProducts: LocalStorageService) {}
 
 	ngOnInit() {
+		this.currencyService.selectedCurrency$.subscribe((currency) => {
+			this.currencyService.setSelectedCurrency(currency);
+		});
+
 		this.collectionObservable = of(this.listProducts.getBooksInLocalStorage()).pipe(
 			map((products) => {
 				this.collectionNew = products;
@@ -49,5 +54,9 @@ export class HomeComponent implements OnInit {
 		window.scrollTo({
 			top: 0,
 		});
+	}
+
+	changeCurrency(currency: string) {
+		this.currencyService.selectedCurrency$.next(currency);
 	}
 }

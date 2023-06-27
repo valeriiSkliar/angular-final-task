@@ -1,6 +1,7 @@
 <h1 class="text-center fw-bolder my-3 my-sm-4">{{ name }}</h1>
 <div class="fs-5 mb-3">
 	<!--<span class="text-decoration-line-through">$45.00</span>-->
-	<span>{{ price | number : '2.2' | currency }}</span>
+	<span>{{ price  | currencyChange: currencyService.getSelectedCurrency()   }}</span>
+<!--  number : '2.2'-->
 </div>
 <p class="lead text-center px-3">{{ bookDescription }}</p>

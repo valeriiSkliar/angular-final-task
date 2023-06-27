@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IProduct } from '../../../core/interfaces/iproduct';
 import { IQuantityChangeData } from '../../../core/interfaces/iquantity-change-data';
+import { CurrencyServiceService } from '../../../core/services/currency-service.service';
 
 @Component({
 	selector: 'app-cart-item',
@@ -14,6 +15,8 @@ export class CartItemComponent {
 	quantityChange = new EventEmitter<IQuantityChangeData>();
 	@Output()
 	removeItem = new EventEmitter<string>();
+
+	constructor(public currencyService: CurrencyServiceService) {}
 
 	changeQuantity(change: number) {
 		this.emitQuantityChange(this.item.quantity + change);

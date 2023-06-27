@@ -13,6 +13,7 @@ import { ProductsFilterPipe } from './pipes/products-filter.pipe';
 import { SortProductsPipe } from './pipes/sort-products.pipe';
 import { CommentsPipe } from './pipes/comments.pipe';
 import { RetingPipe } from './pipes/reting.pipe';
+import { CurrencyChangePipe } from './pipes/currency-change.pipe';
 
 @NgModule({
 	declarations: [
@@ -26,6 +27,7 @@ import { RetingPipe } from './pipes/reting.pipe';
 		SortProductsPipe,
 		CommentsPipe,
 		RetingPipe,
+		CurrencyChangePipe,
 	],
 	imports: [CommonModule, FormsModule, ScrollWithLoadingModule, SlickCarouselModule],
 	exports: [
@@ -39,6 +41,7 @@ import { RetingPipe } from './pipes/reting.pipe';
 		SortProductsPipe,
 		CommentsPipe,
 		RetingPipe,
+		CurrencyChangePipe,
 	],
 })
 export class SharedModule {}

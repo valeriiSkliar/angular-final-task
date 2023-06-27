@@ -1,6 +1,25 @@
 <main role="main">
-	<section class="text-center">
-		<div class="p-2 bg-light rounded-3">
+	<section class="text-center my-3">
+		<div class="p-2 bg-light rounded-3 d-flex flex-row justify-content-evenly align-content-center">
+      <div class="btn-toolbar " role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group me-2" role="group" aria-label="First group">
+          <button
+            (click)="changeCurrency('₴')"
+            type="button"
+            [class.active]="currencyService.selectedCurrency === '₴'"
+            class="btn btn-outline-secondary">₴</button>
+          <button
+            (click)="changeCurrency('€')"
+            [class.active]="currencyService.selectedCurrency === '€'"
+            type="button"
+            class="btn btn-outline-secondary">€</button>
+          <button
+            (click)="changeCurrency('$')"
+            [class.active]="currencyService.selectedCurrency === '$'"
+            type="button"
+            class="btn btn-outline-secondary">$</button>
+        </div>
+      </div>
 			<!-- <label class="me-2">Filter by name: </label> -->
 			<input
 				class="my-1"
@@ -27,17 +46,21 @@
 			>
 				<ng-container *ngFor="let book of chunk">
 					<div class="col-md-4 d-flex justify-content-center">
+
 						<button
 							routerLink="product-page/{{ book.id }}"
 							(click)="scrollPageUp()"
 							class="card mb-4 box-shadow align-self-center"
 						>
-							<img class="card-img-top img-fluid product_img" data-src="{{ book.imageUrls[0] }}" alt="Card image cap" />
+							<img
+                class="card-img-top img-fluid product_img"
+                data-src="{{ book.imageUrls[0] }}" alt="Card image cap" />
 							<div class="card-body">
 								<p class="card-text responsive-text">{{ book.name }}</p>
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group"></div>
-									<small class="text-muted">{{ book.price | currency }}</small>
+									<small
+                    class="text-muted">{{ book.price | currencyChange: currencyService.getSelectedCurrency()}}</small>
 								</div>
 							</div>
 						</button>
