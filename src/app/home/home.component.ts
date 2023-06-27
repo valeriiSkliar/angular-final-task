@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 	constructor(public currencyService: CurrencyServiceService, private listProducts: LocalStorageService) {}
 
 	ngOnInit() {
-		this.currencyService.selectedCurrency$.subscribe((currency) => {
+		this.currencyService.selectedCurrency$.subscribe((currency: string) => {
 			this.currencyService.setSelectedCurrency(currency);
 		});
 

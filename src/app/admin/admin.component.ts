@@ -29,7 +29,6 @@ export class AdminComponent {
 	}
 
 	editProductFromCollection(id: string) {
-		// this.toggleFormModal()
 		const products: IProduct[] = this.localStorageService.getBooksInLocalStorage();
 		const product = products.find((product) => product.id === id);
 		if (product) {

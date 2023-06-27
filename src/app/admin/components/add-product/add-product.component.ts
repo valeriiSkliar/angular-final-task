@@ -25,8 +25,6 @@ export class AddProductComponent {
 	@Output() addProductSubmit = new EventEmitter<IProduct>();
 	@Output() editProductSubmit = new EventEmitter<IProduct>();
 
-	// constructor() {
-	// }
 	async imageSet(imageLink: NgModel) {
 		if (this.images.length >= 3) {
 			console.log(imageLink.control.invalid);
@@ -58,7 +56,6 @@ export class AddProductComponent {
 		if (!id) {
 			id = String(Math.random() * 10);
 		}
-		// console.log(this.product.id)
 		const { name, price, description } = addForm.value;
 		this.addProductSubmit.emit({
 			description: description as string,
@@ -68,7 +65,6 @@ export class AddProductComponent {
 			name: name as string,
 			price: price as number,
 		});
-		// console.log(this.product.id)
 		this.images = [];
 		addForm.resetForm();
 	}

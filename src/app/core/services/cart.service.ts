@@ -38,7 +38,6 @@ export class CartService {
 	}
 
 	updateQuantity(id: string, value: number) {
-		console.log(id, value);
 		const item = this.cartItems[id];
 		if (value >= 0) {
 			if (item) item.quantity = Number(value);

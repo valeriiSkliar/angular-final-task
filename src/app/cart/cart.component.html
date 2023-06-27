@@ -11,7 +11,12 @@
 	</ul>
 	<div class="cart-total text-center float-end wes">
 		Total Cost: {{ totalCost | currencyChange: currencyService.getSelectedCurrency()}}
-		<button class="p-2 m-5 btn btn-outline-success" (click)="buyGoogs()">Buy Gods</button>
+		<button
+      routerLink="checkout"
+      class="p-2 m-5 btn btn-outline-success"
+      (click)="buyGogs()"
+    >CheckOut Order</button>
 	</div>
 	<hr class="w-100" />
+  <router-outlet></router-outlet>
 </div>
