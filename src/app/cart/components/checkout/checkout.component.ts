@@ -1,7 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from '../../../core/services/cart.service';
-const payload = { name: 'John', age: 25 };
 
 @Component({
 	selector: 'app-checkout',
@@ -21,7 +20,6 @@ export class CheckoutComponent implements AfterViewInit {
 	sendGods(order: any) {
 		const chatId = localStorage.getItem('chatId');
 
-		console.log('check');
 		this.httpClient.post('http://localhost:3000/cart/checkout', { chatId: chatId, order: order }).subscribe(
 			(response: any) => {
 				const { message, responseHTML } = response;
