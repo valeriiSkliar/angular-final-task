@@ -1,11 +1,15 @@
-<span class="text-white">Light ☼</span>
-<label class="switch">
-	<input (click)="onClick()" type="checkbox" [checked]="themeServer.stateTheme.themeBlack" />
-	<span class="slider round"></span>
-</label>
-<span class="text-white">☾ Black</span>
-
-<!-- <label id="switch" class="switch">
-	<input type="checkbox" onchange="toggleTheme()" id="slider" />
-	<span class="slider round"></span>
-</label> -->
+<div class="wrap">
+	<span [class.text-white]="themeServer.stateTheme.themeWhite" [class.text-l]="themeServer.stateTheme.themeBlack"
+		>Light ☼</span
+	>
+	<label class="switch">
+		<input (click)="onClick()" type="checkbox" [checked]="themeServer.stateTheme.themeBlack" />
+		<span class="slider round"></span>
+	</label>
+	<span
+		class="text-white"
+		[class.text-white]="themeServer.stateTheme.themeBlack"
+		[class.text-b]="themeServer.stateTheme.themeWhite"
+		>☾ Black</span
+	>
+</div>
