@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IReting } from 'src/app/core/interfaces/ireting';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { RetingService } from 'src/app/core/services/reting.service';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
 	selector: 'app-product-button',
@@ -27,6 +28,7 @@ export class ProductButtonComponent {
 		private activeRoute: ActivatedRoute,
 		private commentService: CommentService,
 		private retingService: RetingService,
+		public themeServise: ThemeService,
 	) {}
 
 	onClick() {

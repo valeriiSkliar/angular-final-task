@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IProduct } from '../../../core/interfaces/iproduct';
 import { LOADING_DIRECTION } from '../../../shared/derectives/scroll-with-loading/scroll-with-loading.directive';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 export interface ActionAndId {
 	action: EventTarget | string;
@@ -18,6 +19,8 @@ export class ProductListManagementComponent {
 	@Output() productIdToEdit = new EventEmitter<string>();
 	@Output() idAndActionName = new EventEmitter<ActionAndId>();
 	@Output() loadMoreData = new EventEmitter<string>();
+
+	constructor(public themeServise: ThemeService) {}
 
 	removeItemFromCollection(id: string) {
 		this.productIdToRemove.emit(id);

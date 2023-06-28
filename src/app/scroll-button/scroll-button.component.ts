@@ -1,4 +1,5 @@
 import { Component, HostListener, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { ThemeService } from '../core/services/theme.service';
 
 @Component({
 	selector: 'app-scroll-button',
@@ -6,6 +7,8 @@ import { Component, HostListener, ViewChild, ElementRef, OnInit } from '@angular
 	styleUrls: ['./scroll-button.component.css'],
 })
 export class ScrollButtonComponent implements OnInit {
+	constructor(public themeServise: ThemeService) {}
+
 	isScrolling = false;
 	noScrolling = true;
 	displayTop = 'block';

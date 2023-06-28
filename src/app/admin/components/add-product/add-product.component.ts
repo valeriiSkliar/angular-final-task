@@ -3,6 +3,7 @@ import { IProduct } from '../../../core/interfaces/iproduct';
 import { transliterate } from '../../utils/transliterate';
 import { checkImageValidation } from '../../utils/checkImageValidation';
 import { NgForm, NgModel } from '@angular/forms';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
 	selector: 'app-add-product',
@@ -24,6 +25,8 @@ export class AddProductComponent {
 	isImageSubmitted = false;
 	@Output() addProductSubmit = new EventEmitter<IProduct>();
 	@Output() editProductSubmit = new EventEmitter<IProduct>();
+
+	constructor(public themeServise: ThemeService) {}
 
 	async imageSet(imageLink: NgModel) {
 		if (this.images.length >= 3) {

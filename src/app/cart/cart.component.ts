@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CartService } from '../core/services/cart.service';
 import { IQuantityChangeData } from '../core/interfaces/iquantity-change-data';
 import { CurrencyServiceService } from '../core/services/currency-service.service';
+import { ThemeService } from '../core/services/theme.service';
 
 @Component({
 	selector: 'app-cart',
@@ -11,7 +12,11 @@ import { CurrencyServiceService } from '../core/services/currency-service.servic
 export class CartComponent {
 	cartHeight = 'calc(100% - 110px)';
 
-	constructor(private cartService: CartService, public currencyService: CurrencyServiceService) {}
+	constructor(
+		private cartService: CartService,
+		public currencyService: CurrencyServiceService,
+		public themeServise: ThemeService,
+	) {}
 
 	ngDoCheck() {
 		if (this.cartItems.length > 1) {

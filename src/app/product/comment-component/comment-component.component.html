@@ -1,7 +1,16 @@
 <section>
 	<div class="pt-5 wid mx-3">
 		<ng-container *ngFor="let comment of activeComments.comments">
-			<div class="alert bg-light mx-auto ml col-xl-6 col-lg-8 col-md-9 col-sm-10 col-xs-11" role="alert">
+			<div
+				class="alert mx-auto ml col-xl-6 col-lg-8 col-md-9 col-sm-10 col-xs-11"
+				role="alert"
+				[ngClass]="{
+					'bg-light': themeServise.stateTheme.themeWhite,
+					'bg-dark': themeServise.stateTheme.themeBlack,
+					'text-white': themeServise.stateTheme.themeBlack,
+					theme: themeServise.stateTheme.themeBlack
+				}"
+			>
 				<h4 class="alert-heading">{{ comment.name }}</h4>
 				<p>{{ comment.text | comments }}</p>
 				<hr />
@@ -17,6 +26,11 @@
 				placeholder="Your comment"
 				required
 				pattern=".+\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*\n?.*"
+				[ngClass]="{
+					'bg-light': themeServise.stateTheme.themeWhite,
+					'bg-dark': themeServise.stateTheme.themeBlack,
+					'text-white': themeServise.stateTheme.themeBlack
+				}"
 			>
 			</textarea>
 			<div class="row">
@@ -37,6 +51,11 @@
 						type="text"
 						required
 						pattern=".{2,30}"
+						[ngClass]="{
+							'bg-light': themeServise.stateTheme.themeWhite,
+							'bg-dark': themeServise.stateTheme.themeBlack,
+							'text-white': themeServise.stateTheme.themeBlack,
+						}"
 					/>
 				</div>
 			</div>

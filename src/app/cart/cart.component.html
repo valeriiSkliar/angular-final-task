@@ -1,4 +1,7 @@
-<div class="cart container-fluid d-flex flex-column justify-content-center" [ngStyle]="{ height: cartHeight }">
+<div
+	class="cart container-fluid d-flex flex-column justify-content-center"
+	[ngClass]="{ 'text-white': themeServise.stateTheme.themeBlack }"
+>
 	<h2>Cart</h2>
 	<ul>
 		<li *ngFor="let item of cartItems; let i = index" class="cart-item">
@@ -16,6 +19,7 @@
       class="p-2 m-5 btn btn-outline-success"
       (click)="buyGogs()"
     >CheckOut Order</button>
+
 	</div>
 	<hr class="w-100" />
   <router-outlet></router-outlet>

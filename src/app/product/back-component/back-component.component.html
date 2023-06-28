@@ -1,3 +1,12 @@
 <a routerLink="">
-	<button class="btn btn-outline-dark flex-shrink-0" type="button">⇦</button>
+	<button
+		class="btn flex-shrink-0"
+		type="button"
+		[ngClass]="{
+			'btn-outline-dark': themeServise.stateTheme.themeWhite,
+			'btn-outline-light': themeServise.stateTheme.themeBlack
+		}"
+	>
+		⇦
+	</button>
 </a>

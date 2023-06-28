@@ -1,0 +1,15 @@
+<div class="wrap">
+	<span [class.text-white]="themeServer.stateTheme.themeWhite" [class.text-l]="themeServer.stateTheme.themeBlack"
+		>Light ☼</span
+	>
+	<label class="switch">
+		<input (click)="onClick()" type="checkbox" [checked]="themeServer.stateTheme.themeBlack" />
+		<span class="slider round"></span>
+	</label>
+	<span
+		class="text-white"
+		[class.text-white]="themeServer.stateTheme.themeBlack"
+		[class.text-b]="themeServer.stateTheme.themeWhite"
+		>☾ Black</span
+	>
+</div>

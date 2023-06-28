@@ -1,5 +1,8 @@
 <div class="col-12 wrap">
-	<footer class="py-2 bg-dark">
+	<footer
+		class="py-2"
+		[ngClass]="{ 'bg-dark': themeServise.stateTheme.themeWhite, 'bg-black': themeServise.stateTheme.themeBlack }"
+	>
 		<div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
 	</footer>
 </div>

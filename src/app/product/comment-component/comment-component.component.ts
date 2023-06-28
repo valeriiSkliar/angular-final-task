@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IComments } from 'src/app/core/interfaces/comments';
 import { CommentService } from 'src/app/core/services/comment.service';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
 	selector: 'app-comment-component',
@@ -24,7 +25,11 @@ export class CommentComponentComponent implements OnInit {
 		],
 	};
 
-	constructor(private activeRoute: ActivatedRoute, private listProducts: CommentService) {}
+	constructor(
+		private activeRoute: ActivatedRoute,
+		private listProducts: CommentService,
+		public themeServise: ThemeService,
+	) {}
 
 	ngOnInit() {
 		this.id = this.activeRoute.snapshot.params['id'];

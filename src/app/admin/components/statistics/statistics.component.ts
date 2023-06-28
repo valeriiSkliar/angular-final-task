@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
 import { CommentService } from '../../../core/services/comment.service';
 import { IProduct } from '../../../core/interfaces/iproduct';
+import { ThemeService } from 'src/app/core/services/theme.service';
+import { RetingService } from 'src/app/core/services/reting.service';
 
 @Component({
 	selector: 'app-statistics',
@@ -15,14 +17,19 @@ export class StatisticsComponent implements OnInit {
 	popularBooks!: IProduct[];
 	averageRating!: number;
 
-	constructor(private localStorageService: LocalStorageService, private commentService: CommentService) {}
+	constructor(
+		private localStorageService: LocalStorageService,
+		private commentService: CommentService,
+		public themeServise: ThemeService,
+		private retingService: RetingService,
+	) {}
 
 	ngOnInit(): void {
 		this.totalBooks = this.localStorageService.getTotalBooksCount();
 		this.totalComments = this.commentService.getTotalCommentsCount();
 		this.popularBooks = this.getPopularBooks();
 		this.booksByCategories = 5; // Замените это на реальные данные
-		this.averageRating = 4.5; // Замените это на реальные данные
+		this.averageRating = this.retingService.getAverageRating();
 	}
 	getPopularBooks(): IProduct[] {
 		const bookIds = this.commentService.getBooksSortedByComments();

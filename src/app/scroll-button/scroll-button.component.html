@@ -10,7 +10,10 @@
 	(click)="scrollPageUp()"
 	class="myBtn"
 	[ngStyle]="{ display: displayBottom }"
-	[ngClass]="{ myTopBtn: isScrolling, myTopBtnClose: closeBottom }"
+	[ngClass]="{
+		myTopBtn: isScrolling,
+		myTopBtnClose: closeBottom
+	}"
 >
 	⇧
 </button>

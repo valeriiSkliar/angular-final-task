@@ -1,8 +1,9 @@
-<div class="d-flex flex-column mb-5">
-  <a
-    (click)="openBot()"
-    >telegram</a>
-	<div class="d-flex flex-row p-0">
+
+<div class="d-flex flex-column mb-5" [ngClass]="{ 'text-white': themeServise.stateTheme.themeBlack }">
+	<div class="d-flex flex-column mb-5">
+		<a
+		  (click)="openBot()"
+		  >telegram</a>	<div class="d-flex flex-row p-0">
 		<div class="w-25 add-block d-flex justify-content-center align-content-center">
 			<button (click)="toggleFormModal()" class="btn btn-outline-success add_button">Add book</button>
 		</div>

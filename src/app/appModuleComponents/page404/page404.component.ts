@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 import { Router } from '@angular/router';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
 	selector: 'app-page404',
@@ -11,7 +12,7 @@ export class Page404Component implements OnInit, OnDestroy {
 	counter = 10;
 	private subscription!: Subscription;
 
-	constructor(private router: Router) {}
+	constructor(private router: Router, public themeServise: ThemeService) {}
 
 	ngOnInit(): void {
 		this.startCountdown();
