@@ -7,9 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { ProductListManagementComponent } from './components/product-list-management/product-list-management.component';
 import { ScrollWithLoadingModule } from '../shared/derectives/scroll-with-loading/scroll-with-loading.module';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
 	declarations: [AdminComponent, AddProductComponent, ProductListManagementComponent, StatisticsComponent],
-	imports: [CommonModule, SharedModule, FormsModule, ScrollWithLoadingModule],
+	imports: [CommonModule, SharedModule, FormsModule, ScrollWithLoadingModule, RouterLink],
 })
 export class AdminModule {}

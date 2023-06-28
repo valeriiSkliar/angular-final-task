@@ -19,8 +19,10 @@ export class CheckoutComponent implements AfterViewInit {
 	}
 
 	sendGods(order: any) {
+		const chatId = localStorage.getItem('chatId');
+
 		console.log('check');
-		this.httpClient.post('http://localhost:3000/cart/checkout', order).subscribe(
+		this.httpClient.post('http://localhost:3000/cart/checkout', { chatId: chatId, order: order }).subscribe(
 			(response: any) => {
 				const { message, responseHTML } = response;
 				if (message) {

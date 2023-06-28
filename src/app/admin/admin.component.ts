@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { IProduct } from '../core/interfaces/iproduct';
 import { ActionAndId } from './components/product-list-management/product-list-management.component';
-
+import { WebSocketSubject } from 'rxjs/webSocket';
 @Component({
 	selector: 'app-admin',
 	templateUrl: './admin.component.html',
@@ -59,5 +59,31 @@ export class AdminComponent {
 		}
 		this.isFormOpen = !this.isFormOpen;
 		this.productToAddEdit = { name: '', id: '', url: '', price: 0, description: '', imageUrls: [] };
+	}
+
+	openBot() {
+		const socketUrl = 'ws://localhost:8080'; // Замените на URL вашего сервера WebSocket
+		const socket = new WebSocketSubject<any>(socketUrl);
+		socket.subscribe(
+			(message) => {
+				console.log(message);
+				if ('chatId' in message) {
+					localStorage.setItem('chatId', message.chatId);
+				}
+				console.log('Соединение установлено:', message.toString());
+			},
+			(error) => {
+				console.error('Ошибка соединения:', error);
+			},
+			() => {
+				console.log('Соединение закрыто');
+			},
+		);
+		setTimeout(() => {
+			const message = { text: 'Hello, server!' };
+			socket.next(message);
+		}, 3000);
+		const url = 'https://t.me/Personal_expense_tracker_bot';
+		window.open(url, '_blank');
 	}
 }

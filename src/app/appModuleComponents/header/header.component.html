@@ -27,6 +27,7 @@
           class="nav-item"
         >
           <a
+            (click)="requestToServer(); $event.preventDefault()"
             routerLink="admin"
             class="nav-link active"
             aria-current="page"
