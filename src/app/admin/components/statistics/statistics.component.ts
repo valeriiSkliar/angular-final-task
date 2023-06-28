@@ -3,6 +3,7 @@ import { LocalStorageService } from '../../../core/services/local-storage.servic
 import { CommentService } from '../../../core/services/comment.service';
 import { IProduct } from '../../../core/interfaces/iproduct';
 import { ThemeService } from 'src/app/core/services/theme.service';
+import { RetingService } from 'src/app/core/services/reting.service';
 
 @Component({
 	selector: 'app-statistics',
@@ -20,6 +21,7 @@ export class StatisticsComponent implements OnInit {
 		private localStorageService: LocalStorageService,
 		private commentService: CommentService,
 		public themeServise: ThemeService,
+		private retingService: RetingService,
 	) {}
 
 	ngOnInit(): void {
@@ -27,7 +29,7 @@ export class StatisticsComponent implements OnInit {
 		this.totalComments = this.commentService.getTotalCommentsCount();
 		this.popularBooks = this.getPopularBooks();
 		this.booksByCategories = 5; // Замените это на реальные данные
-		this.averageRating = 4.5; // Замените это на реальные данные
+		this.averageRating = this.retingService.getAverageRating();
 	}
 	getPopularBooks(): IProduct[] {
 		const bookIds = this.commentService.getBooksSortedByComments();

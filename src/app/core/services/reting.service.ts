@@ -26,4 +26,19 @@ export class RetingService {
 		this.listReting = JSON.parse(localStorage.getItem('ListReting')!);
 		return this.listReting;
 	}
+
+	getAverageRating() {
+		const reting = JSON.parse(localStorage.getItem('ListReting')!);
+		let length = 0;
+		let totalSum = 0;
+		reting.forEach((reting: { id: ''; arrReting: [] }) => {
+			length += reting.arrReting.length;
+		});
+		for (let i = 0; i < reting.length; i++) {
+			for (let j = 0; j < reting[i].arrReting.length; j++) {
+				totalSum += reting[i].arrReting[j];
+			}
+		}
+		return Number((totalSum / length).toFixed(1));
+	}
 }
