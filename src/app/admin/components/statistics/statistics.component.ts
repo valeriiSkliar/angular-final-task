@@ -14,7 +14,7 @@ export class StatisticsComponent implements OnInit {
 	totalBooks!: number;
 	totalComments!: number;
 	booksByCategories!: number;
-	popularBooks!: IProduct[];
+	popularBooks!: Partial<IProduct>[];
 	averageRating!: number;
 
 	constructor(
@@ -31,11 +31,15 @@ export class StatisticsComponent implements OnInit {
 		this.booksByCategories = 5; // Замените это на реальные данные
 		this.averageRating = this.retingService.getAverageRating();
 	}
-	getPopularBooks(): IProduct[] {
+	getPopularBooks(): Partial<IProduct>[] {
 		const bookIds = this.commentService.getBooksSortedByComments();
 		const popularBooks = this.localStorageService.getBooksByIds(bookIds);
+		console.log(popularBooks.length);
 		if (popularBooks.length > 3) {
 			popularBooks.length = 3;
+		}
+		if (!popularBooks.length) {
+			return [{ name: '--' }];
 		}
 		return popularBooks;
 	}

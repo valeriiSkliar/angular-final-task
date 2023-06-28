@@ -36,7 +36,7 @@ export class CheckoutComponent implements AfterViewInit {
 
 	scrollPageUp() {
 		window.scrollTo({
-			top: 900,
+			top: 1900,
 		});
 	}
 

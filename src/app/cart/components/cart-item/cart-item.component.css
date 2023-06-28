@@ -1,3 +1,6 @@
+:host {
+	width: 100%;
+}
 input {
 	width: 50px;
 	padding: 0 4px;
@@ -8,4 +11,7 @@ input {
 }
 div .vr {
 	background-color: transparent;
+}
+img {
+	max-height: 200px;
 }
