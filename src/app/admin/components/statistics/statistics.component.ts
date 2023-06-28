@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
 import { CommentService } from '../../../core/services/comment.service';
 import { IProduct } from '../../../core/interfaces/iproduct';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
 	selector: 'app-statistics',
@@ -15,7 +16,11 @@ export class StatisticsComponent implements OnInit {
 	popularBooks!: IProduct[];
 	averageRating!: number;
 
-	constructor(private localStorageService: LocalStorageService, private commentService: CommentService) {}
+	constructor(
+		private localStorageService: LocalStorageService,
+		private commentService: CommentService,
+		public themeServise: ThemeService,
+	) {}
 
 	ngOnInit(): void {
 		this.totalBooks = this.localStorageService.getTotalBooksCount();

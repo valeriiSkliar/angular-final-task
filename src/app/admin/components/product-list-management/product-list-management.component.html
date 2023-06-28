@@ -1,6 +1,17 @@
-<div appScrollWithLoading (crossBorderEvent)="loadData($event)" class="container m-auto pb-5">
-  <h2 class="ms-5">List of all added books</h2>
-	<table class="table table-hover">
+<div
+	appScrollWithLoading
+	(crossBorderEvent)="loadData($event)"
+	class="container m-auto pb-5"
+	[ngClass]="{ 'bg-theme': themeServise.stateTheme.themeBlack }"
+>
+	<h2 class="ms-5">List of all added books</h2>
+	<table
+		class="table"
+		[ngClass]="{
+			'table-hover': themeServise.stateTheme.themeWhite,
+			'text-white': themeServise.stateTheme.themeBlack,
+		}"
+	>
 		<thead>
 			<tr>
 				<th class="col-1 text-center" scope="col">#</th>
@@ -10,7 +21,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let product of productList; let i = index">
+			<tr class="hover" *ngFor="let product of productList; let i = index">
 				<th scope="row" class="align-middle text-center">{{ i + 1 }}</th>
 				<td class="p-3">
 					<img class="img-fluid" [src]="product.imageUrls[0]" [alt]="product.id" />

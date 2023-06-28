@@ -1,6 +1,6 @@
 <div class="container mt-5 h-75">
 	<div class="row justify-content-center">
-		<div class="col-6 text-center">
+		<div class="col-6 text-center" [ngClass]="{ 'text-white': themeServise.stateTheme.themeBlack }">
 			<h1 class="display-1">404</h1>
 			<p class="lead">Page Not Found</p>
 			<p class="mb-5">You will be redirected to the home page in {{ counter }} seconds.</p>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { IProduct } from '../core/interfaces/iproduct';
 import { ActionAndId } from './components/product-list-management/product-list-management.component';
+import { ThemeService } from '../core/services/theme.service';
 
 @Component({
 	selector: 'app-admin',
@@ -13,7 +14,7 @@ export class AdminComponent {
 	productToAddEdit: IProduct = { name: '', id: '', url: '', price: 0, description: '', imageUrls: [] };
 	isFormOpen = false;
 
-	constructor(private localStorageService: LocalStorageService) {
+	constructor(private localStorageService: LocalStorageService, public themeServise: ThemeService) {
 		this.refreshProductList();
 	}
 

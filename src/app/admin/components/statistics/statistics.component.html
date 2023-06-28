@@ -1,38 +1,38 @@
 <div class="row statistics">
-  <div class="col col-lg-6 col-sm-6 mt-1">
-    <div class="card text-center">
-      <div class="card-body">
-        <h5 class="card-title"><b>Total Books</b></h5>
-        <p class="card-text">{{totalBooks}}</p>
-      </div>
-    </div>
-  </div>
-  <div class="col col-lg-6 col-sm-6 mt-1">
-    <div class="card text-center">
-      <div class="card-body">
-        <h5 class="card-title"><b>Total Comments</b></h5>
-        <p class="card-text">{{totalComments}}</p>
-      </div>
-    </div>
-  </div>
-  <div class="col col-lg-6 col-sm-6 mt-1">
-    <div class="card text-center">
-      <div class="card-body">
-        <h5 class="card-title"><b>Popular Books</b></h5>
-        <ul>
-          <li *ngFor="let book of popularBooks">
-            <small class="card-text">{{book.name}}</small>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col col-lg-6 col-sm-6 mt-1">
-    <div class="card text-center">
-      <div class="card-body">
-        <h5 class="card-title"><b>Average Rating</b></h5>
-        <p class="card-text">{{averageRating}}</p>
-      </div>
-    </div>
-  </div>
+	<div class="col col-lg-6 col-sm-6 mt-1">
+		<div class="card text-center">
+			<div class="card-body" [ngClass]="{ 'bg-theme': themeServise.stateTheme.themeBlack }">
+				<h5 class="card-title"><b>Total Books</b></h5>
+				<p class="card-text">{{ totalBooks }}</p>
+			</div>
+		</div>
+	</div>
+	<div class="col col-lg-6 col-sm-6 mt-1">
+		<div class="card text-center">
+			<div class="card-body" [ngClass]="{ 'bg-theme': themeServise.stateTheme.themeBlack }">
+				<h5 class="card-title"><b>Total Comments</b></h5>
+				<p class="card-text">{{ totalComments }}</p>
+			</div>
+		</div>
+	</div>
+	<div class="col col-lg-6 col-sm-6 mt-1">
+		<div class="card text-center">
+			<div class="card-body" [ngClass]="{ 'bg-theme': themeServise.stateTheme.themeBlack }">
+				<h5 class="card-title"><b>Popular Books</b></h5>
+				<ul>
+					<li *ngFor="let book of popularBooks">
+						<small class="card-text">{{ book.name }}</small>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="col col-lg-6 col-sm-6 mt-1">
+		<div class="card text-center">
+			<div class="card-body" [ngClass]="{ 'bg-theme': themeServise.stateTheme.themeBlack }">
+				<h5 class="card-title"><b>Average Rating</b></h5>
+				<p class="card-text">{{ averageRating }}</p>
+			</div>
+		</div>
+	</div>
 </div>
