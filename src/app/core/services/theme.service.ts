@@ -22,7 +22,13 @@ export class ThemeService {
 
 	constructor() {
 		if (!localStorage.getItem('StateTheme')) {
-			localStorage.setItem('StateTheme', JSON.stringify(this.stateTheme));
+			if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+				localStorage.setItem('StateTheme', JSON.stringify(this.stateTheme));
+			} else {
+				this.stateTheme.themeBlack = true;
+				this.stateTheme.themeWhite = false;
+				localStorage.setItem('StateTheme', JSON.stringify(this.stateTheme));
+			}
 		} else {
 			this.stateTheme = JSON.parse(localStorage.getItem('StateTheme')!);
 		}

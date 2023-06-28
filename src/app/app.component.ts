@@ -7,8 +7,6 @@ import { ThemeService } from './core/services/theme.service';
 	styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-	constructor(public themeServise: ThemeService) {
-		console.log(navigator);
-	}
+	constructor(public themeServise: ThemeService) {}
 	title = 'angular-final-task';
 }
