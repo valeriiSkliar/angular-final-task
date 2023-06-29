@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CartService } from '../../../core/services/cart.service';
 import { IOrder } from '../../../core/interfaces/iorder';
 import { ICartItems } from '../../../core/interfaces/icart-items';
-import { FormBuilder, FormGroup, MinLengthValidator } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 type contactInfo = {
 	firstName: string;
@@ -28,7 +28,6 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 	}
 
 	sendRequestToServer(order: IOrder[]) {
-		console.log(order);
 		const chatId = localStorage.getItem('chatId');
 		const contactInfo: contactInfo = this.checkoutForm.value;
 		if (chatId) {
@@ -44,7 +43,6 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 						if (message) {
 							this.message = responseHTML;
 						}
-						console.log(response);
 					},
 					(error) => {
 						console.error(error);
@@ -64,7 +62,6 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 	}
 
 	sendOrder() {
-		console.log(this.checkoutForm.value);
 		this.sendRequestToServer(this.extractItemFromCart(this.cartService.cartItems));
 	}
 
