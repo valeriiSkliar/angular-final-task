@@ -39,9 +39,9 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 				})
 				.subscribe(
 					(response: any) => {
-						const { message, responseHTML } = response;
+						const { message } = response;
 						if (message) {
-							this.message = responseHTML;
+							this.message = message;
 						}
 					},
 					(error) => {
