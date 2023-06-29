@@ -4,6 +4,7 @@
     Fill your contact information to checkout order!
   </p>
   <form
+    [formGroup]="checkoutForm"
     (ngSubmit)=sendOrder()
     class="d-flex flex-column gap-3 justify-content-center align-content-center ">
 
@@ -12,6 +13,9 @@
       class="input-group-text"
       id="basic-addon1">First Name</span>
       <input
+        [class.is-valid]="true"
+        minlength="4"
+        formControlName="firstName"
         name="firstName"
         class="form-control"
         type="text"
@@ -23,6 +27,9 @@
       class="input-group-text"
       id="basic-addon2">Last Name</span>
       <input
+        [class.is-valid]="true"
+        formControlName="lastName"
+        minlength="4"
         name="lastName"
         class="form-control"
         type="text"
@@ -34,6 +41,9 @@
       class="input-group-text"
       id="basic-addon3">Phone number</span>
       <input
+        [class.is-valid]="false"
+        minlength="4"
+        formControlName="phoneNumber"
         name="phoneNumber"
         class="form-control"
         type="text"
@@ -42,6 +52,7 @@
     </div>
 
     <button
+      [disabled]="checkoutForm.invalid"
       class="m-auto w-50 btn btn-success"
       type="submit"
     >Send order

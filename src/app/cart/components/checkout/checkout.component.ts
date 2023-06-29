@@ -1,17 +1,24 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from '../../../core/services/cart.service';
 import { IOrder } from '../../../core/interfaces/iorder';
 import { ICartItems } from '../../../core/interfaces/icart-items';
+import { FormBuilder, FormGroup, MinLengthValidator } from '@angular/forms';
+
+type bodyRequest = {
+	contactInfo: string[];
+	cartItems: IOrder[];
+};
 
 @Component({
 	selector: 'app-checkout',
 	templateUrl: './checkout.component.html',
 	styleUrls: ['./checkout.component.css'],
 })
-export class CheckoutComponent implements AfterViewInit {
+export class CheckoutComponent implements AfterViewInit, OnInit {
 	message: string | undefined;
-	constructor(private httpClient: HttpClient, private cartService: CartService) {}
+	checkoutForm!: FormGroup;
+	constructor(private fb: FormBuilder, private httpClient: HttpClient, private cartService: CartService) {}
 
 	extractItemFromCart(cartItems: ICartItems): IOrder[] {
 		return Object.entries(cartItems).map(([key, { product, quantity }]) => {
@@ -19,7 +26,7 @@ export class CheckoutComponent implements AfterViewInit {
 		});
 	}
 
-	sendGods(order: IOrder[]) {
+	sendRequestToServer(order: IOrder[]) {
 		console.log(order);
 		const chatId = localStorage.getItem('chatId');
 
@@ -50,6 +57,19 @@ export class CheckoutComponent implements AfterViewInit {
 	}
 
 	sendOrder() {
-		this.sendGods(this.extractItemFromCart(this.cartService.cartItems));
+		console.log(this.checkoutForm.value);
+		this.sendRequestToServer(this.extractItemFromCart(this.cartService.cartItems));
+	}
+
+	ngOnInit(): void {
+		this.setFormDefaultState();
+	}
+
+	setFormDefaultState() {
+		this.checkoutForm = this.fb.group({
+			firstName: [''],
+			lastName: [''],
+			phoneNumber: [''],
+		});
 	}
 }
