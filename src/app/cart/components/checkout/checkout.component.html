@@ -1,26 +1,52 @@
-<form
-  (ngSubmit)=sendOrder()
-class="d-flex flex-column gap-3 justify-content-center align-content-center">
-  <input
-    placeholder="First name"
-    name="firstName"
-    type="text">
-  <input
-    placeholder="Last name"
-    name="lastName"
-    type="text">
-  <input
-    placeholder="Type address for delivery"
-    name="address"
-    type="text">
-  <input
-    placeholder="Phone number"
-    name="phoneNumber"
-    type="number">
-  <button type="submit">Send order</button>
-</form>
-<button
-  (click)="sendOrder()"
->Send</button>
+<div class="container my-5 text-center">
+  <p
+  class="my-4">
+    Fill your contact information to checkout order!
+  </p>
+  <form
+    (ngSubmit)=sendOrder()
+    class="d-flex flex-column gap-3 justify-content-center align-content-center ">
+
+    <div class="input-group mb-3 w-75 m-auto">
+    <span
+      class="input-group-text"
+      id="basic-addon1">First Name</span>
+      <input
+        name="firstName"
+        class="form-control"
+        type="text"
+        placeholder="Type here"
+        aria-label="default input example">
+    </div>
+    <div class="input-group mb-3 w-75 m-auto">
+    <span
+      class="input-group-text"
+      id="basic-addon2">Last Name</span>
+      <input
+        name="lastName"
+        class="form-control"
+        type="text"
+        placeholder="Type here"
+        aria-label="default input example">
+    </div>
+    <div class="input-group mb-3 w-75 m-auto">
+    <span
+      class="input-group-text"
+      id="basic-addon3">Phone number</span>
+      <input
+        name="phoneNumber"
+        class="form-control"
+        type="text"
+        placeholder="Type here"
+        aria-label="default input example">
+    </div>
+
+    <button
+      class="m-auto w-50 btn btn-success"
+      type="submit"
+    >Send order
+    </button>
+  </form>
+</div>
 <p #response></p>
 <p *ngIf="message">{{message}}</p>

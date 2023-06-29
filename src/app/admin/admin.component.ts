@@ -5,6 +5,8 @@ import { ActionAndId } from './components/product-list-management/product-list-m
 import { WebSocketSubject } from 'rxjs/webSocket';
 import { ThemeService } from '../core/services/theme.service';
 
+type chatId = { chatId: string };
+
 @Component({
 	selector: 'app-admin',
 	templateUrl: './admin.component.html',
@@ -64,15 +66,13 @@ export class AdminComponent {
 	}
 
 	openBot() {
-		const socketUrl = 'ws://localhost:8080'; // Замените на URL вашего сервера WebSocket
-		const socket = new WebSocketSubject<any>(socketUrl);
+		const socketUrl = 'ws://localhost:8080';
+		const socket = new WebSocketSubject<chatId>(socketUrl);
 		socket.subscribe(
 			(message) => {
-				console.log(message);
 				if ('chatId' in message) {
 					localStorage.setItem('chatId', message.chatId);
 				}
-				console.log('Соединение установлено:', message.toString());
 			},
 			(error) => {
 				console.error('Ошибка соединения:', error);
@@ -81,10 +81,6 @@ export class AdminComponent {
 				console.log('Соединение закрыто');
 			},
 		);
-		setTimeout(() => {
-			const message = { text: 'Hello, server!' };
-			socket.next(message);
-		}, 3000);
 		const url = 'https://t.me/Personal_expense_tracker_bot';
 		window.open(url, '_blank');
 	}

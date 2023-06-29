@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/iproduct';
 import { LocalStorageService } from './local-storage.service';
+import { ICartItems } from '../interfaces/icart-items';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class CartService {
-	cartItems: { [productId: string]: { product: IProduct; quantity: number } } = {};
+	cartItems: ICartItems = {};
 
 	constructor(private localStorage: LocalStorageService) {}
 

@@ -1,6 +1,8 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from '../../../core/services/cart.service';
+import { IOrder } from '../../../core/interfaces/iorder';
+import { ICartItems } from '../../../core/interfaces/icart-items';
 
 @Component({
 	selector: 'app-checkout',
@@ -11,27 +13,30 @@ export class CheckoutComponent implements AfterViewInit {
 	message: string | undefined;
 	constructor(private httpClient: HttpClient, private cartService: CartService) {}
 
-	extractItemFromCart(cartItems: any): any[] {
-		return Object.entries(cartItems).map(([key, { product, quantity }]: any) => {
+	extractItemFromCart(cartItems: ICartItems): IOrder[] {
+		return Object.entries(cartItems).map(([key, { product, quantity }]) => {
 			return { name: product.name, quantity: quantity, id: key };
 		});
 	}
 
-	sendGods(order: any) {
+	sendGods(order: IOrder[]) {
+		console.log(order);
 		const chatId = localStorage.getItem('chatId');
 
-		this.httpClient.post('http://localhost:3000/cart/checkout', { chatId: chatId, order: order }).subscribe(
-			(response: any) => {
-				const { message, responseHTML } = response;
-				if (message) {
-					this.message = responseHTML;
-				}
-				console.log(response);
-			},
-			(error) => {
-				console.error(error);
-			},
-		);
+		if (chatId) {
+			this.httpClient.post('http://localhost:3000/cart/checkout', { chatId: chatId, order: order }).subscribe(
+				(response: any) => {
+					const { message, responseHTML } = response;
+					if (message) {
+						this.message = responseHTML;
+					}
+					console.log(response);
+				},
+				(error) => {
+					console.error(error);
+				},
+			);
+		}
 	}
 
 	scrollPageUp() {
