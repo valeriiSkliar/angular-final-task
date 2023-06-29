@@ -5,9 +5,10 @@ import { IOrder } from '../../../core/interfaces/iorder';
 import { ICartItems } from '../../../core/interfaces/icart-items';
 import { FormBuilder, FormGroup, MinLengthValidator } from '@angular/forms';
 
-type bodyRequest = {
-	contactInfo: string[];
-	cartItems: IOrder[];
+type contactInfo = {
+	firstName: string;
+	lastName: string;
+	phoneNumber: string;
 };
 
 @Component({
@@ -29,20 +30,26 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 	sendRequestToServer(order: IOrder[]) {
 		console.log(order);
 		const chatId = localStorage.getItem('chatId');
-
+		const contactInfo: contactInfo = this.checkoutForm.value;
 		if (chatId) {
-			this.httpClient.post('http://localhost:3000/cart/checkout', { chatId: chatId, order: order }).subscribe(
-				(response: any) => {
-					const { message, responseHTML } = response;
-					if (message) {
-						this.message = responseHTML;
-					}
-					console.log(response);
-				},
-				(error) => {
-					console.error(error);
-				},
-			);
+			this.httpClient
+				.post('http://localhost:3000/cart/checkout', {
+					chatId: chatId,
+					order: order,
+					contactInfo: contactInfo,
+				})
+				.subscribe(
+					(response: any) => {
+						const { message, responseHTML } = response;
+						if (message) {
+							this.message = responseHTML;
+						}
+						console.log(response);
+					},
+					(error) => {
+						console.error(error);
+					},
+				);
 		}
 	}
 
