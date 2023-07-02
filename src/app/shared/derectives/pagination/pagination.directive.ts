@@ -86,9 +86,6 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 			selectedIndex: (index: number) => {
 				this.selectedIndex(index);
 			},
-			saveIndex: (index: number) => {
-				return this.saveIndex(index);
-			},
 		};
 	}
 
@@ -122,6 +119,5 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 	}
 	saveIndex(index: number) {
 		this.themeService.saveIndex(index);
-		return index;
 	}
 }
