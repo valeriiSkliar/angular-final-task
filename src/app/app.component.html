@@ -1,13 +1,13 @@
-<div class="d-flex flex-column vh-100">
+<div class="d-flex flex-column vh-100 hidden">
 	<div class="row">
-		<div class="col-12">
+		<div class="col-12 mx-auto p-0">
 			<app-header></app-header>
 		</div>
 	</div>
 
 	<div class="row flex-grow-1">
 		<div
-			class="col-12"
+			class="col-12 mx-auto p-0"
 			[ngClass]="{ 'bg-light': themeServise.stateTheme.themeWhite, 'bg-dark': themeServise.stateTheme.themeBlack }"
 		>
 			<router-outlet></router-outlet>
@@ -16,7 +16,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col-12">
+		<div class="col-12 mx-auto p-0">
 			<app-footer class="ind w-100"></app-footer>
 		</div>
 	</div>
