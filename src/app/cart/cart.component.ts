@@ -51,8 +51,4 @@ export class CartComponent {
 	remove(itemId: string) {
 		this.cartService.removeItem(itemId);
 	}
-
-	buyGogs() {
-		// this.cartService.clearCart();
-	}
 }

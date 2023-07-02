@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from '../../../core/services/cart.service';
 import { IOrder } from '../../../core/interfaces/iorder';
 import { ICartItems } from '../../../core/interfaces/icart-items';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 type contactInfo = {
 	firstName: string;
@@ -17,6 +17,7 @@ type contactInfo = {
 	styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements AfterViewInit, OnInit {
+	@Output() clearCart = new EventEmitter();
 	message: string | undefined;
 	checkoutForm!: FormGroup;
 	constructor(private fb: FormBuilder, private httpClient: HttpClient, private cartService: CartService) {}
@@ -63,6 +64,7 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 
 	sendOrder() {
 		this.sendRequestToServer(this.extractItemFromCart(this.cartService.cartItems));
+		this.cartService.clearCart();
 	}
 
 	ngOnInit(): void {
@@ -71,9 +73,9 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 
 	setFormDefaultState() {
 		this.checkoutForm = this.fb.group({
-			firstName: [''],
-			lastName: [''],
-			phoneNumber: [''],
+			firstName: ['', Validators.required],
+			lastName: ['', Validators.required],
+			phoneNumber: ['', [Validators.required, Validators.pattern('^\\+?[1-9]\\d{1,14}$')]],
 		});
 	}
 }
