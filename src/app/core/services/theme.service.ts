@@ -4,11 +4,17 @@ import { Injectable } from '@angular/core';
 	providedIn: 'root',
 })
 export class ThemeService {
+	index = 0;
 	stateTheme = {
 		themeBlack: false,
 		themeWhite: true,
 	};
-
+	getIndex() {
+		return this.index;
+	}
+	saveIndex(index: number) {
+		this.index = index;
+	}
 	onTheme() {
 		if (this.stateTheme.themeBlack) {
 			this.stateTheme.themeBlack = false;

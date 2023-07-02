@@ -6,4 +6,5 @@ export interface IPaginationContext<T> {
 	next: () => void;
 	back: () => void;
 	selectedIndex: (index: number) => void;
+	saveIndex: (index: number) => number;
 }

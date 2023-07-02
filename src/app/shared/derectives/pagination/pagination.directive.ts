@@ -11,6 +11,7 @@ import {
 import { BehaviorSubject, Subject, map, takeUntil } from 'rxjs';
 import { IPaginationContext } from './IPaginationContext';
 import { getChunkArray } from './utils/getChunkArray';
+import { ThemeService } from '../../../core/services/theme.service';
 
 @Directive({
 	selector: '[appPagination]',
@@ -18,6 +19,7 @@ import { getChunkArray } from './utils/getChunkArray';
 export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 	@Input() appPaginationOf: T[] | null | undefined;
 	@Input() appPaginationChunkSize = 4;
+	@Input() appPaginationCurrentIndex = 0;
 
 	private readonly currentIndex$ = new BehaviorSubject<number>(0);
 	private readonly destroy$ = new Subject<void>();
@@ -25,6 +27,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 
 	constructor(
 		private readonly viewContainer: ViewContainerRef,
+		private readonly themeService: ThemeService,
 		private readonly template: TemplateRef<IPaginationContext<T>>,
 	) {}
 
@@ -53,7 +56,7 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 		}
 
 		this.chunkArray = getChunkArray(this.appPaginationOf as T[], this.appPaginationChunkSize);
-		this.currentIndex$.next(0);
+		this.currentIndex$.next(this.themeService.getIndex());
 	}
 
 	private listenCurrentIndexChange() {
@@ -83,13 +86,16 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 			selectedIndex: (index: number) => {
 				this.selectedIndex(index);
 			},
+			saveIndex: (index: number) => {
+				return this.saveIndex(index);
+			},
 		};
 	}
 
 	private next() {
 		const nextIndex = this.currentIndex$.value + 1;
 		const newIndex = nextIndex < this.chunkArray?.length ? nextIndex : 0;
-
+		this.saveIndex(newIndex);
 		this.currentIndex$.next(newIndex);
 		this.scrollPageUp();
 	}
@@ -97,13 +103,14 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 	private back() {
 		const previousIndex = this.currentIndex$.value - 1;
 		const newIndex = previousIndex >= 0 ? previousIndex : this.chunkArray?.length - 1;
-
+		this.saveIndex(newIndex);
 		this.currentIndex$.next(newIndex);
 		this.scrollPageUp();
 	}
 
 	private selectedIndex(index: number) {
 		this.currentIndex$.next(index);
+		this.saveIndex(index);
 		this.scrollPageUp();
 	}
 
@@ -112,5 +119,9 @@ export class PaginationDirective<T> implements OnChanges, OnInit, OnDestroy {
 			top: 0,
 			behavior: 'smooth',
 		});
+	}
+	saveIndex(index: number) {
+		this.themeService.saveIndex(index);
+		return index;
 	}
 }
