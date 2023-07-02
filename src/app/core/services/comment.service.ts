@@ -43,12 +43,14 @@ export class CommentService {
 	}
 
 	getTotalCommentsCount() {
+		this.listComments = JSON.parse(localStorage.getItem('ListComments')!);
 		let sum = 0;
 		this.listComments.forEach((book) => {
 			sum += book.comments.length;
 		});
 		return sum;
 	}
+
 	getBooksSortedByComments(): string[] {
 		const booksWithComments = [...this.listComments];
 

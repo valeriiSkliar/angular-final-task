@@ -25,6 +25,7 @@ export class StatisticsComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		this.commentService.getTotalCommentsCount();
 		this.totalBooks = this.localStorageService.getTotalBooksCount();
 		this.totalComments = this.commentService.getTotalCommentsCount();
 		this.popularBooks = this.getPopularBooks();
