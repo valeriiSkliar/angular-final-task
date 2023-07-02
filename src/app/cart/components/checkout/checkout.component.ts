@@ -63,7 +63,10 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 	}
 
 	sendOrder() {
-		this.sendRequestToServer(this.extractItemFromCart(this.cartService.cartItems));
+		const order = this.extractItemFromCart(this.cartService.cartItems);
+		if (order.length) {
+			this.sendRequestToServer(order);
+		}
 		this.cartService.clearCart();
 	}
 
