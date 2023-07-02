@@ -7,7 +7,7 @@ export class CurrencyChangePipe implements PipeTransform {
 	transform(value: number, currencyValue: string): string {
 		switch (currencyValue) {
 			case '₴': {
-				return '₴' + value.toFixed(2);
+				return '₴' + Number(value).toFixed(2);
 			}
 			case '$': {
 				value = parseFloat((value / 32).toFixed(2));
