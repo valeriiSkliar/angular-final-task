@@ -51,7 +51,8 @@
       class="input-group-text"
       id="basic-addon3">Phone number</span>
       <input
-        [class.is-invalid]="checkoutForm.controls['phoneNumber'].invalid && checkoutForm.controls['phoneNumber'].touched"
+        [class.is-invalid]="
+        checkoutForm.controls['phoneNumber'].invalid && checkoutForm.controls['phoneNumber'].touched"
         minlength="4"
         formControlName="phoneNumber"
         name="phoneNumber"
@@ -73,5 +74,11 @@
     </button>
   </form>
 </div>
-<p #response></p>
-<p *ngIf="message">{{message}}</p>
+
+<ng-template #forNotificationMessage let-context>
+  <app-notification
+    [message]="context.message"
+    [type]="context.type"
+  ></app-notification>
+</ng-template>
+

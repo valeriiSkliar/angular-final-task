@@ -21,3 +21,9 @@
 		</div>
 	</div>
 </div>
+<div *ngIf="notificationService.notificationTemplate$ | async as notification">
+  <ng-container
+    [ngTemplateOutlet]="notification.template"
+    [ngTemplateOutletContext]="notification.context"
+  ></ng-container>
+</div>

@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from '../../../core/services/cart.service';
 import { IOrder } from '../../../core/interfaces/iorder';
 import { ICartItems } from '../../../core/interfaces/icart-items';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificationService } from '../../../core/services/notificationService/notification.service';
 
 type contactInfo = {
 	firstName: string;
@@ -17,10 +18,27 @@ type contactInfo = {
 	styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent implements AfterViewInit, OnInit {
+	@ViewChild('forNotificationMessage')
+	forNotificationMessage: TemplateRef<any> | null = null;
+
 	@Output() clearCart = new EventEmitter();
-	message: string | undefined;
 	checkoutForm!: FormGroup;
-	constructor(private fb: FormBuilder, private httpClient: HttpClient, private cartService: CartService) {}
+	notificationTemplate: TemplateRef<any> | null = null;
+
+	constructor(
+		private fb: FormBuilder,
+		private httpClient: HttpClient,
+		private cartService: CartService,
+		public notificationService: NotificationService,
+	) {}
+
+	// openPopup(template: TemplateRef<{$implicit: string}>, message: string) {
+	showNotification(template: TemplateRef<any> | null, context: { message: string | null; type: string }) {
+		this.notificationService.showNotification({
+			template,
+			context: { $implicit: context },
+		});
+	}
 
 	extractItemFromCart(cartItems: ICartItems): IOrder[] {
 		return Object.entries(cartItems).map(([key, { product, quantity }]) => {
@@ -29,11 +47,12 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 	}
 
 	sendRequestToServer(order: IOrder[]) {
+		console.log('sendRequestToServer');
 		const chatId = localStorage.getItem('chatId');
 		const contactInfo: contactInfo = this.checkoutForm.value;
 		if (chatId) {
 			this.httpClient
-				.post('http://localhost:4200/cart/checkout', {
+				.post('http://localhost:3000/cart/checkout', {
 					chatId: chatId,
 					order: order,
 					contactInfo: contactInfo,
@@ -42,11 +61,20 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 					(response: any) => {
 						const { message } = response;
 						if (message) {
-							this.message = message;
+							this.showNotification(this.forNotificationMessage, { message: message, type: 'success' });
 						}
 					},
 					(error) => {
 						console.error(error);
+						this.showNotification(this.forNotificationMessage, { message: error.statusText, type: 'error' });
+						setTimeout(() => {
+							this.showNotification(this.forNotificationMessage, { message: null, type: 'info' });
+						}, 4000);
+					},
+					() => {
+						setTimeout(() => {
+							this.showNotification(this.forNotificationMessage, { message: null, type: 'info' });
+						}, 4000);
 					},
 				);
 		}
@@ -67,7 +95,7 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 		if (order.length) {
 			this.sendRequestToServer(order);
 		}
-		this.cartService.clearCart();
+		// this.cartService.clearCart();
 	}
 
 	ngOnInit(): void {
