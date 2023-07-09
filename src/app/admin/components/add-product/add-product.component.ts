@@ -4,6 +4,8 @@ import { transliterate } from '../../utils/transliterate';
 import { checkImageValidation } from '../../utils/checkImageValidation';
 import { NgForm, NgModel } from '@angular/forms';
 import { ThemeService } from 'src/app/core/services/theme.service';
+import { HttpClient } from '@angular/common/http';
+import { MongoService } from '../../../core/services/mongo/mongo.service';
 
 @Component({
 	selector: 'app-add-product',
@@ -26,7 +28,7 @@ export class AddProductComponent {
 	@Output() addProductSubmit = new EventEmitter<IProduct>();
 	@Output() editProductSubmit = new EventEmitter<IProduct>();
 
-	constructor(public themeServise: ThemeService) {}
+	constructor(public themeServise: ThemeService, private httpService: HttpClient, private mongoService: MongoService) {}
 
 	async imageSet(imageLink: NgModel) {
 		if (this.images.length >= 3) {
@@ -54,20 +56,24 @@ export class AddProductComponent {
 		this.images.splice(index, 1);
 	}
 
-	addProduct(addForm: NgForm) {
+	async addProduct(addForm: NgForm) {
 		let id: string | undefined = this.product.id;
 		if (!id) {
 			id = String(Math.random() * 10);
 		}
 		const { name, price, description } = addForm.value;
-		this.addProductSubmit.emit({
+
+		const newProduct = {
 			description: description as string,
 			url: transliterate(name as string),
 			id: id,
 			imageUrls: this.images,
 			name: name as string,
 			price: price as number,
-		});
+		};
+		this.mongoService.addProduct(newProduct);
+		this.addProductSubmit.emit(newProduct);
+
 		this.images = [];
 		addForm.resetForm();
 	}

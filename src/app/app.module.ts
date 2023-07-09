@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,16 @@ import { LocalStorageService } from './core/services/local-storage.service';
 import { Page404Component } from './appModuleComponents/page404/page404.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ScrollButtonComponent } from './scroll-button/scroll-button.component';
+import { MongoService } from './core/services/mongo/mongo.service';
+
+export function initializeApp(mongoService: MongoService) {
+	return (): Promise<any> => {
+		return mongoService
+			.fetchData()
+			.toPromise()
+			.then((data) => mongoService.setProductsCollection(data));
+	};
+}
 
 @NgModule({
 	declarations: [
@@ -25,7 +35,11 @@ import { ScrollButtonComponent } from './scroll-button/scroll-button.component';
 		Page404Component,
 		ScrollButtonComponent,
 	],
-	providers: [LocalStorageService],
+	providers: [
+		LocalStorageService,
+		MongoService,
+		{ provide: APP_INITIALIZER, useFactory: initializeApp, deps: [MongoService], multi: true },
+	],
 	bootstrap: [AppComponent],
 	imports: [
 		BrowserModule,

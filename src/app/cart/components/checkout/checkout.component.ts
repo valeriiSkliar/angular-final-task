@@ -23,7 +23,6 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 
 	@Output() clearCart = new EventEmitter();
 	checkoutForm!: FormGroup;
-	notificationTemplate: TemplateRef<any> | null = null;
 
 	constructor(
 		private fb: FormBuilder,

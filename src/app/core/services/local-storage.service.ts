@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { IProduct } from '../interfaces/iproduct';
+import { extractProducts, MongoService } from './mongo/mongo.service';
+import { tap } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -131,14 +133,22 @@ export class LocalStorageService {
 			],
 		},
 	];
+	// private listProducts: IProduct[] | null = null;
 
 	listCart!: object;
 
-	constructor() {
-		if (!localStorage.getItem('ListBooks')) {
-			localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
-			this.listProducts = JSON.parse(localStorage.getItem('ListBooks')!);
-		}
+	constructor(private mongoService: MongoService) {
+		this.mongoService.productsCollection
+			.pipe(
+				tap((value) => {
+					this.listProducts = extractProducts(value);
+				}),
+			)
+			.subscribe();
+		// if (!localStorage.getItem('ListBooks')) {
+		// 	localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
+		// 	this.listProducts = JSON.parse(localStorage.getItem('ListBooks')!);
+		// }
 		if (String(localStorage.getItem('ListCart')) === 'null') {
 			localStorage.setItem('ListCart', JSON.stringify({}));
 			this.listCart = JSON.parse(localStorage.getItem('ListCart')!);
@@ -156,10 +166,10 @@ export class LocalStorageService {
 	}
 
 	getBooksInLocalStorage() {
-		const localStorageItem = localStorage.getItem('ListBooks');
-		if (localStorageItem) {
-			this.listProducts = JSON.parse(localStorageItem);
-		}
+		// const localStorageItem = localStorage.getItem('ListBooks');
+		// if (localStorageItem) {
+		// 	this.listProducts = JSON.parse(localStorageItem);
+		// }
 		this.listProducts.forEach((book) => {
 			if (book.imageUrls.length === 0) {
 				book.imageUrls.push('./assets/no-photo.png');
