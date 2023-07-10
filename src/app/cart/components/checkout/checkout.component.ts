@@ -33,7 +33,7 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 		const contactInfo: contactInfo = this.checkoutForm.value;
 		if (chatId) {
 			this.httpClient
-				.post('http://localhost:4200/cart/checkout', {
+				.post('http://localhost:3000/cart/checkout', {
 					chatId: chatId,
 					order: order,
 					contactInfo: contactInfo,

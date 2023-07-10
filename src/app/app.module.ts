@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,14 @@ import { LocalStorageService } from './core/services/local-storage.service';
 import { Page404Component } from './appModuleComponents/page404/page404.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ScrollButtonComponent } from './scroll-button/scroll-button.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MongoService } from './core/services/mongo.service';
+
+// export function loadMongo(mongoService: MongoService) {
+// 	return (): Promise<any> => {
+// 		return mongoService.fetchData().then((data) => { mongoService.setData(data), console.log('kuku') })
+// 	}
+// }
 
 @NgModule({
 	declarations: [
@@ -25,7 +33,19 @@ import { ScrollButtonComponent } from './scroll-button/scroll-button.component';
 		Page404Component,
 		ScrollButtonComponent,
 	],
-	providers: [LocalStorageService],
+	providers: [
+		LocalStorageService,
+		MongoService,
+		{
+			provide: APP_INITIALIZER,
+			useFactory: (mongoService: MongoService) => () =>
+				mongoService.fetchData().then((data) => {
+					mongoService.setData(data);
+				}),
+			deps: [MongoService],
+			multi: true,
+		},
+	],
 	bootstrap: [AppComponent],
 	imports: [
 		BrowserModule,
@@ -37,6 +57,7 @@ import { ScrollButtonComponent } from './scroll-button/scroll-button.component';
 		AdminModule,
 		FormsModule,
 		SlickCarouselModule,
+		HttpClientModule,
 	],
 })
 export class AppModule {}
