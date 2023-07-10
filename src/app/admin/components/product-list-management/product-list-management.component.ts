@@ -22,14 +22,6 @@ export class ProductListManagementComponent {
 
 	constructor(public themeServise: ThemeService) {}
 
-	removeItemFromCollection(id: string) {
-		this.productIdToRemove.emit(id);
-	}
-
-	editItemFromCollection(id: string) {
-		this.productIdToEdit.emit(id);
-	}
-
 	loadData(direction: LOADING_DIRECTION | null) {
 		if (direction) {
 			this.loadMoreData.emit(String(direction));

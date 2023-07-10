@@ -1,8 +1,8 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LocalStorageService } from '../local-storage.service';
 import { IProduct } from '../../interfaces/iproduct';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { IComments } from '../../interfaces/comments';
 
 export function extractProducts(data: any[]): IProduct[] {
 	return data.map((item) => {
@@ -10,18 +10,36 @@ export function extractProducts(data: any[]): IProduct[] {
 		return { description, url, id, imageUrls, name, price };
 	});
 }
+export function extractComments(data: any[]) {
+	return data.map((item) => {
+		const { comments, id } = item;
+		return { comments, id };
+	});
+}
+
+export enum URLS {
+	GET_ALL_ENTRIES = 'http://localhost:3000/get-all-products',
+	GET_ALL_COMMENTS = 'http://localhost:3000/get-all-comments',
+	ADD_NEW_PRODUCT = 'http://localhost:3000/admin/add-new-product',
+	ADD_NEW_COMMENT = 'http://localhost:3000/add-new-comment',
+	REMOVE_PRODUCT = 'http://localhost:3000/admin/remove-product',
+}
 
 @Injectable({
 	providedIn: 'root',
 })
 export class MongoService {
 	private _productsCollection: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+	private _commentsCollection: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
-	constructor(private httpService: HttpClient) // private localStorageService: LocalStorageService,
-	{}
+	constructor(private httpService: HttpClient) // private commentsService: CommentService
+	{
+		this.initCommentsCollection();
+		// this.commentsService.getListComments().map(item => console.log(item))
+	}
 
-	fetchData(): Observable<any> {
-		return this.httpService.get('http://localhost:3000/get-all-products');
+	fetchData(url: string): Observable<any> {
+		return this.httpService.get(url);
 	}
 
 	setProductsCollection(data: any) {
@@ -32,13 +50,61 @@ export class MongoService {
 		return this._productsCollection.asObservable();
 	}
 
+	initCommentsCollection = () => {
+		this.fetchData(URLS.GET_ALL_COMMENTS).subscribe((data) => {
+			this.setCommentsCollection(data);
+		});
+		// .toPromise()
+		// .then((data) => {
+		//   console.log(JSON.parse(data))
+		//   // this.setCommentsCollection(data)
+		// });
+	};
+
+	setCommentsCollection(data: any) {
+		this._commentsCollection.next(data);
+	}
+
+	get commentsCollection(): Observable<any> {
+		return this._commentsCollection.asObservable();
+	}
+
 	addProduct(product: IProduct) {
-		this.httpService.post('http://localhost:3000/admin/add-new-product', { product }).subscribe(
-			(res) => {
-				this.fetchData().subscribe((data) => {
+		this.httpService.post(URLS.ADD_NEW_PRODUCT, { product }).subscribe(
+			() => {
+				this.fetchData(URLS.GET_ALL_ENTRIES).subscribe((data) => {
 					this.setProductsCollection(data);
 				});
+				// console.log(res);
+			},
+			(error) => {
+				console.log(error);
+			},
+		);
+	}
+
+	addComment(comment: IComments) {
+		this.httpService.post(URLS.ADD_NEW_COMMENT, { comment }).subscribe(
+			(res) => {
+				this.fetchData(URLS.GET_ALL_COMMENTS).subscribe((data) => {
+					this.setCommentsCollection(data);
+				});
 				console.log(res);
+			},
+			(error) => {
+				console.log(error);
+			},
+		);
+	}
+
+	removeProduct(id: string) {
+		return this.httpService.post(URLS.REMOVE_PRODUCT, { id }).subscribe(
+			(res: any) => {
+				if (id === res.id) {
+					this.fetchData(URLS.GET_ALL_ENTRIES).subscribe((data) => {
+						this.setProductsCollection(data);
+					});
+				}
 			},
 			(error) => {
 				console.log(error);

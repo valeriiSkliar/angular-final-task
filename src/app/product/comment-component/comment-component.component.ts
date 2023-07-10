@@ -13,7 +13,7 @@ export class CommentComponentComponent implements OnInit {
 	comment = '';
 	id = '';
 	name = '';
-	arrComments: IComments[] | undefined;
+	arrComments: IComments[] | null = null;
 	activeComments = {
 		id: '',
 		comments: [
@@ -27,18 +27,20 @@ export class CommentComponentComponent implements OnInit {
 
 	constructor(
 		private activeRoute: ActivatedRoute,
-		private listProducts: CommentService,
+		private commentService: CommentService,
 		public themeServise: ThemeService,
 	) {}
 
 	ngOnInit() {
 		this.id = this.activeRoute.snapshot.params['id'];
-		this.arrComments = this.listProducts.getListComments();
-		this.arrComments.forEach((element) => {
-			if (element.id === this.id) {
-				this.activeComments = element;
-			}
-		});
+		this.arrComments = this.commentService.getListComments();
+		if (this.arrComments) {
+			this.arrComments.forEach((element) => {
+				if (element.id === this.id) {
+					this.activeComments = element;
+				}
+			});
+		}
 		if (this.activeComments.comments[0].text === 'Comment') {
 			this.activeComments.comments.shift();
 		}
@@ -52,7 +54,7 @@ export class CommentComponentComponent implements OnInit {
 			name: this.name,
 		};
 		this.activeComments.comments.push(newObj);
-		this.listProducts.setListComments(this.activeComments);
+		this.commentService.setListComments(this.activeComments);
 		//this.listProducts.getNumberComments();
 		this.comment = '';
 		this.name = '';

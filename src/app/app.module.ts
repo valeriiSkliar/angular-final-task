@@ -15,12 +15,13 @@ import { LocalStorageService } from './core/services/local-storage.service';
 import { Page404Component } from './appModuleComponents/page404/page404.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { ScrollButtonComponent } from './scroll-button/scroll-button.component';
-import { MongoService } from './core/services/mongo/mongo.service';
+import { MongoService, URLS } from './core/services/mongo/mongo.service';
 
 export function initializeApp(mongoService: MongoService) {
+	// mongoService.initCommentsCollection()
 	return (): Promise<any> => {
 		return mongoService
-			.fetchData()
+			.fetchData(URLS.GET_ALL_ENTRIES)
 			.toPromise()
 			.then((data) => mongoService.setProductsCollection(data));
 	};

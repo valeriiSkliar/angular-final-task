@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { IProduct } from '../core/interfaces/iproduct';
 import { ActionAndId } from './components/product-list-management/product-list-management.component';
@@ -12,29 +12,28 @@ type chatId = { chatId: string };
 	templateUrl: './admin.component.html',
 	styleUrls: ['./admin.component.css'],
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
 	productList: IProduct[] = [];
 	productToAddEdit: IProduct = { name: '', id: '', url: '', price: 0, description: '', imageUrls: [] };
 	isFormOpen = false;
 
 	constructor(private localStorageService: LocalStorageService, public themeServise: ThemeService) {
-		this.refreshProductList();
+		// this.refreshProductList();
 	}
 
 	removeProductFromCollection(id: string) {
 		this.localStorageService.removeBook(id);
-		this.refreshProductList();
+		// this.refreshProductList();
 	}
 
 	submitForm(product: IProduct) {
 		this.localStorageService.setBooksInLocalStorage(product);
 		this.isFormOpen = false;
-		this.refreshProductList();
+		// this.refreshProductList();
 	}
 
 	editProductFromCollection(id: string) {
-		const products: IProduct[] = this.localStorageService.getBooksInLocalStorage();
-		const product = products.find((product) => product.id === id);
+		const product = this.productList.find((product) => product.id === id);
 		if (product) {
 			this.productToAddEdit = product;
 			this.isFormOpen = true;
@@ -44,11 +43,7 @@ export class AdminComponent {
 	}
 
 	lazyLoadingList(direction: string) {
-		console.log(direction);
-	}
-
-	private refreshProductList() {
-		this.productList = this.localStorageService.getBooksInLocalStorage();
+		// console.log(direction);
 	}
 
 	toggleFormModal(event: ActionAndId = { action: 'add', id: '' }) {
@@ -83,5 +78,11 @@ export class AdminComponent {
 		);
 		const url = 'https://t.me/Personal_expense_tracker_bot';
 		window.open(url, '_blank');
+	}
+
+	ngOnInit(): void {
+		this.localStorageService.listProducts$.subscribe((nextValue) => {
+			this.productList = nextValue;
+		});
 	}
 }

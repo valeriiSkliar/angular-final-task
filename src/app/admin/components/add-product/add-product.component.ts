@@ -71,7 +71,6 @@ export class AddProductComponent {
 			name: name as string,
 			price: price as number,
 		};
-		this.mongoService.addProduct(newProduct);
 		this.addProductSubmit.emit(newProduct);
 
 		this.images = [];
