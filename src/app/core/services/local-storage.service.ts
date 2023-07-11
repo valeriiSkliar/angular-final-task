@@ -424,13 +424,14 @@ export class LocalStorageService {
 	// }
 
 	setBooksInLocalStorage(product: IProduct) {
-		const checkProductID = this.listProducts.find((item) => {
-			return item.id === product.id;
-		});
-		if (!checkProductID) {
-			this.listProducts.push(product);
-		}
-		localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
+		// const checkProductID = this.listProducts.find((item) => {
+		// 	return item.id === product.id;
+		// });
+		// if (!checkProductID) {
+		//this.listProducts.push(product);
+		this.mongoService.setBookMongo(product);
+		//}
+		//localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
 	}
 
 	getBooksInLocalStorage() {
@@ -454,18 +455,20 @@ export class LocalStorageService {
 		return this.listProducts;
 	}
 
-	saveAfterRemove() {
-		localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
-	}
+	// saveAfterRemove() {
+	// 	localStorage.setItem('ListBooks', JSON.stringify(this.listProducts));
+	// }
 
 	removeBook(id: string) {
-		this.listProducts.forEach((element) => {
-			if (element.id === id) {
-				const index = this.listProducts.indexOf(element);
-				this.listProducts.splice(index, 1);
-				this.saveAfterRemove();
-			}
-		});
+		//console.log(id)
+		this.mongoService.deleteBookMongo(id);
+		// this.listProducts.forEach((element) => {
+		// 	if (element.id === id) {
+		// 		const index = this.listProducts.indexOf(element);
+		// 		this.listProducts.splice(index, 1);
+		// 		this.saveAfterRemove();
+		// 	}
+		// });
 	}
 
 	setCartToLocalStorage(cartItems: { [productId: string]: { product: IProduct; quantity: number } }) {

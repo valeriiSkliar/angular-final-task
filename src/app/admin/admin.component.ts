@@ -21,23 +21,31 @@ export class AdminComponent {
 		this.refreshProductList();
 	}
 
-	removeProductFromCollection(id: string) {
-		this.localStorageService.removeBook(id);
+	ngDoCheck() {
+		//console.log('chek')
 		this.refreshProductList();
 	}
 
+	removeProductFromCollection(id: string) {
+		this.localStorageService.removeBook(id);
+		//await this.refreshProductList();
+	}
+
 	submitForm(product: IProduct) {
+		//console.log(product)
 		this.localStorageService.setBooksInLocalStorage(product);
 		this.isFormOpen = false;
 		this.refreshProductList();
 	}
 
 	editProductFromCollection(id: string) {
+		//console.log(this.productToAddEdit)
 		const products: IProduct[] = this.localStorageService.getBooksInLocalStorage();
 		const product = products.find((product) => product.id === id);
 		if (product) {
 			this.productToAddEdit = product;
 			this.isFormOpen = true;
+			//console.log(this.productToAddEdit)
 		} else {
 			// handle error
 		}

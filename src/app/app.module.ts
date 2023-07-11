@@ -39,8 +39,21 @@ import { MongoService } from './core/services/mongo.service';
 		{
 			provide: APP_INITIALIZER,
 			useFactory: (mongoService: MongoService) => () =>
-				mongoService.fetchData().then((data) => {
-					mongoService.setData(data);
+				mongoService.fetchDataBook().then((data) => {
+					mongoService.setDataBook(data);
+				}),
+			deps: [MongoService],
+			multi: true,
+		},
+		// (mongoService: MongoService) => () =>
+		// 	mongoService.fetchDataComment().then((data) => {
+		// 			mongoService.setDataComment(data);
+		// 	})
+		{
+			provide: APP_INITIALIZER,
+			useFactory: (mongoService: MongoService) => () =>
+				mongoService.fetchDataComment().then((data) => {
+					mongoService.setDataComment(data);
 				}),
 			deps: [MongoService],
 			multi: true,

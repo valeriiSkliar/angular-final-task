@@ -32,6 +32,16 @@ export class StatisticsComponent implements OnInit {
 		this.booksByCategories = 5; // Замените это на реальные данные
 		this.averageRating = this.retingService.getAverageRating();
 	}
+
+	ngDoCheck(): void {
+		this.commentService.getTotalCommentsCount();
+		this.totalBooks = this.localStorageService.getTotalBooksCount();
+		this.totalComments = this.commentService.getTotalCommentsCount();
+		this.popularBooks = this.getPopularBooks();
+		this.booksByCategories = 5; // Замените это на реальные данные
+		this.averageRating = this.retingService.getAverageRating();
+	}
+
 	getPopularBooks(): Partial<IProduct>[] {
 		const bookIds = this.commentService.getBooksSortedByComments();
 		const popularBooks = this.localStorageService.getBooksByIds(bookIds);

@@ -18,7 +18,7 @@ export class ProductComponentComponent {
 	productPage: IProduct | undefined;
 
 	newActiveProduct() {
-		console.log(this.collectionBooks);
+		//console.log(this.collectionBooks);
 		this.collectionBooks.forEach((element) => {
 			if (element.id === this.id) {
 				this.productPage = element;
@@ -57,23 +57,23 @@ export class ProductComponentComponent {
 		this.newActiveProduct();
 	}
 
-	ngOnInit() {
-		const body = { id: 8 };
+	// ngOnInit() {
+	// 	// const body = { id: 10 };
 
-		this.http.post<IProduct[]>('http://localhost:3000/delete-book', body).subscribe(
-			(str) => {
-				console.log('Delete:');
-				console.log(str);
-				this.mongo.setData(str);
-				//this.mongo.fetch()
-			},
-			(err) => {
-				console.log(err);
-			},
-		);
+	// 	// this.http.post<IProduct[]>('http://localhost:3000/delete-book', body).subscribe(
+	// 	// 	(str) => {
+	// 	// 		console.log('Delete:');
+	// 	// 		console.log(str);
+	// 	// 		this.mongo.setData(str);
+	// 	// 		//this.mongo.fetch()
+	// 	// 	},
+	// 	// 	(err) => {
+	// 	// 		console.log(err);
+	// 	// 	},
+	// 	// );
 
-		// this.http.get<String>(`http://localhost:3000/active-page?id=${this.id}`).subscribe((str) => {
-		// 	console.log(str);
-		// })
-	}
+	// 	// this.http.get<String>(`http://localhost:3000/active-page?id=${this.id}`).subscribe((str) => {
+	// 	// 	console.log(str);
+	// 	// })
+	// }
 }
