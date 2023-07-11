@@ -14,10 +14,10 @@ import { ThemeService } from 'src/app/core/services/theme.service';
 })
 export class ProductButtonComponent {
 	quantity = 1;
-	reting = 0;
+	rating = 0;
 	sumComment = 0;
-	arrReting: IReting[] | undefined;
-	activeReting: IReting = {
+	arrRating: IReting[] | undefined;
+	activeRating: IReting = {
 		id: '',
 		arrReting: [],
 	};
@@ -27,8 +27,8 @@ export class ProductButtonComponent {
 		private activePage: ProductPageService,
 		private activeRoute: ActivatedRoute,
 		private commentService: CommentService,
-		private retingService: RetingService,
-		public themeServise: ThemeService,
+		private ratingService: RetingService,
+		public themeService: ThemeService,
 	) {}
 
 	onClick() {
@@ -36,34 +36,34 @@ export class ProductButtonComponent {
 	}
 
 	getReting() {
-		if (!this.activeReting.arrReting || this.activeReting.arrReting.length === 0) {
-			this.reting = 0;
+		if (!this.activeRating.arrReting || this.activeRating.arrReting.length === 0) {
+			this.rating = 0;
 		} else {
-			const sum = this.activeReting.arrReting.reduce((acc, num) => acc + num, 0);
-			this.reting = Number((sum / this.activeReting.arrReting.length).toFixed(1));
+			const sum = this.activeRating.arrReting.reduce((acc, num) => acc + num, 0);
+			this.rating = Number((sum / this.activeRating.arrReting.length).toFixed(1));
 		}
 	}
 
 	ngOnInit() {
-		this.activeReting.id = this.activeRoute.snapshot.params['id'];
-		this.arrReting = this.retingService.getListReting();
-		this.arrReting.forEach((element) => {
-			if (element.id === this.activeReting.id) {
-				this.activeReting = element;
+		this.activeRating.id = this.activeRoute.snapshot.params['id'];
+		this.arrRating = this.ratingService.getListReting();
+		this.arrRating.forEach((element) => {
+			if (element.id === this.activeRating.id) {
+				this.activeRating = element;
 			}
 		});
 		this.getReting();
-		this.sumComment = this.commentService.getBookComments(this.activeReting.id);
+		this.sumComment = this.commentService.getBookComments(this.activeRating.id);
 	}
 
 	ngDoCheck() {
 		this.getReting();
-		this.sumComment = this.commentService.getBookComments(this.activeReting.id);
+		this.sumComment = this.commentService.getBookComments(this.activeRating.id);
 	}
 
 	setRating(num: number) {
-		this.activeReting.arrReting.push(num);
-		this.retingService.setListReting(this.activeReting);
+		this.activeRating.arrReting.push(num);
+		this.ratingService.setListReting(this.activeRating);
 	}
 
 	scrollBottom() {

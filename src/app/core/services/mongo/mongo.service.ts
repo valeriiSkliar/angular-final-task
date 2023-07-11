@@ -20,6 +20,8 @@ export function extractComments(data: any[]) {
 export enum URLS {
 	GET_ALL_ENTRIES = 'http://localhost:3000/get-all-products',
 	GET_ALL_COMMENTS = 'http://localhost:3000/get-all-comments',
+	GET_AVERAGE_RATING = 'http://localhost:3000/get-average-rating',
+	SET_PRODUCT_RATING = 'http://localhost:3000/set-product-rating',
 	ADD_NEW_PRODUCT = 'http://localhost:3000/admin/add-new-product',
 	ADD_NEW_COMMENT = 'http://localhost:3000/add-new-comment',
 	REMOVE_PRODUCT = 'http://localhost:3000/admin/remove-product',
@@ -31,10 +33,13 @@ export enum URLS {
 export class MongoService {
 	private _productsCollection: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 	private _commentsCollection: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+	private _averageRating: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
 
-	constructor(private httpService: HttpClient) // private commentsService: CommentService
-	{
+	constructor(
+		private httpService: HttpClient, // private commentsService: CommentService
+	) {
 		this.initCommentsCollection();
+		this.initAverageRating();
 		// this.commentsService.getListComments().map(item => console.log(item))
 	}
 
@@ -54,11 +59,6 @@ export class MongoService {
 		this.fetchData(URLS.GET_ALL_COMMENTS).subscribe((data) => {
 			this.setCommentsCollection(data);
 		});
-		// .toPromise()
-		// .then((data) => {
-		//   console.log(JSON.parse(data))
-		//   // this.setCommentsCollection(data)
-		// });
 	};
 
 	setCommentsCollection(data: any) {
@@ -110,5 +110,19 @@ export class MongoService {
 				console.log(error);
 			},
 		);
+	}
+
+	private initAverageRating() {
+		this.fetchData(URLS.GET_AVERAGE_RATING).subscribe((data) => {
+			this.setAverageRating(data);
+		});
+	}
+
+	private setAverageRating(data: number) {
+		this._averageRating.next(data);
+	}
+
+	get averageRating(): Observable<number | null> {
+		return this._averageRating.asObservable();
 	}
 }

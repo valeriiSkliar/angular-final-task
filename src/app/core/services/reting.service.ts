@@ -14,6 +14,8 @@ export class RetingService {
 	}
 
 	setListReting(reting: IReting) {
+		console.log(reting);
+		console.log('setListReting');
 		if (this.listReting.includes(reting)) {
 			this.listReting.splice(this.listReting.indexOf(reting), 1, reting);
 		} else {
@@ -23,11 +25,15 @@ export class RetingService {
 	}
 
 	getListReting() {
+		console.log('getListReting');
+
 		this.listReting = JSON.parse(localStorage.getItem('ListReting')!);
 		return this.listReting;
 	}
 
 	getAverageRating() {
+		console.log('getAverageRating');
+
 		const reting = JSON.parse(localStorage.getItem('ListReting')!);
 		let length = 0;
 		let totalSum = 0;

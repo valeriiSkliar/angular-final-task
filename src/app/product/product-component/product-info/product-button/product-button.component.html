@@ -9,8 +9,8 @@
 	<button
 		class="btn flex-shrink-0"
 		[ngClass]="{
-			'btn-outline-dark': themeServise.stateTheme.themeWhite,
-			'btn-outline-light': themeServise.stateTheme.themeBlack
+			'btn-outline-dark': themeService.stateTheme.themeWhite,
+			'btn-outline-light': themeService.stateTheme.themeBlack
 		}"
 		type="button"
 		(click)="onClick()"
@@ -20,15 +20,15 @@
 	</button>
 	<section class="container">
 		<div class="button" (click)="scrollBottom()">
-			<img *ngIf="themeServise.stateTheme.themeWhite" class="comment-icon" src="assets/comment-black.png" />
-			<img *ngIf="themeServise.stateTheme.themeBlack" class="comment-icon" src="assets/comment-white.png" />
+			<img *ngIf="themeService.stateTheme.themeWhite" class="comment-icon" src="assets/comment-black.png" />
+			<img *ngIf="themeService.stateTheme.themeBlack" class="comment-icon" src="assets/comment-white.png" />
 			<span>{{ sumComment }} reviews</span>
 		</div>
 	</section>
 </div>
 <div class="wrap-reting">
 	<fieldset class="rating">
-		<input type="radio" id="star5" name="rating" value="5" [checked]="reting <= 5 && reting >= 4.6" /><label
+		<input type="radio" id="star5" name="rating" value="5" [checked]="rating <= 5 && rating >= 4.6" /><label
 			class="full"
 			for="star5"
 			title="5 stars"
@@ -39,9 +39,9 @@
 			id="star4half"
 			name="rating"
 			value="4 and a half"
-			[checked]="reting <= 4.5 && reting >= 4.1"
+			[checked]="rating <= 4.5 && rating >= 4.1"
 		/><label class="half" for="star4half" title="4.5 stars" (click)="setRating(4.5)"></label>
-		<input type="radio" id="star4" name="rating" value="4" [checked]="reting <= 4 && reting >= 3.6" /><label
+		<input type="radio" id="star4" name="rating" value="4" [checked]="rating <= 4 && rating >= 3.6" /><label
 			class="full"
 			for="star4"
 			title="4 stars"
@@ -52,9 +52,9 @@
 			id="star3half"
 			name="rating"
 			value="3 and a half"
-			[checked]="reting <= 3.5 && reting >= 3.1"
+			[checked]="rating <= 3.5 && rating >= 3.1"
 		/><label class="half" for="star3half" title="3.5 stars" (click)="setRating(3.5)"></label>
-		<input type="radio" id="star3" name="rating" value="3" [checked]="reting <= 3 && reting >= 2.6" /><label
+		<input type="radio" id="star3" name="rating" value="3" [checked]="rating <= 3 && rating >= 2.6" /><label
 			class="full"
 			for="star3"
 			title="3 stars"
@@ -65,9 +65,9 @@
 			id="star2half"
 			name="rating"
 			value="2 and a half"
-			[checked]="reting <= 2.5 && reting >= 2.1"
+			[checked]="rating <= 2.5 && rating >= 2.1"
 		/><label class="half" for="star2half" title="2.5 stars" (click)="setRating(2.5)"></label>
-		<input type="radio" id="star2" name="rating" value="2" [checked]="reting <= 2 && reting >= 1.6" /><label
+		<input type="radio" id="star2" name="rating" value="2" [checked]="rating <= 2 && rating >= 1.6" /><label
 			class="full"
 			for="star2"
 			title="2 stars"
@@ -78,15 +78,15 @@
 			id="star1half"
 			name="rating"
 			value="1 and a half"
-			[checked]="reting <= 1.5 && reting >= 1.1"
+			[checked]="rating <= 1.5 && rating >= 1.1"
 		/><label class="half" for="star1half" title="1.5 stars" (click)="setRating(1.5)"></label>
-		<input type="radio" id="star1" name="rating" value="1" [checked]="reting <= 1 && reting >= 0.6" /><label
+		<input type="radio" id="star1" name="rating" value="1" [checked]="rating <= 1 && rating >= 0.6" /><label
 			class="full"
 			for="star1"
 			title="1 star"
 			(click)="setRating(1)"
 		></label>
-		<input type="radio" id="starhalf" name="rating" value="half" [checked]="reting <= 0.5 && reting >= 0.1" /><label
+		<input type="radio" id="starhalf" name="rating" value="half" [checked]="rating <= 0.5 && rating >= 0.1" /><label
 			class="half"
 			for="starhalf"
 			title="0.5 stars"
@@ -94,6 +94,6 @@
 		></label>
 	</fieldset>
 	<div>
-		{{ reting }}
+		{{ rating }}
 	</div>
 </div>
