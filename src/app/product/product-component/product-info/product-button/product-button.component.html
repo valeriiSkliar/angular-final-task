@@ -26,74 +26,7 @@
 		</div>
 	</section>
 </div>
-<div class="wrap-reting">
-	<fieldset class="rating">
-		<input type="radio" id="star5" name="rating" value="5" [checked]="rating <= 5 && rating >= 4.6" /><label
-			class="full"
-			for="star5"
-			title="5 stars"
-			(click)="setRating(5)"
-		></label>
-		<input
-			type="radio"
-			id="star4half"
-			name="rating"
-			value="4 and a half"
-			[checked]="rating <= 4.5 && rating >= 4.1"
-		/><label class="half" for="star4half" title="4.5 stars" (click)="setRating(4.5)"></label>
-		<input type="radio" id="star4" name="rating" value="4" [checked]="rating <= 4 && rating >= 3.6" /><label
-			class="full"
-			for="star4"
-			title="4 stars"
-			(click)="setRating(4)"
-		></label>
-		<input
-			type="radio"
-			id="star3half"
-			name="rating"
-			value="3 and a half"
-			[checked]="rating <= 3.5 && rating >= 3.1"
-		/><label class="half" for="star3half" title="3.5 stars" (click)="setRating(3.5)"></label>
-		<input type="radio" id="star3" name="rating" value="3" [checked]="rating <= 3 && rating >= 2.6" /><label
-			class="full"
-			for="star3"
-			title="3 stars"
-			(click)="setRating(3)"
-		></label>
-		<input
-			type="radio"
-			id="star2half"
-			name="rating"
-			value="2 and a half"
-			[checked]="rating <= 2.5 && rating >= 2.1"
-		/><label class="half" for="star2half" title="2.5 stars" (click)="setRating(2.5)"></label>
-		<input type="radio" id="star2" name="rating" value="2" [checked]="rating <= 2 && rating >= 1.6" /><label
-			class="full"
-			for="star2"
-			title="2 stars"
-			(click)="setRating(2)"
-		></label>
-		<input
-			type="radio"
-			id="star1half"
-			name="rating"
-			value="1 and a half"
-			[checked]="rating <= 1.5 && rating >= 1.1"
-		/><label class="half" for="star1half" title="1.5 stars" (click)="setRating(1.5)"></label>
-		<input type="radio" id="star1" name="rating" value="1" [checked]="rating <= 1 && rating >= 0.6" /><label
-			class="full"
-			for="star1"
-			title="1 star"
-			(click)="setRating(1)"
-		></label>
-		<input type="radio" id="starhalf" name="rating" value="half" [checked]="rating <= 0.5 && rating >= 0.1" /><label
-			class="half"
-			for="starhalf"
-			title="0.5 stars"
-			(click)="setRating(0.5)"
-		></label>
-	</fieldset>
-	<div>
-		{{ rating }}
-	</div>
-</div>
+<app-star-rating
+  [productId]="activeRating.id"
+></app-star-rating>
+

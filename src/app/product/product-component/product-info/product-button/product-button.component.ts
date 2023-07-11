@@ -27,7 +27,6 @@ export class ProductButtonComponent {
 		private activePage: ProductPageService,
 		private activeRoute: ActivatedRoute,
 		private commentService: CommentService,
-		private ratingService: RetingService,
 		public themeService: ThemeService,
 	) {}
 
@@ -46,24 +45,11 @@ export class ProductButtonComponent {
 
 	ngOnInit() {
 		this.activeRating.id = this.activeRoute.snapshot.params['id'];
-		this.arrRating = this.ratingService.getListReting();
-		this.arrRating.forEach((element) => {
-			if (element.id === this.activeRating.id) {
-				this.activeRating = element;
-			}
-		});
-		this.getReting();
 		this.sumComment = this.commentService.getBookComments(this.activeRating.id);
 	}
 
 	ngDoCheck() {
-		this.getReting();
 		this.sumComment = this.commentService.getBookComments(this.activeRating.id);
-	}
-
-	setRating(num: number) {
-		this.activeRating.arrReting.push(num);
-		this.ratingService.setListReting(this.activeRating);
 	}
 
 	scrollBottom() {

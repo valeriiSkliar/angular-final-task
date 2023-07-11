@@ -4,7 +4,7 @@ import { CommentService } from '../../../core/services/comment.service';
 import { IProduct } from '../../../core/interfaces/iproduct';
 import { ThemeService } from 'src/app/core/services/theme.service';
 import { RetingService } from 'src/app/core/services/reting.service';
-import { filter, map, tap } from 'rxjs';
+import { filter, map, Observable, tap } from 'rxjs';
 
 @Component({
 	selector: 'app-statistics',
@@ -15,7 +15,7 @@ export class StatisticsComponent implements OnInit {
 	totalBooks!: number;
 	totalComments!: number;
 	popularBooks!: Partial<IProduct>[];
-	averageRating!: number;
+	averageRating = 0;
 
 	constructor(
 		private localStorageService: LocalStorageService,
@@ -44,7 +44,9 @@ export class StatisticsComponent implements OnInit {
 			return (this.totalBooks = data);
 		});
 
-		this.averageRating = this.retingService.getAverageRating();
+		this.retingService.getAverageRating().subscribe((data) => {
+			this.averageRating = data;
+		});
 	}
 	getPopularBooks(bookIds: string[]): Partial<IProduct>[] {
 		return this.localStorageService.getBooksByIds(bookIds);

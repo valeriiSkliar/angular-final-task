@@ -15,6 +15,7 @@ import { CommentsPipe } from './pipes/comments.pipe';
 import { RetingPipe } from './pipes/reting.pipe';
 import { CurrencyChangePipe } from './pipes/currency-change.pipe';
 import { ThemeButtonComponent } from './components/theme-button/theme-button.component';
+import { StarRatingComponent } from './components/rating/star-rating.component';
 
 @NgModule({
 	declarations: [
@@ -30,6 +31,7 @@ import { ThemeButtonComponent } from './components/theme-button/theme-button.com
 		RetingPipe,
 		CurrencyChangePipe,
 		ThemeButtonComponent,
+		StarRatingComponent,
 	],
 	imports: [CommonModule, FormsModule, ScrollWithLoadingModule, SlickCarouselModule],
 	exports: [
@@ -45,6 +47,7 @@ import { ThemeButtonComponent } from './components/theme-button/theme-button.com
 		RetingPipe,
 		CurrencyChangePipe,
 		ThemeButtonComponent,
+		StarRatingComponent,
 	],
 })
 export class SharedModule {}

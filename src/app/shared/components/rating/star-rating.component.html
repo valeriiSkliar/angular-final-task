@@ -1,0 +1,16 @@
+<div class="d-flex flex-column align-items-center justify-content-center mt-5">
+  <div *ngIf="isLoading" class="spinner-border text-dark" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div *ngIf="!isLoading" class="d-flex">
+    <span *ngFor="let r of [1, 2, 3, 4, 5]">
+      <button class="btn btn-outline-light m-1"
+              [class.selected]="userRating >= r"
+              [disabled]="isLoading"
+              (click)="ratingUpdate.next(r)">☆</button>
+    </span>
+  </div>
+  <p
+    class="mt-3"
+  >Your rating: {{ userRating }}</p>
+</div>

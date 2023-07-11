@@ -1,0 +1,11 @@
+button {
+	cursor: pointer;
+	transition: color 0.3s;
+	font-size: 1.5rem;
+}
+
+button.selected,
+button:hover,
+button:active {
+	color: gold;
+}
