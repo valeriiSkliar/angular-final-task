@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { IProduct } from '../../../core/interfaces/iproduct';
 import { IQuantityChangeData } from '../../../core/interfaces/iquantity-change-data';
 import { CurrencyServiceService } from '../../../core/services/currency-service.service';
+import { CartService } from '../../../core/services/cart.service';
 
 @Component({
 	selector: 'app-cart-item',
@@ -16,7 +19,16 @@ export class CartItemComponent {
 	@Output()
 	removeItem = new EventEmitter<string>();
 
-	constructor(public currencyService: CurrencyServiceService) {}
+	private quantityChangeSubject = new Subject<number>();
+
+	constructor(public currencyService: CurrencyServiceService) {
+		this.quantityChangeSubject.pipe(debounceTime(500)).subscribe((quantity) => {
+			this.quantityChange.emit({
+				product: this.item.product.id,
+				quantity: quantity,
+			});
+		});
+	}
 
 	changeQuantity(change: number) {
 		this.emitQuantityChange(this.item.quantity + change);
@@ -31,10 +43,7 @@ export class CartItemComponent {
 	}
 
 	private emitQuantityChange(quantity: number) {
-		this.quantityChange.emit({
-			product: this.item.product.id,
-			quantity: quantity,
-		});
+		this.quantityChangeSubject.next(quantity);
 	}
 
 	remove(id: string) {

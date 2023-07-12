@@ -93,7 +93,7 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 		if (order.length) {
 			this.sendRequestToServer(order);
 		}
-		// this.cartService.clearCart();
+		this.cartService.clearCart();
 	}
 
 	ngOnInit(): void {

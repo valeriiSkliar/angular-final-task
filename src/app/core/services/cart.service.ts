@@ -18,31 +18,13 @@ export class CartService {
 		});
 	}
 
-	getCartItems() {
-		this.cartItems$.subscribe((data) => console.log(data));
-		const result = {};
-		// this.cartItems = this.localStorage.getCartInLocalStorage();
-		return this.cartItems$.getValue();
-	}
-
-	addCartProduct(product: IProduct, quantity = 1) {
-		this.mongoStorage.addProductToCart(product.id, quantity);
-		const { id } = product;
-		if (isNaN(quantity)) {
-			quantity = 1;
+	addCartProduct(product: IProduct | undefined, quantity = 1) {
+		if (product) {
+			this.mongoStorage.addProductToCart(product.id, Number(quantity));
 		}
-		if (this.cartItems[id]) {
-			this.cartItems[id] = { product: product, quantity: this.cartItems[id].quantity + Number(quantity) };
-		} else {
-			this.cartItems[id] = { product: product, quantity: Number(quantity) };
-		}
-		// this.localStorage.setCartToLocalStorage(this.cartItems);
 	}
 
 	getCartList() {
-		const ids = this.cartItems$.getValue().items;
-
-		// return this.localStorage.getBooksByIds(ids);
 		return Object.values(this.cartItems);
 	}
 
@@ -51,29 +33,25 @@ export class CartService {
 			const iProduct = this.localStorage.listProducts.find(({ id }) => id === productId);
 			return { product: iProduct, quantity: quantity };
 		});
-		// return this.listProducts.filter((book) => ids.includes(book['productId']));
-	}
-	get totalQuantity() {
-		return this.getCartList().reduce((accum, item) => {
-			return accum + Number(item.quantity);
-		}, 0);
 	}
 
-	updateQuantity(id: string, value: number) {
-		const item = this.cartItems[id];
-		if (value >= 0) {
-			if (item) item.quantity = Number(value);
-		}
-		// this.localStorage.setCartToLocalStorage(this.cartItems);
+	getIProductByID(productId: string): IProduct | undefined {
+		return this.localStorage.listProducts.find(({ id }) => id === productId);
 	}
 
 	removeItem(itemId: string) {
 		delete this.cartItems[itemId];
-		// this.localStorage.setCartToLocalStorage(this.cartItems);
 	}
 
 	clearCart() {
-		this.cartItems = {};
-		// this.localStorage.setCartToLocalStorage(this.cartItems);
+		this.mongoStorage.clearCart();
+	}
+
+	removeItemFromCart(itemId: string) {
+		this.mongoStorage.removeItemFromCart(itemId);
+	}
+
+	updateProductInCart(productId: string, quantity: number) {
+		this.mongoStorage.updateProductInCart(productId, quantity);
 	}
 }

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProduct } from '../../interfaces/iproduct';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, timer } from 'rxjs';
 import { IComments } from '../../interfaces/comments';
+import { debounce } from 'rxjs/internal/operators/debounce';
 
 export function extractProducts(data: any[]): IProduct[] {
 	return data.map((item) => {
@@ -25,6 +26,8 @@ export enum URLS {
 	GET_CART = 'http://localhost:3000/api/cart',
 	ADD_PRODUCT_TO_CART = 'http://localhost:3000/api/cart/add',
 	UPDATE_PRODUCT_IN_CART = 'http://localhost:3000/api/cart/update',
+	INCREMENT_PRODUCT_QUANTITY = 'http://localhost:3000/api/cart/increment',
+	DECREMENT_PRODUCT_QUANTITY = 'http://localhost:3000/api/cart/decriment',
 	REMOVE_PRODUCT_FROM_CART = 'http://localhost:3000/api/cart/remove',
 	CLEAR_CART = 'http://localhost:3000/api/cart/clear',
 	SET_PRODUCT_RATING = 'http://localhost:3000/api/rating',
@@ -42,13 +45,10 @@ export class MongoService {
 	private _commentsCollection: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 	private _averageRating: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
-	constructor(
-		private httpService: HttpClient, // private commentsService: CommentService
-	) {
+	constructor(private httpService: HttpClient) {
 		this.initCommentsCollection();
 		this.initAverageRating();
 		this.initCart();
-		// this.commentsService.getListComments().map(item => console.log(item))
 	}
 
 	fetchData(url: string, options = ''): Observable<any> {
@@ -57,8 +57,11 @@ export class MongoService {
 
 	private postData(URL: URLS, options: string, body: any[]) {
 		const [quantity] = body;
-		console.log(quantity);
 		return this.httpService.post(`${URL}/${options}`, { quantity });
+	}
+
+	private deleteData(url: URLS, options = '') {
+		return this.httpService.delete(`${url}/${options}`);
 	}
 
 	setProductsCollection(data: any) {
@@ -86,9 +89,11 @@ export class MongoService {
 	addProduct(product: IProduct) {
 		this.httpService.post(URLS.ADD_NEW_PRODUCT, { product }).subscribe(
 			() => {
-				this.fetchData(URLS.GET_ALL_ENTRIES).subscribe((data) => {
-					this.setProductsCollection(data);
-				});
+				this.fetchData(URLS.GET_ALL_ENTRIES)
+					.pipe(debounce(() => timer(300)))
+					.subscribe((data) => {
+						this.setProductsCollection(data);
+					});
 				// console.log(res);
 			},
 			(error) => {
@@ -100,9 +105,11 @@ export class MongoService {
 	addComment(comment: IComments) {
 		this.httpService.post(URLS.ADD_NEW_COMMENT, { comment }).subscribe(
 			(res) => {
-				this.fetchData(URLS.GET_ALL_COMMENTS).subscribe((data) => {
-					this.setCommentsCollection(data);
-				});
+				this.fetchData(URLS.GET_ALL_COMMENTS)
+					.pipe(debounce(() => timer(300)))
+					.subscribe((data) => {
+						this.setCommentsCollection(data);
+					});
 				console.log(res);
 			},
 			(error) => {
@@ -115,9 +122,11 @@ export class MongoService {
 		return this.httpService.post(URLS.REMOVE_PRODUCT, { id }).subscribe(
 			(res: any) => {
 				if (id === res.id) {
-					this.fetchData(URLS.GET_ALL_ENTRIES).subscribe((data) => {
-						this.setProductsCollection(data);
-					});
+					this.fetchData(URLS.GET_ALL_ENTRIES)
+						.pipe(debounce(() => timer(300)))
+						.subscribe((data) => {
+							this.setProductsCollection(data);
+						});
 				}
 			},
 			(error) => {
@@ -127,9 +136,11 @@ export class MongoService {
 	}
 
 	initAverageRating() {
-		this.fetchData(URLS.GET_AVERAGE_RATING).subscribe((data) => {
-			this.setAverageRating(data);
-		});
+		this.fetchData(URLS.GET_AVERAGE_RATING)
+			.pipe(debounce(() => timer(300)))
+			.subscribe((data) => {
+				this.setAverageRating(data);
+			});
 	}
 
 	private setAverageRating(data: number) {
@@ -151,7 +162,9 @@ export class MongoService {
 	// CART
 
 	private initCart() {
-		return this.fetchData(URLS.GET_CART).subscribe((data) => this.setCart(data));
+		return this.fetchData(URLS.GET_CART)
+			.pipe(debounce(() => timer(300)))
+			.subscribe((data) => this.setCart(data));
 	}
 
 	setCart(data: any) {
@@ -163,18 +176,33 @@ export class MongoService {
 	}
 
 	addProductToCart(productId: string, quantity: number) {
-		this.postData(URLS.ADD_PRODUCT_TO_CART, productId, [quantity]).subscribe((data) => {
-			this.setCart(data);
-		});
-		// this.httpService.post(URLS.ADD_PRODUCT_TO_CART, { productId, quantity }).subscribe(
-		//   () => {
-		//     this.fetchData(URLS.GET_CART).subscribe((data) => {
-		//       this.setCart(data);
-		//     });
-		//   },
-		//   (error) => {
-		//     console.log(error);
-		//   },
-		// );
+		this.postData(URLS.ADD_PRODUCT_TO_CART, productId, [quantity])
+			.pipe(debounce(() => timer(300)))
+			.subscribe((data) => {
+				this.setCart(data);
+			});
+	}
+	updateProductInCart(productId: string, quantity: number) {
+		this.postData(URLS.UPDATE_PRODUCT_IN_CART, productId, [quantity])
+			.pipe(debounce(() => timer(300)))
+			.subscribe((data) => {
+				this.setCart(data);
+			});
+	}
+
+	clearCart() {
+		this.deleteData(URLS.CLEAR_CART)
+			.pipe(debounce(() => timer(300)))
+			.subscribe((data) => {
+				this.setCart(data);
+			});
+	}
+
+	removeItemFromCart(productId: string) {
+		this.deleteData(URLS.REMOVE_PRODUCT_FROM_CART, productId)
+			.pipe(debounce(() => timer(300)))
+			.subscribe((data) => {
+				this.setCart(data);
+			});
 	}
 }

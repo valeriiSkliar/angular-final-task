@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../core/services/cart.service';
 import { ThemeService } from 'src/app/core/services/theme.service';
+import { debounceTime, map } from 'rxjs';
 
 @Component({
 	selector: 'app-cart-icon',
@@ -21,15 +22,20 @@ export class CartIconComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.cartService.cartItems$.subscribe((data) => {
-			if (data) {
-				this.totalQuantity = data.items.reduce((acc: number, item: { quantity: number }) => {
-					if (item) {
-						return acc + Number(item.quantity);
-					}
-					return acc;
-				}, 0);
-			}
-		});
+		this.cartService.cartItems$
+			.pipe(
+				map((data) => data),
+				debounceTime(500),
+			)
+			.subscribe((data) => {
+				if (data) {
+					this.totalQuantity = data.items.reduce((acc: number, item: { quantity: number }) => {
+						if (item) {
+							return acc + Number(item.quantity);
+						}
+						return acc;
+					}, 0);
+				}
+			});
 	}
 }
