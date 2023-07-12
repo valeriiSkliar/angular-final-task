@@ -43,8 +43,9 @@ export class CartComponent {
 	}
 
 	updateQuantity(item: IQuantityChangeData) {
+		// this.mongoService.addProductToCart(item)
 		if (item.quantity >= 0) {
-			this.cartService.updateQuantity(item.id, item.quantity);
+			this.cartService.updateQuantity(item.product, item.quantity);
 		}
 	}
 

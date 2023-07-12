@@ -46,7 +46,6 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 	}
 
 	sendRequestToServer(order: IOrder[]) {
-		console.log('sendRequestToServer');
 		const chatId = localStorage.getItem('chatId');
 		const contactInfo: contactInfo = this.checkoutForm.value;
 		if (chatId) {

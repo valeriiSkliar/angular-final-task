@@ -16,21 +16,4 @@ export class HeaderComponent {
 		public themeServise: ThemeService,
 		private http: HttpClient,
 	) {}
-
-	//commentService.sumComments - поле где лежит общая сумма коментов
-	ngOnInit(): void {
-		this.cartService.getCartItems();
-	}
-
-	requestToServer() {
-		console.log('check');
-		// this.http.get('http://localhost:3000/admin').subscribe(
-		//   (response: any) => {
-		//     console.log(response);
-		//   },
-		//   (error) => {
-		//     console.error(error);
-		//   },
-		// );
-	}
 }

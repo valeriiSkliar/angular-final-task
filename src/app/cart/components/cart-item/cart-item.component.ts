@@ -32,7 +32,7 @@ export class CartItemComponent {
 
 	private emitQuantityChange(quantity: number) {
 		this.quantityChange.emit({
-			id: this.item.product.id,
+			product: this.item.product.id,
 			quantity: quantity,
 		});
 	}

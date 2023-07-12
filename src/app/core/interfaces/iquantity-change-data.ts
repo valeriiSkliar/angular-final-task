@@ -1,6 +1,9 @@
 // Внутренний тип данных который использует родительский компонент (CartComponent) и дочерний компонент (CartItemComponent) карточки корзины.
 // Этот тип данных не выходит за пределы CartComponent. В сервис корзины уходит деструктурированые даные.
+import { IProduct } from './iproduct';
+
 export interface IQuantityChangeData {
-	id: string;
+	// product: IProduct;
+	product: string;
 	quantity: number;
 }

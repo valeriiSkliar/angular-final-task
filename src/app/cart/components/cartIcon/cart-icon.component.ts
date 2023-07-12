@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../core/services/cart.service';
 import { ThemeService } from 'src/app/core/services/theme.service';
 
@@ -7,15 +7,29 @@ import { ThemeService } from 'src/app/core/services/theme.service';
 	templateUrl: './cart-icon.component.html',
 	styleUrls: ['./cart-icon.component.css'],
 })
-export class CartIconComponent {
+export class CartIconComponent implements OnInit {
 	notificationMessage: string | null = null;
 
 	notificationType: 'success' | 'error' | 'info' | null = null;
 
+	totalQuantity = 0;
 	constructor(public cartService: CartService, public themeServise: ThemeService) {}
 
 	dismissNotification() {
 		this.notificationMessage = null;
 		this.notificationType = null;
+	}
+
+	ngOnInit(): void {
+		this.cartService.cartItems$.subscribe((data) => {
+			if (data) {
+				this.totalQuantity = data.items.reduce((acc: number, item: { quantity: number }) => {
+					if (item) {
+						return acc + Number(item.quantity);
+					}
+					return acc;
+				}, 0);
+			}
+		});
 	}
 }

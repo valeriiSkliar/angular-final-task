@@ -21,8 +21,13 @@ export enum URLS {
 	GET_ALL_ENTRIES = 'http://localhost:3000/get-all-products',
 	GET_ALL_COMMENTS = 'http://localhost:3000/get-all-comments',
 	GET_AVERAGE_RATING = 'http://localhost:3000/api/rating/get-average-rating',
-	SET_PRODUCT_RATING = 'http://localhost:3000/api/rating',
 	GET_PRODUCT_RATING = 'http://localhost:3000/api/rating/get',
+	GET_CART = 'http://localhost:3000/api/cart',
+	ADD_PRODUCT_TO_CART = 'http://localhost:3000/api/cart/add',
+	UPDATE_PRODUCT_IN_CART = 'http://localhost:3000/api/cart/update',
+	REMOVE_PRODUCT_FROM_CART = 'http://localhost:3000/api/cart/remove',
+	CLEAR_CART = 'http://localhost:3000/api/cart/clear',
+	SET_PRODUCT_RATING = 'http://localhost:3000/api/rating',
 	ADD_NEW_PRODUCT = 'http://localhost:3000/admin/add-new-product',
 	ADD_NEW_COMMENT = 'http://localhost:3000/add-new-comment',
 	REMOVE_PRODUCT = 'http://localhost:3000/admin/remove-product',
@@ -33,6 +38,7 @@ export enum URLS {
 })
 export class MongoService {
 	private _productsCollection: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+	private _cart: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 	private _commentsCollection: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 	private _averageRating: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
@@ -41,11 +47,18 @@ export class MongoService {
 	) {
 		this.initCommentsCollection();
 		this.initAverageRating();
+		this.initCart();
 		// this.commentsService.getListComments().map(item => console.log(item))
 	}
 
 	fetchData(url: string, options = ''): Observable<any> {
 		return this.httpService.get(`${url}/${options}`);
+	}
+
+	private postData(URL: URLS, options: string, body: any[]) {
+		const [quantity] = body;
+		console.log(quantity);
+		return this.httpService.post(`${URL}/${options}`, { quantity });
 	}
 
 	setProductsCollection(data: any) {
@@ -132,10 +145,36 @@ export class MongoService {
 	}
 
 	submitRating(productId: string, rating: number): Observable<any> {
-		return this.postData(URLS.SET_PRODUCT_RATING, productId, rating);
+		return this.postData(URLS.SET_PRODUCT_RATING, productId, [rating]);
 	}
 
-	private postData(URL: URLS, options: string, rating: number) {
-		return this.httpService.post(`${URL}/${options}`, { rating });
+	// CART
+
+	private initCart() {
+		return this.fetchData(URLS.GET_CART).subscribe((data) => this.setCart(data));
+	}
+
+	setCart(data: any) {
+		this._cart.next(data);
+	}
+
+	get cart(): Observable<any> {
+		return this._cart.asObservable();
+	}
+
+	addProductToCart(productId: string, quantity: number) {
+		this.postData(URLS.ADD_PRODUCT_TO_CART, productId, [quantity]).subscribe((data) => {
+			this.setCart(data);
+		});
+		// this.httpService.post(URLS.ADD_PRODUCT_TO_CART, { productId, quantity }).subscribe(
+		//   () => {
+		//     this.fetchData(URLS.GET_CART).subscribe((data) => {
+		//       this.setCart(data);
+		//     });
+		//   },
+		//   (error) => {
+		//     console.log(error);
+		//   },
+		// );
 	}
 }

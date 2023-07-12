@@ -74,20 +74,26 @@ export class LocalStorageService {
 	}
 
 	setCartToLocalStorage(cartItems: { [productId: string]: { product: IProduct; quantity: number } }) {
+		const extractData = (data: { [productId: string]: { product: IProduct; quantity: number } }): any[] => {
+			return Object.entries(data).map(([key, value]) => {
+				return { id: value.product.id, quantity: value.quantity };
+			});
+		};
+		// console.log(extractData(cartItems))
 		localStorage.setItem('ListCart', JSON.stringify(cartItems));
 	}
 
-	getCartInLocalStorage() {
-		return (this.listCart = JSON.parse(localStorage.getItem('ListCart')!));
+	getBooksByIds(ids: { productId: string; quantity: string }[]): any[] {
+		return ids.map(({ productId, quantity }) => {
+			const iProduct = this.listProducts.find(({ id }) => id === productId);
+			return { product: iProduct, quantity: quantity };
+		});
+		// return this.listProducts.filter((book) => ids.includes(book['productId']));
 	}
 
-	getTotalBooksCount() {
-		return this.listProducts.length;
-	}
-
-	getBooksByIds(ids: string[]): IProduct[] {
-		if (ids.length) {
-			return this.listProducts.filter((book) => ids.includes(book.id));
+	popularBooks(bookIds: string[]) {
+		if (bookIds.length) {
+			return this.listProducts.filter((book) => bookIds.includes(book.id));
 		} else {
 			const randomIndex = Math.floor(Math.random() * this.listProducts.length);
 			return [this.listProducts[randomIndex]];

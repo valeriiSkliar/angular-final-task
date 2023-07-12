@@ -4,7 +4,7 @@
 >
 	<h2>Cart</h2>
 	<ul>
-		<li *ngFor="let item of cartItems; let i = index" class="cart-item">
+		<li *ngFor="let item of cartItems ; let i = index" class="cart-item">
 			<app-cart-item
 				[item]="item"
 				(quantityChange)="updateQuantity($event)"
