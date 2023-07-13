@@ -5,6 +5,13 @@ import { IOrder } from '../../../core/interfaces/iorder';
 import { ICartItems } from '../../../core/interfaces/icart-items';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from '../../../core/services/notificationService/notification.service';
+import { filter, map, switchMap } from 'rxjs';
+import { IProduct } from '../../../core/interfaces/iproduct';
+
+interface ICartItem {
+	product: IProduct | undefined;
+	quantity: number;
+}
 
 type contactInfo = {
 	firstName: string;
@@ -41,7 +48,8 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 
 	extractItemFromCart(cartItems: ICartItems): IOrder[] {
 		return Object.entries(cartItems).map(([key, { product, quantity }]) => {
-			return { name: product.name, quantity: quantity, id: key };
+			const productName = product?.name ? product.name : ' ';
+			return { name: productName, quantity: quantity, id: key };
 		});
 	}
 
@@ -89,7 +97,7 @@ export class CheckoutComponent implements AfterViewInit, OnInit {
 	}
 
 	sendOrder() {
-		const order = this.extractItemFromCart(this.cartService.cartItems);
+		const order = this.cartService.cartItems$.value.items;
 		if (order.length) {
 			this.sendRequestToServer(order);
 		}

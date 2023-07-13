@@ -37,7 +37,6 @@ export class NotificationComponent implements OnChanges {
 
 	ngOnChanges(changes: SimpleChanges) {
 		this.timestamp = null;
-		console.log('ngOnChanges');
 		if (changes['message'] && changes['type'].currentValue) {
 			this.hide = false;
 			this.timestamp = new Date().toTimeString().split('G')[0];
@@ -47,9 +46,4 @@ export class NotificationComponent implements OnChanges {
 			}, 3000);
 		}
 	}
-
-	// onDismiss() {
-	// 	this.timestamp = null;
-	// 	this.dismiss.emit();
-	// }
 }

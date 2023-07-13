@@ -94,7 +94,6 @@ export class MongoService {
 					.subscribe((data) => {
 						this.setProductsCollection(data);
 					});
-				// console.log(res);
 			},
 			(error) => {
 				console.log(error);
@@ -110,7 +109,6 @@ export class MongoService {
 					.subscribe((data) => {
 						this.setCommentsCollection(data);
 					});
-				console.log(res);
 			},
 			(error) => {
 				console.log(error);

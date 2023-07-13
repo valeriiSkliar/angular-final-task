@@ -45,7 +45,11 @@ export class StatisticsComponent implements OnInit {
 		});
 
 		this.retingService.getAverageRating().subscribe((data) => {
-			this.averageRating = Number(data.toFixed(1));
+			if (data) {
+				this.averageRating = Number(data.toFixed(1));
+			} else {
+				this.averageRating = 0;
+			}
 		});
 	}
 	getPopularBooks(bookIds: string[]): Partial<IProduct>[] {
