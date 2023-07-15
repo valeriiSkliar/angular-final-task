@@ -6,6 +6,7 @@ import { IReting } from 'src/app/core/interfaces/ireting';
 import { CommentService } from 'src/app/core/services/comment.service';
 import { RetingService } from 'src/app/core/services/reting.service';
 import { ThemeService } from 'src/app/core/services/theme.service';
+import { MongoService } from 'src/app/core/services/mongo.service';
 
 @Component({
 	selector: 'app-product-button',
@@ -29,6 +30,7 @@ export class ProductButtonComponent {
 		private commentService: CommentService,
 		private retingService: RetingService,
 		public themeServise: ThemeService,
+		private mongoService: MongoService,
 	) {}
 
 	onClick() {
@@ -46,7 +48,8 @@ export class ProductButtonComponent {
 
 	ngOnInit() {
 		this.activeReting.id = this.activeRoute.snapshot.params['id'];
-		this.arrReting = this.retingService.getListReting();
+		//this.arrReting = this.retingService.getListReting();
+		this.arrReting = this.mongoService.listReting!;
 		this.arrReting.forEach((element) => {
 			if (element.id === this.activeReting.id) {
 				this.activeReting = element;
@@ -63,7 +66,8 @@ export class ProductButtonComponent {
 
 	setRating(num: number) {
 		this.activeReting.arrReting.push(num);
-		this.retingService.setListReting(this.activeReting);
+		//this.retingService.setListReting(this.activeReting);
+		this.mongoService.setRetingMongo(this.activeReting);
 	}
 
 	scrollBottom() {

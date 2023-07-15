@@ -18,12 +18,6 @@ import { ScrollButtonComponent } from './scroll-button/scroll-button.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MongoService } from './core/services/mongo.service';
 
-// export function loadMongo(mongoService: MongoService) {
-// 	return (): Promise<any> => {
-// 		return mongoService.fetchData().then((data) => { mongoService.setData(data), console.log('kuku') })
-// 	}
-// }
-
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -45,15 +39,23 @@ import { MongoService } from './core/services/mongo.service';
 			deps: [MongoService],
 			multi: true,
 		},
-		// (mongoService: MongoService) => () =>
-		// 	mongoService.fetchDataComment().then((data) => {
-		// 			mongoService.setDataComment(data);
-		// 	})
 		{
 			provide: APP_INITIALIZER,
 			useFactory: (mongoService: MongoService) => () =>
-				mongoService.fetchDataComment().then((data) => {
-					mongoService.setDataComment(data);
+				mongoService
+					.fetchDataComment()
+					.then((data) => {
+						mongoService.setDataComment(data);
+					})
+					.then(() => mongoService.getTotalCommentsCount()),
+			deps: [MongoService],
+			multi: true,
+		},
+		{
+			provide: APP_INITIALIZER,
+			useFactory: (mongoService: MongoService) => () =>
+				mongoService.fetchDataReting().then((data) => {
+					mongoService.setDataReting(data);
 				}),
 			deps: [MongoService],
 			multi: true,

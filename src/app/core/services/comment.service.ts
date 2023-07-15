@@ -21,17 +21,10 @@ export class CommentService {
 
 	setListComments(comment: IComments) {
 		this.mongoService.setCommentMongo(comment);
-		// if (this.listComments.includes(comment)) {
-		// 	this.listComments.splice(this.listComments.indexOf(comment), 1, comment);
-		// } else {
-		// 	this.listComments.push(comment);
-		// }
-		// localStorage.setItem('ListComments', JSON.stringify(this.listComments));
 	}
 
 	getListComments() {
 		this.listComments = this.mongoService.listComments!;
-		//this.listComments = JSON.parse(localStorage.getItem('ListComments')!);
 		return this.listComments;
 	}
 
@@ -47,7 +40,6 @@ export class CommentService {
 
 	getTotalCommentsCount() {
 		this.listComments = this.mongoService.listComments!;
-		//this.listComments = JSON.parse(localStorage.getItem('ListComments')!);
 		let sum = 0;
 		this.listComments.forEach((book) => {
 			sum += book.comments.length;

@@ -33,10 +33,6 @@ export class HomeComponent implements OnInit {
 		private http: HttpClient,
 	) {}
 
-	ngAfterViewInit() {
-		console.log('check');
-	}
-
 	ngOnInit() {
 		this.currencyService.selectedCurrency$.subscribe((currency: string) => {
 			this.currencyService.setSelectedCurrency(currency);
@@ -50,35 +46,6 @@ export class HomeComponent implements OnInit {
 		);
 		this.collectionBooks = this.listProducts.getBooksInLocalStorage();
 		this.liveCollectionBooks = this.collectionBooks;
-
-		//console.log('ngOnInit');
-
-		// this.http.get<Info>('/assets/info.json').subscribe((info) => {
-		// 	this.user = info;
-		// 	console.log(this.user);
-		// })
-
-		// this.http.get<Animal>('/assets/animal.json').subscribe((animal) => {
-		// 	this.cat = animal;
-		// 	console.log(this.cat);
-		// })
-
-		// this.http.get<String>('http://localhost:3000/sum?num1=10&num2=15').subscribe((str) => {
-		// 	console.log(str);
-		// })
-
-		// this.http.get<String>('http://localhost:3000/home-page').subscribe((str) => {
-		// 	console.log(str);
-		// })
-
-		// const body = { name: 'Zhora', breed: "britan", age: 5 }
-
-		// this.http.post<{ saveTime: number }>('http://localhost:3000/addcat', body)
-		// 	.subscribe(({ saveTime }) => {
-		// 		console.log('Day:' + saveTime)
-		// 	}, (err) => {
-		// 		console.log(err)
-		// 	})
 	}
 
 	onInput() {

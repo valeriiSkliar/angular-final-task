@@ -4,6 +4,7 @@ import { CommentService } from '../../../core/services/comment.service';
 import { IProduct } from '../../../core/interfaces/iproduct';
 import { ThemeService } from 'src/app/core/services/theme.service';
 import { RetingService } from 'src/app/core/services/reting.service';
+import { MongoService } from 'src/app/core/services/mongo.service';
 
 @Component({
 	selector: 'app-statistics',
@@ -22,24 +23,23 @@ export class StatisticsComponent implements OnInit {
 		private commentService: CommentService,
 		public themeServise: ThemeService,
 		private retingService: RetingService,
+		private mongoService: MongoService,
 	) {}
 
 	ngOnInit(): void {
-		this.commentService.getTotalCommentsCount();
 		this.totalBooks = this.localStorageService.getTotalBooksCount();
-		this.totalComments = this.commentService.getTotalCommentsCount();
+		this.totalComments = this.mongoService.totalComments;
 		this.popularBooks = this.getPopularBooks();
 		this.booksByCategories = 5; // Замените это на реальные данные
-		this.averageRating = this.retingService.getAverageRating();
+		this.averageRating = this.mongoService.averageRating;
 	}
 
 	ngDoCheck(): void {
-		this.commentService.getTotalCommentsCount();
 		this.totalBooks = this.localStorageService.getTotalBooksCount();
-		this.totalComments = this.commentService.getTotalCommentsCount();
+		this.totalComments = this.mongoService.totalComments;
 		this.popularBooks = this.getPopularBooks();
 		this.booksByCategories = 5; // Замените это на реальные данные
-		this.averageRating = this.retingService.getAverageRating();
+		this.averageRating = this.mongoService.averageRating;
 	}
 
 	getPopularBooks(): Partial<IProduct>[] {

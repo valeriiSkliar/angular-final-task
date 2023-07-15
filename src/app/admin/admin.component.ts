@@ -4,6 +4,7 @@ import { IProduct } from '../core/interfaces/iproduct';
 import { ActionAndId } from './components/product-list-management/product-list-management.component';
 import { WebSocketSubject } from 'rxjs/webSocket';
 import { ThemeService } from '../core/services/theme.service';
+import { MongoService } from '../core/services/mongo.service';
 
 type chatId = { chatId: string };
 
@@ -17,35 +18,36 @@ export class AdminComponent {
 	productToAddEdit: IProduct = { name: '', id: '', url: '', price: 0, description: '', imageUrls: [] };
 	isFormOpen = false;
 
-	constructor(private localStorageService: LocalStorageService, public themeServise: ThemeService) {
+	constructor(
+		private localStorageService: LocalStorageService,
+		public themeServise: ThemeService,
+		private mongoService: MongoService,
+	) {
 		this.refreshProductList();
 	}
 
 	ngDoCheck() {
-		//console.log('chek')
 		this.refreshProductList();
 	}
 
 	removeProductFromCollection(id: string) {
-		this.localStorageService.removeBook(id);
-		//await this.refreshProductList();
+		this.mongoService.deleteBookMongo(id);
+		this.mongoService.getCommentMongo();
+		this.mongoService.getReitingMongo();
 	}
 
 	submitForm(product: IProduct) {
-		//console.log(product)
-		this.localStorageService.setBooksInLocalStorage(product);
+		this.mongoService.setBookMongo(product);
 		this.isFormOpen = false;
 		this.refreshProductList();
 	}
 
 	editProductFromCollection(id: string) {
-		//console.log(this.productToAddEdit)
 		const products: IProduct[] = this.localStorageService.getBooksInLocalStorage();
 		const product = products.find((product) => product.id === id);
 		if (product) {
 			this.productToAddEdit = product;
 			this.isFormOpen = true;
-			//console.log(this.productToAddEdit)
 		} else {
 			// handle error
 		}

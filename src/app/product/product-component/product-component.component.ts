@@ -50,7 +50,7 @@ export class ProductComponentComponent {
 		private activePage: ProductPageService,
 		public themeServise: ThemeService,
 		private http: HttpClient,
-		private mongo: MongoService,
+		private mongoService: MongoService,
 	) {
 		this.id = this.activeRoute.snapshot.params['id'];
 		//console.log(this.id)

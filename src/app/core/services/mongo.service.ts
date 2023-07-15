@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IProduct } from '../interfaces/iproduct';
 import { IComments } from '../interfaces/comments';
+import { IReting } from '../interfaces/ireting';
 
 @Injectable({
 	providedIn: 'root',
@@ -9,50 +10,63 @@ import { IComments } from '../interfaces/comments';
 export class MongoService {
 	listProducts: IProduct[] | undefined;
 	listComments: IComments[] | undefined;
+	listReting: IReting[] | undefined;
+	averageRating = 0;
+	totalComments = 0;
 
 	constructor(public http: HttpClient) {}
 
+	getTotalDeleteCount(data: IComments[]) {
+		let sum = 0;
+		data.forEach((book) => {
+			sum += book.comments.length;
+		});
+		this.totalComments = sum;
+	}
+
+	getTotalCommentsCount() {
+		let sum = 0;
+		this.listComments!.forEach((book) => {
+			sum += book.comments.length;
+		});
+		this.totalComments = sum;
+	}
+
+	getAverageRating() {
+		let length = 0;
+		let totalSum = 0;
+		this.listReting!.forEach((reting: IReting) => {
+			length += reting.arrReting.length;
+		});
+		for (let i = 0; i < this.listReting!.length; i++) {
+			for (let j = 0; j < this.listReting![i].arrReting.length; j++) {
+				totalSum += this.listReting![i].arrReting[j];
+			}
+		}
+		if (isNaN(Number((totalSum / length).toFixed(1)))) {
+			this.averageRating = 0;
+		} else {
+			this.averageRating = Number((totalSum / length).toFixed(1));
+		}
+	}
+
 	public fetchDataBook(): Promise<any> {
 		return this.http.get('http://localhost:3000/home-page').toPromise();
-		// return new Promise<IProduct[]>((resolve, reject) => {
-		//   this.http.get<IProduct[]>('http://localhost:3000/home-page')
-		//     .subscribe((data) => {
-
-		//       for (let i = 0; i < data.length; i+=1) {
-		//         //const { _id } = data[i];
-		//         //data[i].id = _id;
-		//         const { _id, ...updatedObj } = data[i];
-		//         //updatedObj.id = _id;
-		//         data[i] = updatedObj;
-		//         //console.log(updatedObj)
-		//         //@ts-ignore
-		//         //data[i].id = data[i]._id;
-		//          //@ts-ignore
-		//         //delete data[i]._id;
-		//       }
-		//       resolve(data);
-		//     })
-		//})
 	}
 
 	public fetchDataComment(): Promise<any> {
 		return this.http.get('http://localhost:3000/get-comment').toPromise();
 	}
 
-	setDataComment(data: IComments[]) {
-		this.listComments = data;
-		console.log(this.listComments);
+	public fetchDataReting(): Promise<any> {
+		return this.http.get('http://localhost:3000/get-reting').toPromise();
 	}
 
-	setCommentMongo(comment: IComments) {
-		const body = { comment };
-		console.log(body);
-		this.http.post<IComments[]>('http://localhost:3000/add-comment', body).subscribe(
+	setRetingMongo(reting: IReting) {
+		const body = { reting };
+		this.http.post<IReting[]>('http://localhost:3000/add-reting', body).subscribe(
 			(str) => {
-				//console.log('Delete:');
-				console.log(str);
-				//this.setDataComment(str);
-				//this.mongo.fetch()
+				this.setDataReting(str);
 			},
 			(err) => {
 				console.log(err);
@@ -60,21 +74,46 @@ export class MongoService {
 		);
 	}
 
-	// public fetch() {
-	//   this.http.get<IProduct[]>('http://localhost:3000/home-page')
-	//   .subscribe((data) => {this.setData(data)})
+	setDataReting(data: IReting[]) {
+		this.listReting = data;
+		this.getAverageRating();
+	}
 
-	// }
+	setDataComment(data: IComments[]) {
+		this.listComments = data;
+		this.getTotalCommentsCount();
+		this.getTotalDeleteCount(data);
+	}
+
+	setCommentMongo(comment: IComments) {
+		const body = { comment };
+		this.http.post<IComments[]>('http://localhost:3000/add-comment', body).subscribe(
+			(str) => {
+				this.setDataComment(str);
+			},
+			(err) => {
+				console.log(err);
+			},
+		);
+	}
+
+	getCommentMongo() {
+		this.http.get<IComments[]>('http://localhost:3000/get-comment').subscribe((str) => {
+			this.setDataComment(str);
+		});
+	}
+
+	getReitingMongo() {
+		this.http.get<IReting[]>('http://localhost:3000/get-reting').subscribe((str) => {
+			this.setDataReting(str);
+		});
+	}
+
 	deleteBookMongo(id: string) {
 		const body = { id };
-		//console.log(body)
-
 		this.http.post<IProduct[]>('http://localhost:3000/delete-book', body).subscribe(
 			(str) => {
-				//console.log('Delete:');
-				//console.log(str);
 				this.setDataBook(str);
-				//this.mongo.fetch()
 			},
 			(err) => {
 				console.log(err);
@@ -84,13 +123,9 @@ export class MongoService {
 
 	setBookMongo(product: IProduct) {
 		const body = { product };
-		//console.log(body)
 		this.http.post<IProduct[]>('http://localhost:3000/add-book', body).subscribe(
 			(str) => {
-				//console.log('Delete:');
-				//console.log(str);
 				this.setDataBook(str);
-				//this.mongo.fetch()
 			},
 			(err) => {
 				console.log(err);
@@ -100,6 +135,5 @@ export class MongoService {
 
 	setDataBook(data: IProduct[]) {
 		this.listProducts = data;
-		//console.log(this.listProducts);
 	}
 }
