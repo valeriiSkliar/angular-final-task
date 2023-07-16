@@ -1,55 +1,32 @@
 <div
-	appScrollWithLoading
-	(crossBorderEvent)="loadData($event)"
-	class="container m-auto pb-5"
-	[ngClass]="{ 'bg-theme': themeServise.stateTheme.themeBlack }"
+  appScrollWithLoading
+  (crossBorderEvent)="loadData($event)"
+  class="m-auto pb-1 list-wrapper px-4"
+  [ngClass]="{ 'bg-theme': themeServise.stateTheme.themeBlack }"
 >
-	<h2 class="ms-5">List of all added books</h2>
-	<table
-		class="table"
-		[ngClass]="{
-			'table-hover': themeServise.stateTheme.themeWhite,
-			'text-white': themeServise.stateTheme.themeBlack,
-		}"
-	>
-		<thead>
-			<tr>
-				<th class="col-1 text-center" scope="col">#</th>
-				<th class="col-1 text-center" scope="col">Image</th>
-				<th class="col text-center" scope="col">Name</th>
-				<th class="col-1 text-center" scope="col">Controls</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class="hover" *ngFor="let product of productList; let i = index">
-				<th scope="row" class="align-middle text-center">{{ i + 1 }}</th>
-				<td class="p-3">
-					<img class="img-fluid" [src]="product.imageUrls[0]" [alt]="product.id" />
-				</td>
-				<td class="align-middle">
-					<b class="ps-5">{{ product.name }}</b>
-				</td>
-				<td class="align-middle text-center">
-					<div class="flex-row flex-nowrap d-flex">
-						<button
-							name="remove"
-							style="--bs-btn-padding-y: 0.2rem; --bs-btn-padding-x: 0.3rem; --bs-btn-font-size: 0.55rem"
-							(click)="emitIdAndActionName({ id: product.id, action: $event })"
-							class="buttonsControl btn btn-outline-danger"
-						>
-							Remove
-						</button>
-						<button
-							style="--bs-btn-padding-y: 0.2rem; --bs-btn-padding-x: 0.3rem; --bs-btn-font-size: 0.55rem"
-							(click)="emitIdAndActionName({ id: product.id, action: $event })"
-							class="buttonsControl ms-3 btn btn-outline-primary"
-							name="edit"
-						>
-							Edit
-						</button>
-					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+  <div class="row bg-white text-dark mb-2 book-item-row py-2" *ngFor="let product of productList; let i = index">
+    <div class="col-1 text-center d-flex align-items-center justify-content-center">{{ i + 1 }}</div>
+    <div class="col-1 d-none d-md-flex align-items-center justify-content-center">
+      <img class="img-fluid" [src]="product.imageUrls[0]" [alt]="product.id" />
+    </div>
+    <div class="col-8 col-md-6 d-flex align-items-center  fs-4 fs-md-5 fs-sm-6 fs">{{ product.name }}</div>
+    <div class="col col-md-4 d-flex align-items-center justify-content-end">
+      <div class="d-flex flex-row px-3 py-2">
+        <button
+          name="remove"
+          (click)="emitIdAndActionName({ id: product.id, action: $event })"
+          class="buttonsControl btn btn-danger fs-5"
+        >
+          Remove
+        </button>
+        <button
+          (click)="emitIdAndActionName({ id: product.id, action: $event })"
+          class="buttonsControl ms-3 btn btn-primary fs-5"
+          name="edit"
+        >
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

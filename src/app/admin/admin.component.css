@@ -1,23 +1,22 @@
 .add-block {
-	flex-basis: 100%; /* Occupies full width on mobile */
-	margin-bottom: 20px; /* Adds margin on mobile */
+	flex-basis: 100%;
+	margin-bottom: 20px;
 	min-height: 100px;
 	align-self: center;
 }
 
 .statistics {
-	flex-basis: 100%; /* Occupies full width on mobile */
+	flex-basis: 100%;
 }
 
 @media (min-width: 768px) {
-	/* Adjusts layout for desktop (width of 768px or more) */
 	.add-block {
-		flex-basis: 25%; /* Takes up 25% of the width on desktop */
-		margin-bottom: 0; /* Removes margin on desktop */
+		flex-basis: 25%;
+		margin-bottom: 0;
 	}
 
 	.statistics {
-		flex-basis: 75%; /* Takes up 75% of the width on desktop */
+		flex-basis: 75%;
 	}
 }
 
