@@ -17,6 +17,7 @@ export class AdminComponent {
 	productList: IProduct[] = [];
 	productToAddEdit: IProduct = { name: '', id: '', url: '', price: 0, description: '', imageUrls: [] };
 	isFormOpen = false;
+	subscribedToBot: null | string = localStorage.getItem('chatId');
 
 	constructor(
 		private localStorageService: LocalStorageService,
