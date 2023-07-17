@@ -45,6 +45,7 @@ export class StatisticsComponent implements OnInit {
 	getPopularBooks(): Partial<IProduct>[] {
 		const bookIds = this.commentService.getBooksSortedByComments();
 		const popularBooks = this.localStorageService.getBooksByIds(bookIds);
+
 		if (popularBooks.length > 3) {
 			popularBooks.length = 3;
 		}

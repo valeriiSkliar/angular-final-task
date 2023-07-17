@@ -14,9 +14,10 @@ export class CommentService {
 	];
 
 	constructor(private mongoService: MongoService) {
-		if (!localStorage.getItem('ListComments')) {
-			localStorage.setItem('ListComments', JSON.stringify(this.listComments));
-		}
+		// if (!localStorage.getItem('ListComments')) {
+		// 	localStorage.setItem('ListComments', JSON.stringify(this.listComments));
+		// }
+		this.listComments = this.mongoService.listComments!;
 	}
 
 	setListComments(comment: IComments) {
