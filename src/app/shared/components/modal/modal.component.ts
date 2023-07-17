@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
 	selector: 'app-modal',
@@ -6,6 +7,8 @@ import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild, ViewCon
 	styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent {
+	constructor(public themeServise: ThemeService) {}
+
 	@Input() showPopup = false;
 	@Output() closeModal = new EventEmitter<boolean>();
 

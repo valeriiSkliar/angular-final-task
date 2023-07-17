@@ -26,8 +26,6 @@ export class AddProductComponent {
 	@Output() addProductSubmit = new EventEmitter<IProduct>();
 	@Output() editProductSubmit = new EventEmitter<IProduct>();
 
-	constructor(public themeServise: ThemeService) {}
-
 	async imageSet(imageLink: NgModel) {
 		if (this.images.length >= 3) {
 			console.log(imageLink.control.invalid);

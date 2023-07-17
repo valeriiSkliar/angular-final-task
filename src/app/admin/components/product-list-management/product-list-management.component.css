@@ -28,11 +28,10 @@
 }
 
 .hover:hover {
-	color: rgba(255, 255, 255, 0.585);
+	color: rgb(0, 0, 0);
+	background-color: rgba(164, 164, 164, 0.455);
 }
 
 .bg-theme {
-	background-color: rgb(52, 52, 52);
-	border: white 1px solid;
-	border-radius: 5px;
+	background-color: rgba(41, 41, 41, 0.444);
 }

@@ -1,64 +1,51 @@
 <div class="d-flex flex-column mb-5" [ngClass]="{ 'text-white': themeServise.stateTheme.themeBlack }">
-  <div
-    class="container-lg  px-3 px-sm-5"
-  >
-    <div class="row mb-2">
+	<div class="container-lg px-3 px-sm-5">
+		<div class="row mb-2">
+			<div class="col mt-3">
+				<div class="statistics p-0">
+					<h3 class="mb-3 ps-3">Statistics</h3>
+					<app-statistics class="px-3"></app-statistics>
+				</div>
+			</div>
+		</div>
 
-      <div class="col mt-3">
-        <div class="statistics  p-0">
-          <h3
-            class="mb-3 ps-3"
-          >Statistics</h3>
-          <app-statistics class="px-3"></app-statistics>
-        </div>
-      </div>
-    </div>
+		<hr class="px-5" />
 
-    <hr class="px-5">
+		<div class="mt-5">
+			<div class="d-flex flex-column p-0 h-75">
+				<p class="fs-sm-6 fs-2">List of all added books</p>
+				<div class="head_block d-flex flex-row gap-5 justify-content-between">
+					<div class="d-flex flex-row add-button">
+						<div class="d-flex justify-content-center align-content-center">
+							<button (click)="toggleFormModal()" class="btn btn-success add_button fs-4">Add book</button>
+						</div>
+					</div>
+					<div>
+						<button [disabled]="subscribedToBot" class="btn btn-primary px-3 fs-4" (click)="openBot()">telegram</button>
+					</div>
+				</div>
+				<app-product-list-management
+					(idAndActionName)="toggleFormModal($event)"
+					(loadMoreData)="lazyLoadingList($event)"
+					[productList]="productList"
+					class="m-auto mt-4"
+				></app-product-list-management>
 
-    <div class="mt-5">
-      <div class="d-flex flex-column p-0 h-75 ">
-        <p
-          class=" fs-sm-6 fs-2"
-        >List of all added books</p>
-        <div class="head_block  d-flex flex-row gap-5 justify-content-between">
-          <div
-            class="d-flex flex-row  add-button">
-            <div class="d-flex justify-content-center align-content-center">
-              <button (click)="toggleFormModal()" class="btn btn-success add_button fs-4">Add book</button>
-            </div>
-          </div>
-          <div>
-            <button
-              [disabled]="subscribedToBot"
-              class="btn btn-primary px-3 fs-4"
-              (click)="openBot()"
-            >telegram
-            </button>
-          </div>
-        </div>
-        <app-product-list-management
-          (idAndActionName)="toggleFormModal($event)"
-          (loadMoreData)="lazyLoadingList($event)"
-          [productList]="productList"
-          class="m-auto mt-4"
-        ></app-product-list-management>
+				<app-modal
+					[showPopup]="isFormOpen"
+					(closeModal)="isFormOpen = $event"
+					[insertTemplateView]="isFormOpen ? addEditForm : null"
+				></app-modal>
 
-        <app-modal
-          [showPopup]="isFormOpen"
-          (closeModal)="isFormOpen = $event"
-          [insertTemplateView]="isFormOpen ? addEditForm : null"
-        ></app-modal>
-
-        <ng-template #addEditForm>
-          <app-add-product
-            (addProductSubmit)="submitForm($event)"
-            [product]="productToAddEdit"
-            [images]="productToAddEdit.imageUrls"
-            class="m-auto mb-5"
-          ></app-add-product>
-        </ng-template>
-      </div>
-    </div>
-  </div>
+				<ng-template #addEditForm>
+					<app-add-product
+						(addProductSubmit)="submitForm($event)"
+						[product]="productToAddEdit"
+						[images]="productToAddEdit.imageUrls"
+						class="m-auto mb-5"
+					></app-add-product>
+				</ng-template>
+			</div>
+		</div>
+	</div>
 </div>

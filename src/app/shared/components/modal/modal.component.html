@@ -1,5 +1,5 @@
 <div class="popup-overlay" [ngClass]="{ active: showPopup }">
-	<div class="popup-content">
+	<div class="popup-content" [ngClass]="{ 'bg-dark': themeServise.stateTheme.themeBlack }">
 		<ng-container #viewport></ng-container>
 		<div #viewport></div>
 		<button class="btn-close position-absolute top-0 end-0 me-3 mt-3" (click)="close()"></button>
