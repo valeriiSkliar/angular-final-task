@@ -70,23 +70,28 @@
 						<button
 							routerLink="product-page/{{ book.id }}"
 							(click)="scrollPageUp()"
-							class="card mb-4 box-shadow align-self-center"
+							class="card mb-4 box-shadow align-self-center rounded-0"
 							[ngClass]="{ 'bg-theme': themeServise.stateTheme.themeBlack }"
 						>
 							<img class="card-img-top img-fluid product_img" data-src="{{ book.imageUrls[0] }}" alt="Card image cap" />
-							<div class="card-body">
-								<p class="card-text responsive-text" [ngClass]="{ 'text-white': themeServise.stateTheme.themeBlack }">
+							<div class="card-body m-0 flex">
+								<p
+									class="card-text responsive-text m-0 p-0"
+									[ngClass]="{ 'text-white': themeServise.stateTheme.themeBlack }"
+								>
 									{{ book.name }}
 								</p>
-								<div class="d-flex justify-content-between align-items-center">
+								<div class="d-flex justify-content-center">
 									<div class="btn-group"></div>
-									<small
+									<p
+										class="fs-5 m-0"
 										[ngClass]="{
 											'text-white': themeServise.stateTheme.themeBlack,
-											'text-muted': themeServise.stateTheme.themeWhite
+											'text-black': themeServise.stateTheme.themeWhite
 										}"
-										>{{ book.price | currencyChange : currencyService.getSelectedCurrency() }}</small
 									>
+										{{ book.price | currencyChange : currencyService.getSelectedCurrency() }}
+									</p>
 								</div>
 							</div>
 						</button>

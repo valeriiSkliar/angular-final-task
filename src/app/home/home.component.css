@@ -95,3 +95,13 @@ input {
 		height: 300px; /* Further reduced height */
 	}
 }
+
+.flex {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.border {
+	border: solid white 3px;
+}
