@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import { IProduct } from '../core/interfaces/iproduct';
 import { map, Observable, of } from 'rxjs';
 import { CurrencyServiceService } from '../core/services/currency-service.service';
 import { ThemeService } from '../core/services/theme.service';
 import { HttpClient } from '@angular/common/http';
-
-type Info = { name: string; age: number };
-type Animal = { name: string; breed: string; age: number };
 
 @Component({
 	selector: 'app-home',
@@ -23,8 +20,6 @@ export class HomeComponent implements OnInit {
 	collectionNew: IProduct[] = []; // new
 	filter!: string; // new
 	noMatches = false;
-	user: Info | undefined;
-	cat: Animal | undefined;
 
 	constructor(
 		public currencyService: CurrencyServiceService,
@@ -34,10 +29,9 @@ export class HomeComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.currencyService.selectedCurrency$.subscribe((currency: string) => {
-			this.currencyService.setSelectedCurrency(currency);
-		});
-
+		// this.currencyService.selectedCurrency$.subscribe((currency: string) => {
+		// 	this.currencyService.setSelectedCurrency(currency);
+		// });
 		this.collectionObservable = of(this.listProducts.getBooksInLocalStorage()).pipe(
 			map((products) => {
 				this.collectionNew = products;
@@ -68,7 +62,7 @@ export class HomeComponent implements OnInit {
 		});
 	}
 
-	changeCurrency(currency: string) {
-		this.currencyService.selectedCurrency$.next(currency);
-	}
+	// changeCurrency(currency: string) {
+	// 	this.currencyService.selectedCurrency$.next(currency);
+	// }
 }

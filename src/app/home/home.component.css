@@ -105,3 +105,35 @@ input {
 .border {
 	border: solid white 3px;
 }
+
+.fs {
+	font-size: 24px;
+}
+
+@media screen and (max-width: 1002px) {
+	.fs {
+		font-size: 18px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.fs {
+		font-size: 16px;
+	}
+}
+
+.fs-price {
+	font-size: 20px;
+}
+
+@media screen and (max-width: 1002px) {
+	.fs-price {
+		font-size: 15px;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.fs-price {
+		font-size: 13px;
+	}
+}

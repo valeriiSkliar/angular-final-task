@@ -18,32 +18,55 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav w-100 me-auto mb-2 mb-lg-0 ms-lg-4 flex">
 				<li class="nav-item">
-					<a routerLink="" class="nav-link active hover" aria-current="page" href="#!"
-						><img class="icon" src="/assets/home.png" alt=""
+					<a routerLink="" class="nav-link active hover px-2 home" aria-current="page" href="#!"
+						><img class="icon-home" src="/assets/home.png" alt=""
 					/></a>
 				</li>
 				<li class="nav-item">
 					<a
 						(click)="requestToServer(); $event.preventDefault()"
 						routerLink="admin"
-						class="nav-link active hover"
+						class="nav-link active hover px-2"
 						aria-current="page"
 					>
 						<img class="icon" src="/assets/admin.png" alt="" />
 					</a>
 				</li>
-				<!-- <li class="nav-item flex"><app-theme-button></app-theme-button></li> -->
 				<li class="nav-item cart">
-					<app-cart-icon></app-cart-icon>
+					<app-cart-icon class="m-1"></app-cart-icon>
+				</li>
+				<li class="nav-item cart">
+					<div class="btn-toolbar m-1" role="toolbar" aria-label="Toolbar with button groups">
+						<div class="btn-group" role="group" aria-label="First group">
+							<button
+								(click)="changeCurrency('₴')"
+								type="button"
+								[class.active]="currencyService.selectedCurrency === '₴'"
+								class="btn btn-outline-light"
+							>
+								₴
+							</button>
+							<button
+								(click)="changeCurrency('€')"
+								[class.active]="currencyService.selectedCurrency === '€'"
+								type="button"
+								class="btn btn-outline-light"
+							>
+								€
+							</button>
+							<button
+								(click)="changeCurrency('$')"
+								[class.active]="currencyService.selectedCurrency === '$'"
+								type="button"
+								class="btn btn-outline-light"
+							>
+								$
+							</button>
+						</div>
+					</div>
 				</li>
 				<li class="nav-item"><app-theme-button></app-theme-button></li>
 			</ul>
-			<!-- <form class="d-flex">
-				<app-cart-icon></app-cart-icon>
-			</form>
-			<div class="d-flex">
-				<app-theme-button></app-theme-button>
-			</div> -->
 		</div>
 	</div>
 </header>

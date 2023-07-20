@@ -1,9 +1,20 @@
-/* :host {
-	z-index: 100;
+.h {
+	height: 70px;
 }
 
-footer {
-	width: 100%;
-	position: absolute;
-	height: 56px;
-} */
+.flex {
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+	color: white;
+	list-style-type: none;
+}
+
+.media {
+	height: 30px;
+	width: auto;
+}
+
+.media:hover {
+	opacity: 0.8;
+}

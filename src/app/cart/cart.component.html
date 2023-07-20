@@ -14,7 +14,7 @@
 	</ul>
 	<div class="cart-total text-center float-end">
 		Total Cost: {{ totalCost | currencyChange : currencyService.getSelectedCurrency() }}
-		<button routerLink="checkout" class="p-2 m-5 btn btn-outline-success">CheckOut Order</button>
+		<button routerLink="checkout" class="p-2 m-5 btn btn-success">CheckOut Order</button>
 	</div>
 	<hr class="w-100" />
 	<router-outlet></router-outlet>

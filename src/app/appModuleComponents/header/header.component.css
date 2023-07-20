@@ -1,11 +1,21 @@
 a {
 	margin: 0;
 	padding: 0;
+	height: auto;
+}
+
+.home {
+	display: flex;
 }
 
 .icon {
 	width: auto;
-	height: 40px;
+	height: 32px;
+}
+
+.icon-home {
+	width: auto;
+	height: 30px;
 }
 
 .hover:hover {
@@ -20,9 +30,13 @@ a {
 }
 
 .title {
-	font-size: 40px;
+	font-size: 36px;
 }
 
 .cart {
-	scale: 1.2;
+	scale: 0.9;
+}
+
+.pt {
+	padding-top: 5px;
 }
