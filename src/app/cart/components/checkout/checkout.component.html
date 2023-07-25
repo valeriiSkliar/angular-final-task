@@ -1,77 +1,72 @@
 <div class="container my-5 text-center">
-  <p
-  class="my-4">
-    Fill your contact information to checkout order!
-  </p>
-  <form
-    [formGroup]="checkoutForm"
-    (ngSubmit)=sendOrder()
-    class="d-flex flex-column gap-3 justify-content-center align-content-center ">
-
-    <div class="input-group w-75 m-auto mt-3">
-    <span
-      class="input-group-text"
-      id="basic-addon1">First Name</span>
-      <input
-        [class.is-invalid]="checkoutForm.controls['firstName'].invalid && checkoutForm.controls['firstName'].touched"
-        minlength="4"
-        formControlName="firstName"
-        name="firstName"
-        class="form-control"
-        type="text"
-        placeholder="Type here"
-        aria-label="default input example">
-    </div>
-    <div
-      class="text-danger w-75 text-start m-auto"
-      *ngIf="checkoutForm.controls['firstName'].invalid && checkoutForm.controls['firstName'].touched">
-      First Name is required.
-    </div>
-    <div class="input-group  w-75 m-auto mt-3">
-    <span
-      class="input-group-text"
-      id="basic-addon2">Last Name</span>
-      <input
-        [class.is-invalid]="checkoutForm.controls['lastName'].invalid && checkoutForm.controls['lastName'].touched"
-        formControlName="lastName"
-        minlength="4"
-        name="lastName"
-        class="form-control"
-        type="text"
-        placeholder="Type here"
-        aria-label="default input example">
-    </div>
-    <div
-      class="text-danger w-75 text-start m-auto"
-      *ngIf="checkoutForm.controls['lastName'].invalid && checkoutForm.controls['lastName'].touched">
-      First Name is required.
-    </div>
-    <div class="input-group w-75 m-auto mt-3">
-    <span
-      class="input-group-text"
-      id="basic-addon3">Phone number</span>
-      <input
-        [class.is-invalid]="checkoutForm.controls['phoneNumber'].invalid && checkoutForm.controls['phoneNumber'].touched"
-        minlength="4"
-        formControlName="phoneNumber"
-        name="phoneNumber"
-        class="form-control"
-        type="text"
-        placeholder="Type here"
-        aria-label="default input example">
-    </div>
-    <div
-      class="text-danger w-75 text-start m-auto"
-      *ngIf="checkoutForm.controls['phoneNumber'].invalid && checkoutForm.controls['phoneNumber'].touched">
-      First Name is required.
-    </div>
-    <button
-      [disabled]="checkoutForm.invalid"
-      class="m-auto w-50 btn btn-success mt-3"
-      type="submit"
-    >Send order
-    </button>
-  </form>
+	<p class="my-4">Fill your contact information to checkout order!</p>
+	<form
+		[formGroup]="checkoutForm"
+		(ngSubmit)="sendOrder()"
+		class="d-flex flex-column gap-3 justify-content-center align-content-center"
+	>
+		<div class="input-group w-75 m-auto mt-3">
+			<span class="input-group-text" id="basic-addon1">First Name</span>
+			<input
+				[class.is-invalid]="checkoutForm.controls['firstName'].invalid && checkoutForm.controls['firstName'].touched"
+				minlength="4"
+				formControlName="firstName"
+				name="firstName"
+				class="form-control"
+				type="text"
+				placeholder="Type here"
+				aria-label="default input example"
+			/>
+		</div>
+		<div
+			class="text-danger w-75 text-start m-auto"
+			*ngIf="checkoutForm.controls['firstName'].invalid && checkoutForm.controls['firstName'].touched"
+		>
+			First Name is required.
+		</div>
+		<div class="input-group w-75 m-auto mt-3">
+			<span class="input-group-text" id="basic-addon2">Last Name</span>
+			<input
+				[class.is-invalid]="checkoutForm.controls['lastName'].invalid && checkoutForm.controls['lastName'].touched"
+				formControlName="lastName"
+				minlength="4"
+				name="lastName"
+				class="form-control"
+				type="text"
+				placeholder="Type here"
+				aria-label="default input example"
+			/>
+		</div>
+		<div
+			class="text-danger w-75 text-start m-auto"
+			*ngIf="checkoutForm.controls['lastName'].invalid && checkoutForm.controls['lastName'].touched"
+		>
+			Last Name is required.
+		</div>
+		<div class="input-group w-75 m-auto mt-3">
+			<span class="input-group-text" id="basic-addon3">Phone number</span>
+			<input
+				[class.is-invalid]="
+					checkoutForm.controls['phoneNumber'].invalid && checkoutForm.controls['phoneNumber'].touched
+				"
+				minlength="4"
+				maxlength="12"
+				formControlName="phoneNumber"
+				name="phoneNumber"
+				class="form-control"
+				type="text"
+				placeholder="Type here"
+				aria-label="default input example"
+			/>
+		</div>
+		<div
+			class="text-danger w-75 text-start m-auto"
+			*ngIf="checkoutForm.controls['phoneNumber'].invalid && checkoutForm.controls['phoneNumber'].touched"
+		>
+			Phone number is required.
+		</div>
+		<button [disabled]="checkoutForm.invalid" class="m-auto w-50 btn btn-success mt-3" type="submit">Send order</button>
+	</form>
 </div>
 <p #response></p>
-<p *ngIf="message">{{message}}</p>
+<p *ngIf="message">{{ message }}</p>

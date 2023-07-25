@@ -6,12 +6,12 @@
 		<div class="fs-6 fw-bolder cart-item-name p-2">{{ item.product.name }}</div>
 	</div>
 	<div class="col-12 col-sm-2 col-md-2 text-center px-4">
-		<div class="cart-item-price p-2">
+		<div class="cart-item-price p-2 fs-5">
 			{{ item.product.price * item.quantity | currencyChange : currencyService.getSelectedCurrency() }}
 		</div>
 	</div>
 	<div class="col-12 col-sm-3 col-md-3 text-center px-4">
-		<div class="cart-item-quantity d-flex flex-row justify-content-center">
+		<div class="cart-item-quantity d-flex flex-row justify-content-center mt-1">
 			<button class="mx-2 btn btn-success" (click)="changeQuantity(-1)">-</button>
 			<input [(ngModel)]="item.quantity" (ngModelChange)="onQuantityChange($event)" type="number" class="rounded-2" />
 			<button class="mx-2 btn btn-success" (click)="changeQuantity(1)">+</button>
@@ -19,7 +19,7 @@
 	</div>
 	<div class="col-12 col-sm-1 col-md-1 text-center">
 		<div class="cart-item-delete px-4">
-			<button class="btn btn-danger" (click)="remove(item.product.id)">Remove</button>
+			<button class="btn btn-danger mt-1" (click)="remove(item.product.id)">Remove</button>
 		</div>
 	</div>
 </div>
